@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sky.ddtsp.dao.generate.AmazonAuthMapper">
+  <resultMap id="BaseResultMap" type="com.sky.ddtsp.entity.AmazonAuth">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="merchant_id" jdbcType="VARCHAR" property="merchantId" />
+    <result column="shop_name" jdbcType="VARCHAR" property="shopName" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="refresh_token" jdbcType="VARCHAR" property="refreshToken" />
+    <result column="nws_auth_token" jdbcType="VARCHAR" property="nwsAuthToken" />
+    <result column="end_point_area" jdbcType="INTEGER" property="endPointArea" />
+    <result column="order_time_after" jdbcType="TIMESTAMP" property="orderTimeAfter" />
+    <result column="order_time_before" jdbcType="TIMESTAMP" property="orderTimeBefore" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_by" jdbcType="BIGINT" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="BIGINT" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sky.ddtsp.entity.AmazonAuth">
+    <result column="order_next_token" jdbcType="LONGVARCHAR" property="orderNextToken" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, merchant_id, shop_name, customer_id, refresh_token, nws_auth_token, end_point_area, 
+    order_time_after, order_time_before, remark, status, create_by, create_time, update_by, 
+    update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    order_next_token
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.sky.ddtsp.entity.AmazonAuthExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from amazon_auth
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.sky.ddtsp.entity.AmazonAuthExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from amazon_auth
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from amazon_auth
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from amazon_auth
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sky.ddtsp.entity.AmazonAuthExample">
+    delete from amazon_auth
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sky.ddtsp.entity.AmazonAuth">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into amazon_auth (merchant_id, shop_name, customer_id, 
+      refresh_token, nws_auth_token, end_point_area, 
+      order_time_after, order_time_before, remark, 
+      status, create_by, create_time, 
+      update_by, update_time, order_next_token
+      )
+    values (#{merchantId,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, 
+      #{refreshToken,jdbcType=VARCHAR}, #{nwsAuthToken,jdbcType=VARCHAR}, #{endPointArea,jdbcType=INTEGER}, 
+      #{orderTimeAfter,jdbcType=TIMESTAMP}, #{orderTimeBefore,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createBy,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{orderNextToken,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sky.ddtsp.entity.AmazonAuth">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into amazon_auth
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="shopName != null">
+        shop_name,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="refreshToken != null">
+        refresh_token,
+      </if>
+      <if test="nwsAuthToken != null">
+        nws_auth_token,
+      </if>
+      <if test="endPointArea != null">
+        end_point_area,
+      </if>
+      <if test="orderTimeAfter != null">
+        order_time_after,
+      </if>
+      <if test="orderTimeBefore != null">
+        order_time_before,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="orderNextToken != null">
+        order_next_token,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null">
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="refreshToken != null">
+        #{refreshToken,jdbcType=VARCHAR},
+      </if>
+      <if test="nwsAuthToken != null">
+        #{nwsAuthToken,jdbcType=VARCHAR},
+      </if>
+      <if test="endPointArea != null">
+        #{endPointArea,jdbcType=INTEGER},
+      </if>
+      <if test="orderTimeAfter != null">
+        #{orderTimeAfter,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderTimeBefore != null">
+        #{orderTimeBefore,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderNextToken != null">
+        #{orderNextToken,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sky.ddtsp.entity.AmazonAuthExample" resultType="java.lang.Long">
+    select count(*) from amazon_auth
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update amazon_auth
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.merchantId != null">
+        merchant_id = #{record.merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopName != null">
+        shop_name = #{record.shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerId != null">
+        customer_id = #{record.customerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.refreshToken != null">
+        refresh_token = #{record.refreshToken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nwsAuthToken != null">
+        nws_auth_token = #{record.nwsAuthToken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endPointArea != null">
+        end_point_area = #{record.endPointArea,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderTimeAfter != null">
+        order_time_after = #{record.orderTimeAfter,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderTimeBefore != null">
+        order_time_before = #{record.orderTimeBefore,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        update_by = #{record.updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderNextToken != null">
+        order_next_token = #{record.orderNextToken,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update amazon_auth
+    set id = #{record.id,jdbcType=BIGINT},
+      merchant_id = #{record.merchantId,jdbcType=VARCHAR},
+      shop_name = #{record.shopName,jdbcType=VARCHAR},
+      customer_id = #{record.customerId,jdbcType=BIGINT},
+      refresh_token = #{record.refreshToken,jdbcType=VARCHAR},
+      nws_auth_token = #{record.nwsAuthToken,jdbcType=VARCHAR},
+      end_point_area = #{record.endPointArea,jdbcType=INTEGER},
+      order_time_after = #{record.orderTimeAfter,jdbcType=TIMESTAMP},
+      order_time_before = #{record.orderTimeBefore,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      create_by = #{record.createBy,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      order_next_token = #{record.orderNextToken,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update amazon_auth
+    set id = #{record.id,jdbcType=BIGINT},
+      merchant_id = #{record.merchantId,jdbcType=VARCHAR},
+      shop_name = #{record.shopName,jdbcType=VARCHAR},
+      customer_id = #{record.customerId,jdbcType=BIGINT},
+      refresh_token = #{record.refreshToken,jdbcType=VARCHAR},
+      nws_auth_token = #{record.nwsAuthToken,jdbcType=VARCHAR},
+      end_point_area = #{record.endPointArea,jdbcType=INTEGER},
+      order_time_after = #{record.orderTimeAfter,jdbcType=TIMESTAMP},
+      order_time_before = #{record.orderTimeBefore,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      create_by = #{record.createBy,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sky.ddtsp.entity.AmazonAuth">
+    update amazon_auth
+    <set>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null">
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="refreshToken != null">
+        refresh_token = #{refreshToken,jdbcType=VARCHAR},
+      </if>
+      <if test="nwsAuthToken != null">
+        nws_auth_token = #{nwsAuthToken,jdbcType=VARCHAR},
+      </if>
+      <if test="endPointArea != null">
+        end_point_area = #{endPointArea,jdbcType=INTEGER},
+      </if>
+      <if test="orderTimeAfter != null">
+        order_time_after = #{orderTimeAfter,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderTimeBefore != null">
+        order_time_before = #{orderTimeBefore,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderNextToken != null">
+        order_next_token = #{orderNextToken,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sky.ddtsp.entity.AmazonAuth">
+    update amazon_auth
+    set merchant_id = #{merchantId,jdbcType=VARCHAR},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      refresh_token = #{refreshToken,jdbcType=VARCHAR},
+      nws_auth_token = #{nwsAuthToken,jdbcType=VARCHAR},
+      end_point_area = #{endPointArea,jdbcType=INTEGER},
+      order_time_after = #{orderTimeAfter,jdbcType=TIMESTAMP},
+      order_time_before = #{orderTimeBefore,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      order_next_token = #{orderNextToken,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sky.ddtsp.entity.AmazonAuth">
+    update amazon_auth
+    set merchant_id = #{merchantId,jdbcType=VARCHAR},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      refresh_token = #{refreshToken,jdbcType=VARCHAR},
+      nws_auth_token = #{nwsAuthToken,jdbcType=VARCHAR},
+      end_point_area = #{endPointArea,jdbcType=INTEGER},
+      order_time_after = #{orderTimeAfter,jdbcType=TIMESTAMP},
+      order_time_before = #{orderTimeBefore,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
