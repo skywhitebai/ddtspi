@@ -128,11 +128,12 @@ public class OrdersJob {
         ordersList.getOrders().forEach(order -> {
 
         });
-        AmazonAuth amazonAuthUpdate = new AmazonAuth();
-        amazonAuthUpdate.setId(amazonAuth.getId());
-        amazonAuthUpdate.setLastUpdatedAfter(DateUtil.utczStrToDateTime(ordersList.getLastUpdatedBefore()));
-        customAmazonAuthMapper.updateByPrimaryKeySelective(amazonAuthUpdate);
-        if (!StringUtils.isEmpty(ordersList.getNextToken())) {
+        if (StringUtils.isEmpty(ordersList.getNextToken())) {
+            AmazonAuth amazonAuthUpdate = new AmazonAuth();
+            amazonAuthUpdate.setId(amazonAuth.getId());
+            amazonAuthUpdate.setLastUpdatedAfter(DateUtil.utczStrToDateTime(ordersList.getLastUpdatedBefore()));
+            customAmazonAuthMapper.updateByPrimaryKeySelective(amazonAuthUpdate);
+        } else {
             //获取下页
             GetOrdersResponse response = getOrdersByNextToken(amazonAuth, ordersV0Api, ordersList);
             if (response == null) {

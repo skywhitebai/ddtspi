@@ -223,7 +223,7 @@ public class DateUtil {
         if (str.length() > 20) {
             str = str.substring(0, 20);
         }
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
         try {
             return sdf.parse(str);
         } catch (ParseException e) {
@@ -236,7 +236,7 @@ public class DateUtil {
         if (date == null) {
             return null;
         }
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
         String formatStr = sdf.format(date);
         return formatStr;
     }
@@ -256,7 +256,7 @@ public class DateUtil {
 
     public static void main(String[] args) {
         //String dateTime="Oct 1, 2019 12:11:01 AM PDT";
-        System.out.println(UtcStrToDateTime("2020-08-15T01:00:00-07:00"));
+        System.out.println(utczStrToDateTime("2021-05-03T16:50:04Z"));
     }
 
     public static String getFormatStrMonthDayTime(Date date) {
