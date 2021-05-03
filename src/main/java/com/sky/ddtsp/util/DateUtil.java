@@ -79,6 +79,7 @@ public class DateUtil {
         String formatStr = formatter.format(date);
         return formatStr;
     }
+
     /**
      * @param date
      * @return
@@ -91,6 +92,7 @@ public class DateUtil {
         String formatStr = formatter.format(date);
         return formatStr;
     }
+
     /**
      * 指定日期加上小时后的日期
      *
@@ -196,8 +198,8 @@ public class DateUtil {
         if (StringUtils.isEmpty(str)) {
             return null;
         }
-        if(str.length()>19){
-            str=str.substring(0,19);
+        if (str.length() > 19) {
+            str = str.substring(0, 19);
         }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         try {
@@ -206,6 +208,37 @@ public class DateUtil {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * 字符串转时间 yyyy-MM-ddTHH:mm:ss+00:00
+     *
+     * @param str
+     * @return
+     */
+    public static Date utczStrToDateTime(String str) {
+        if (StringUtils.isEmpty(str)) {
+            return null;
+        }
+        if (str.length() > 20) {
+            str = str.substring(0, 20);
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+        try {
+            return sdf.parse(str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static String dateTimeToUtczStr(Date date) {
+        if (date == null) {
+            return null;
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+        String formatStr = sdf.format(date);
+        return formatStr;
     }
 
     /**

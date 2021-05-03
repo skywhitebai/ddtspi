@@ -505,183 +505,203 @@ public class AmazonAuthExample {
             return (Criteria) this;
         }
 
-        public Criteria andEndPointAreaIsNull() {
-            addCriterion("end_point_area is null");
+        public Criteria andMarketplaceIdIsNull() {
+            addCriterion("marketplace_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andEndPointAreaIsNotNull() {
-            addCriterion("end_point_area is not null");
+        public Criteria andMarketplaceIdIsNotNull() {
+            addCriterion("marketplace_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEndPointAreaEqualTo(Integer value) {
-            addCriterion("end_point_area =", value, "endPointArea");
+        public Criteria andMarketplaceIdEqualTo(String value) {
+            addCriterion("marketplace_id =", value, "marketplaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEndPointAreaNotEqualTo(Integer value) {
-            addCriterion("end_point_area <>", value, "endPointArea");
+        public Criteria andMarketplaceIdNotEqualTo(String value) {
+            addCriterion("marketplace_id <>", value, "marketplaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEndPointAreaGreaterThan(Integer value) {
-            addCriterion("end_point_area >", value, "endPointArea");
+        public Criteria andMarketplaceIdGreaterThan(String value) {
+            addCriterion("marketplace_id >", value, "marketplaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEndPointAreaGreaterThanOrEqualTo(Integer value) {
-            addCriterion("end_point_area >=", value, "endPointArea");
+        public Criteria andMarketplaceIdGreaterThanOrEqualTo(String value) {
+            addCriterion("marketplace_id >=", value, "marketplaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEndPointAreaLessThan(Integer value) {
-            addCriterion("end_point_area <", value, "endPointArea");
+        public Criteria andMarketplaceIdLessThan(String value) {
+            addCriterion("marketplace_id <", value, "marketplaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEndPointAreaLessThanOrEqualTo(Integer value) {
-            addCriterion("end_point_area <=", value, "endPointArea");
+        public Criteria andMarketplaceIdLessThanOrEqualTo(String value) {
+            addCriterion("marketplace_id <=", value, "marketplaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEndPointAreaIn(List<Integer> values) {
-            addCriterion("end_point_area in", values, "endPointArea");
+        public Criteria andMarketplaceIdLike(String value) {
+            addCriterion("marketplace_id like", value, "marketplaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEndPointAreaNotIn(List<Integer> values) {
-            addCriterion("end_point_area not in", values, "endPointArea");
+        public Criteria andMarketplaceIdNotLike(String value) {
+            addCriterion("marketplace_id not like", value, "marketplaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEndPointAreaBetween(Integer value1, Integer value2) {
-            addCriterion("end_point_area between", value1, value2, "endPointArea");
+        public Criteria andMarketplaceIdIn(List<String> values) {
+            addCriterion("marketplace_id in", values, "marketplaceId");
             return (Criteria) this;
         }
 
-        public Criteria andEndPointAreaNotBetween(Integer value1, Integer value2) {
-            addCriterion("end_point_area not between", value1, value2, "endPointArea");
+        public Criteria andMarketplaceIdNotIn(List<String> values) {
+            addCriterion("marketplace_id not in", values, "marketplaceId");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeAfterIsNull() {
-            addCriterion("order_time_after is null");
+        public Criteria andMarketplaceIdBetween(String value1, String value2) {
+            addCriterion("marketplace_id between", value1, value2, "marketplaceId");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeAfterIsNotNull() {
-            addCriterion("order_time_after is not null");
+        public Criteria andMarketplaceIdNotBetween(String value1, String value2) {
+            addCriterion("marketplace_id not between", value1, value2, "marketplaceId");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeAfterEqualTo(Date value) {
-            addCriterion("order_time_after =", value, "orderTimeAfter");
+        public Criteria andCountryNameIsNull() {
+            addCriterion("country_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeAfterNotEqualTo(Date value) {
-            addCriterion("order_time_after <>", value, "orderTimeAfter");
+        public Criteria andCountryNameIsNotNull() {
+            addCriterion("country_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeAfterGreaterThan(Date value) {
-            addCriterion("order_time_after >", value, "orderTimeAfter");
+        public Criteria andCountryNameEqualTo(String value) {
+            addCriterion("country_name =", value, "countryName");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeAfterGreaterThanOrEqualTo(Date value) {
-            addCriterion("order_time_after >=", value, "orderTimeAfter");
+        public Criteria andCountryNameNotEqualTo(String value) {
+            addCriterion("country_name <>", value, "countryName");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeAfterLessThan(Date value) {
-            addCriterion("order_time_after <", value, "orderTimeAfter");
+        public Criteria andCountryNameGreaterThan(String value) {
+            addCriterion("country_name >", value, "countryName");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeAfterLessThanOrEqualTo(Date value) {
-            addCriterion("order_time_after <=", value, "orderTimeAfter");
+        public Criteria andCountryNameGreaterThanOrEqualTo(String value) {
+            addCriterion("country_name >=", value, "countryName");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeAfterIn(List<Date> values) {
-            addCriterion("order_time_after in", values, "orderTimeAfter");
+        public Criteria andCountryNameLessThan(String value) {
+            addCriterion("country_name <", value, "countryName");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeAfterNotIn(List<Date> values) {
-            addCriterion("order_time_after not in", values, "orderTimeAfter");
+        public Criteria andCountryNameLessThanOrEqualTo(String value) {
+            addCriterion("country_name <=", value, "countryName");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeAfterBetween(Date value1, Date value2) {
-            addCriterion("order_time_after between", value1, value2, "orderTimeAfter");
+        public Criteria andCountryNameLike(String value) {
+            addCriterion("country_name like", value, "countryName");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeAfterNotBetween(Date value1, Date value2) {
-            addCriterion("order_time_after not between", value1, value2, "orderTimeAfter");
+        public Criteria andCountryNameNotLike(String value) {
+            addCriterion("country_name not like", value, "countryName");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeBeforeIsNull() {
-            addCriterion("order_time_before is null");
+        public Criteria andCountryNameIn(List<String> values) {
+            addCriterion("country_name in", values, "countryName");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeBeforeIsNotNull() {
-            addCriterion("order_time_before is not null");
+        public Criteria andCountryNameNotIn(List<String> values) {
+            addCriterion("country_name not in", values, "countryName");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeBeforeEqualTo(Date value) {
-            addCriterion("order_time_before =", value, "orderTimeBefore");
+        public Criteria andCountryNameBetween(String value1, String value2) {
+            addCriterion("country_name between", value1, value2, "countryName");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeBeforeNotEqualTo(Date value) {
-            addCriterion("order_time_before <>", value, "orderTimeBefore");
+        public Criteria andCountryNameNotBetween(String value1, String value2) {
+            addCriterion("country_name not between", value1, value2, "countryName");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeBeforeGreaterThan(Date value) {
-            addCriterion("order_time_before >", value, "orderTimeBefore");
+        public Criteria andLastUpdatedAfterIsNull() {
+            addCriterion("last_updated_after is null");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeBeforeGreaterThanOrEqualTo(Date value) {
-            addCriterion("order_time_before >=", value, "orderTimeBefore");
+        public Criteria andLastUpdatedAfterIsNotNull() {
+            addCriterion("last_updated_after is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeBeforeLessThan(Date value) {
-            addCriterion("order_time_before <", value, "orderTimeBefore");
+        public Criteria andLastUpdatedAfterEqualTo(Date value) {
+            addCriterion("last_updated_after =", value, "lastUpdatedAfter");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeBeforeLessThanOrEqualTo(Date value) {
-            addCriterion("order_time_before <=", value, "orderTimeBefore");
+        public Criteria andLastUpdatedAfterNotEqualTo(Date value) {
+            addCriterion("last_updated_after <>", value, "lastUpdatedAfter");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeBeforeIn(List<Date> values) {
-            addCriterion("order_time_before in", values, "orderTimeBefore");
+        public Criteria andLastUpdatedAfterGreaterThan(Date value) {
+            addCriterion("last_updated_after >", value, "lastUpdatedAfter");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeBeforeNotIn(List<Date> values) {
-            addCriterion("order_time_before not in", values, "orderTimeBefore");
+        public Criteria andLastUpdatedAfterGreaterThanOrEqualTo(Date value) {
+            addCriterion("last_updated_after >=", value, "lastUpdatedAfter");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeBeforeBetween(Date value1, Date value2) {
-            addCriterion("order_time_before between", value1, value2, "orderTimeBefore");
+        public Criteria andLastUpdatedAfterLessThan(Date value) {
+            addCriterion("last_updated_after <", value, "lastUpdatedAfter");
             return (Criteria) this;
         }
 
-        public Criteria andOrderTimeBeforeNotBetween(Date value1, Date value2) {
-            addCriterion("order_time_before not between", value1, value2, "orderTimeBefore");
+        public Criteria andLastUpdatedAfterLessThanOrEqualTo(Date value) {
+            addCriterion("last_updated_after <=", value, "lastUpdatedAfter");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedAfterIn(List<Date> values) {
+            addCriterion("last_updated_after in", values, "lastUpdatedAfter");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedAfterNotIn(List<Date> values) {
+            addCriterion("last_updated_after not in", values, "lastUpdatedAfter");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedAfterBetween(Date value1, Date value2) {
+            addCriterion("last_updated_after between", value1, value2, "lastUpdatedAfter");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastUpdatedAfterNotBetween(Date value1, Date value2) {
+            addCriterion("last_updated_after not between", value1, value2, "lastUpdatedAfter");
             return (Criteria) this;
         }
 

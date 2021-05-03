@@ -1,6 +1,9 @@
 package com.sky.ddtsp.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.sky.ddtsp.common.annotation.Action;
+import com.sky.ddtsp.common.annotation.Login;
+import com.sky.ddtsp.dto.amazonAuth.AmazonConfig;
 import com.sky.ddtsp.dto.amazonAuth.request.SaveAmazonAuthRequest;
 import com.sky.ddtsp.dto.amazonAuth.response.ListAmazonAuthResponse;
 import com.sky.ddtsp.dto.amazonAuth.request.ListAmazonAuthRequest;
@@ -31,5 +34,11 @@ public class AmazonAuthController extends BaseController {
     @RequestMapping("/saveAmazonAuth")
     public BaseResponse saveAmazonAuth(@Validated SaveAmazonAuthRequest params){
         return amazonAuthService.saveAmazonAuth(params);
+    }
+
+    @RequestMapping("/getAmazonAuthConfig")
+    @Login(action = Action.Skip)
+    public BaseResponse getAmazonAuthConfig(){
+        return BaseResponse.successData(AmazonConfig.getInstance());
     }
 }

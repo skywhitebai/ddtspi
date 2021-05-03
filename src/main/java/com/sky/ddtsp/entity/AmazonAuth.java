@@ -15,11 +15,11 @@ public class AmazonAuth {
 
     private String nwsAuthToken;
 
-    private Integer endPointArea;
+    private String marketplaceId;
 
-    private Date orderTimeAfter;
+    private String countryName;
 
-    private Date orderTimeBefore;
+    private Date lastUpdatedAfter;
 
     private String remark;
 
@@ -32,8 +32,6 @@ public class AmazonAuth {
     private Long updateBy;
 
     private Date updateTime;
-
-    private String orderNextToken;
 
     public Long getId() {
         return id;
@@ -83,28 +81,28 @@ public class AmazonAuth {
         this.nwsAuthToken = nwsAuthToken == null ? null : nwsAuthToken.trim();
     }
 
-    public Integer getEndPointArea() {
-        return endPointArea;
+    public String getMarketplaceId() {
+        return marketplaceId;
     }
 
-    public void setEndPointArea(Integer endPointArea) {
-        this.endPointArea = endPointArea;
+    public void setMarketplaceId(String marketplaceId) {
+        this.marketplaceId = marketplaceId == null ? null : marketplaceId.trim();
     }
 
-    public Date getOrderTimeAfter() {
-        return orderTimeAfter;
+    public String getCountryName() {
+        return countryName;
     }
 
-    public void setOrderTimeAfter(Date orderTimeAfter) {
-        this.orderTimeAfter = orderTimeAfter;
+    public void setCountryName(String countryName) {
+        this.countryName = countryName == null ? null : countryName.trim();
     }
 
-    public Date getOrderTimeBefore() {
-        return orderTimeBefore;
+    public Date getLastUpdatedAfter() {
+        return lastUpdatedAfter;
     }
 
-    public void setOrderTimeBefore(Date orderTimeBefore) {
-        this.orderTimeBefore = orderTimeBefore;
+    public void setLastUpdatedAfter(Date lastUpdatedAfter) {
+        this.lastUpdatedAfter = lastUpdatedAfter;
     }
 
     public String getRemark() {
@@ -153,13 +151,5 @@ public class AmazonAuth {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public String getOrderNextToken() {
-        return orderNextToken;
-    }
-
-    public void setOrderNextToken(String orderNextToken) {
-        this.orderNextToken = orderNextToken == null ? null : orderNextToken.trim();
     }
 }

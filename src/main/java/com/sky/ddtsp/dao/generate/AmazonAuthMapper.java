@@ -16,21 +16,15 @@ public interface AmazonAuthMapper {
 
     int insertSelective(AmazonAuth record);
 
-    List<AmazonAuth> selectByExampleWithBLOBs(AmazonAuthExample example);
-
     List<AmazonAuth> selectByExample(AmazonAuthExample example);
 
     AmazonAuth selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") AmazonAuth record, @Param("example") AmazonAuthExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") AmazonAuth record, @Param("example") AmazonAuthExample example);
-
     int updateByExample(@Param("record") AmazonAuth record, @Param("example") AmazonAuthExample example);
 
     int updateByPrimaryKeySelective(AmazonAuth record);
-
-    int updateByPrimaryKeyWithBLOBs(AmazonAuth record);
 
     int updateByPrimaryKey(AmazonAuth record);
 }

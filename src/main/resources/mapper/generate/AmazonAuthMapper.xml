@@ -8,18 +8,15 @@
     <result column="customer_id" jdbcType="BIGINT" property="customerId" />
     <result column="refresh_token" jdbcType="VARCHAR" property="refreshToken" />
     <result column="nws_auth_token" jdbcType="VARCHAR" property="nwsAuthToken" />
-    <result column="end_point_area" jdbcType="INTEGER" property="endPointArea" />
-    <result column="order_time_after" jdbcType="TIMESTAMP" property="orderTimeAfter" />
-    <result column="order_time_before" jdbcType="TIMESTAMP" property="orderTimeBefore" />
+    <result column="marketplace_id" jdbcType="VARCHAR" property="marketplaceId" />
+    <result column="country_name" jdbcType="VARCHAR" property="countryName" />
+    <result column="last_updated_after" jdbcType="TIMESTAMP" property="lastUpdatedAfter" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_by" jdbcType="BIGINT" property="createBy" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_by" jdbcType="BIGINT" property="updateBy" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sky.ddtsp.entity.AmazonAuth">
-    <result column="order_next_token" jdbcType="LONGVARCHAR" property="orderNextToken" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -80,29 +77,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, merchant_id, shop_name, customer_id, refresh_token, nws_auth_token, end_point_area, 
-    order_time_after, order_time_before, remark, status, create_by, create_time, update_by, 
+    id, merchant_id, shop_name, customer_id, refresh_token, nws_auth_token, marketplace_id, 
+    country_name, last_updated_after, remark, status, create_by, create_time, update_by, 
     update_time
   </sql>
-  <sql id="Blob_Column_List">
-    order_next_token
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.sky.ddtsp.entity.AmazonAuthExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from amazon_auth
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" parameterType="com.sky.ddtsp.entity.AmazonAuthExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -117,11 +95,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from amazon_auth
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -140,17 +116,15 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into amazon_auth (merchant_id, shop_name, customer_id, 
-      refresh_token, nws_auth_token, end_point_area, 
-      order_time_after, order_time_before, remark, 
+      refresh_token, nws_auth_token, marketplace_id, 
+      country_name, last_updated_after, remark, 
       status, create_by, create_time, 
-      update_by, update_time, order_next_token
-      )
+      update_by, update_time)
     values (#{merchantId,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, 
-      #{refreshToken,jdbcType=VARCHAR}, #{nwsAuthToken,jdbcType=VARCHAR}, #{endPointArea,jdbcType=INTEGER}, 
-      #{orderTimeAfter,jdbcType=TIMESTAMP}, #{orderTimeBefore,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{refreshToken,jdbcType=VARCHAR}, #{nwsAuthToken,jdbcType=VARCHAR}, #{marketplaceId,jdbcType=VARCHAR}, 
+      #{countryName,jdbcType=VARCHAR}, #{lastUpdatedAfter,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{createBy,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{orderNextToken,jdbcType=LONGVARCHAR}
-      )
+      #{updateBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.sky.ddtsp.entity.AmazonAuth">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -173,14 +147,14 @@
       <if test="nwsAuthToken != null">
         nws_auth_token,
       </if>
-      <if test="endPointArea != null">
-        end_point_area,
+      <if test="marketplaceId != null">
+        marketplace_id,
       </if>
-      <if test="orderTimeAfter != null">
-        order_time_after,
+      <if test="countryName != null">
+        country_name,
       </if>
-      <if test="orderTimeBefore != null">
-        order_time_before,
+      <if test="lastUpdatedAfter != null">
+        last_updated_after,
       </if>
       <if test="remark != null">
         remark,
@@ -200,9 +174,6 @@
       <if test="updateTime != null">
         update_time,
       </if>
-      <if test="orderNextToken != null">
-        order_next_token,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="merchantId != null">
@@ -220,14 +191,14 @@
       <if test="nwsAuthToken != null">
         #{nwsAuthToken,jdbcType=VARCHAR},
       </if>
-      <if test="endPointArea != null">
-        #{endPointArea,jdbcType=INTEGER},
+      <if test="marketplaceId != null">
+        #{marketplaceId,jdbcType=VARCHAR},
       </if>
-      <if test="orderTimeAfter != null">
-        #{orderTimeAfter,jdbcType=TIMESTAMP},
+      <if test="countryName != null">
+        #{countryName,jdbcType=VARCHAR},
       </if>
-      <if test="orderTimeBefore != null">
-        #{orderTimeBefore,jdbcType=TIMESTAMP},
+      <if test="lastUpdatedAfter != null">
+        #{lastUpdatedAfter,jdbcType=TIMESTAMP},
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
@@ -246,9 +217,6 @@
       </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="orderNextToken != null">
-        #{orderNextToken,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -279,14 +247,14 @@
       <if test="record.nwsAuthToken != null">
         nws_auth_token = #{record.nwsAuthToken,jdbcType=VARCHAR},
       </if>
-      <if test="record.endPointArea != null">
-        end_point_area = #{record.endPointArea,jdbcType=INTEGER},
+      <if test="record.marketplaceId != null">
+        marketplace_id = #{record.marketplaceId,jdbcType=VARCHAR},
       </if>
-      <if test="record.orderTimeAfter != null">
-        order_time_after = #{record.orderTimeAfter,jdbcType=TIMESTAMP},
+      <if test="record.countryName != null">
+        country_name = #{record.countryName,jdbcType=VARCHAR},
       </if>
-      <if test="record.orderTimeBefore != null">
-        order_time_before = #{record.orderTimeBefore,jdbcType=TIMESTAMP},
+      <if test="record.lastUpdatedAfter != null">
+        last_updated_after = #{record.lastUpdatedAfter,jdbcType=TIMESTAMP},
       </if>
       <if test="record.remark != null">
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -306,32 +274,7 @@
       <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.orderNextToken != null">
-        order_next_token = #{record.orderNextToken,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update amazon_auth
-    set id = #{record.id,jdbcType=BIGINT},
-      merchant_id = #{record.merchantId,jdbcType=VARCHAR},
-      shop_name = #{record.shopName,jdbcType=VARCHAR},
-      customer_id = #{record.customerId,jdbcType=BIGINT},
-      refresh_token = #{record.refreshToken,jdbcType=VARCHAR},
-      nws_auth_token = #{record.nwsAuthToken,jdbcType=VARCHAR},
-      end_point_area = #{record.endPointArea,jdbcType=INTEGER},
-      order_time_after = #{record.orderTimeAfter,jdbcType=TIMESTAMP},
-      order_time_before = #{record.orderTimeBefore,jdbcType=TIMESTAMP},
-      remark = #{record.remark,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER},
-      create_by = #{record.createBy,jdbcType=BIGINT},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_by = #{record.updateBy,jdbcType=BIGINT},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      order_next_token = #{record.orderNextToken,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -344,9 +287,9 @@
       customer_id = #{record.customerId,jdbcType=BIGINT},
       refresh_token = #{record.refreshToken,jdbcType=VARCHAR},
       nws_auth_token = #{record.nwsAuthToken,jdbcType=VARCHAR},
-      end_point_area = #{record.endPointArea,jdbcType=INTEGER},
-      order_time_after = #{record.orderTimeAfter,jdbcType=TIMESTAMP},
-      order_time_before = #{record.orderTimeBefore,jdbcType=TIMESTAMP},
+      marketplace_id = #{record.marketplaceId,jdbcType=VARCHAR},
+      country_name = #{record.countryName,jdbcType=VARCHAR},
+      last_updated_after = #{record.lastUpdatedAfter,jdbcType=TIMESTAMP},
       remark = #{record.remark,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
       create_by = #{record.createBy,jdbcType=BIGINT},
@@ -375,14 +318,14 @@
       <if test="nwsAuthToken != null">
         nws_auth_token = #{nwsAuthToken,jdbcType=VARCHAR},
       </if>
-      <if test="endPointArea != null">
-        end_point_area = #{endPointArea,jdbcType=INTEGER},
+      <if test="marketplaceId != null">
+        marketplace_id = #{marketplaceId,jdbcType=VARCHAR},
       </if>
-      <if test="orderTimeAfter != null">
-        order_time_after = #{orderTimeAfter,jdbcType=TIMESTAMP},
+      <if test="countryName != null">
+        country_name = #{countryName,jdbcType=VARCHAR},
       </if>
-      <if test="orderTimeBefore != null">
-        order_time_before = #{orderTimeBefore,jdbcType=TIMESTAMP},
+      <if test="lastUpdatedAfter != null">
+        last_updated_after = #{lastUpdatedAfter,jdbcType=TIMESTAMP},
       </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
@@ -402,29 +345,7 @@
       <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="orderNextToken != null">
-        order_next_token = #{orderNextToken,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sky.ddtsp.entity.AmazonAuth">
-    update amazon_auth
-    set merchant_id = #{merchantId,jdbcType=VARCHAR},
-      shop_name = #{shopName,jdbcType=VARCHAR},
-      customer_id = #{customerId,jdbcType=BIGINT},
-      refresh_token = #{refreshToken,jdbcType=VARCHAR},
-      nws_auth_token = #{nwsAuthToken,jdbcType=VARCHAR},
-      end_point_area = #{endPointArea,jdbcType=INTEGER},
-      order_time_after = #{orderTimeAfter,jdbcType=TIMESTAMP},
-      order_time_before = #{orderTimeBefore,jdbcType=TIMESTAMP},
-      remark = #{remark,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      create_by = #{createBy,jdbcType=BIGINT},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_by = #{updateBy,jdbcType=BIGINT},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      order_next_token = #{orderNextToken,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.sky.ddtsp.entity.AmazonAuth">
@@ -434,9 +355,9 @@
       customer_id = #{customerId,jdbcType=BIGINT},
       refresh_token = #{refreshToken,jdbcType=VARCHAR},
       nws_auth_token = #{nwsAuthToken,jdbcType=VARCHAR},
-      end_point_area = #{endPointArea,jdbcType=INTEGER},
-      order_time_after = #{orderTimeAfter,jdbcType=TIMESTAMP},
-      order_time_before = #{orderTimeBefore,jdbcType=TIMESTAMP},
+      marketplace_id = #{marketplaceId,jdbcType=VARCHAR},
+      country_name = #{countryName,jdbcType=VARCHAR},
+      last_updated_after = #{lastUpdatedAfter,jdbcType=TIMESTAMP},
       remark = #{remark,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_by = #{createBy,jdbcType=BIGINT},
