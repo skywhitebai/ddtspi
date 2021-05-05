@@ -44,7 +44,7 @@ public class OrdersJob {
             syncOrderInfo(amazonAuth);
         });
         //获取获取订单信息
-        log.info("=====>>>>>使用cron  {}", System.currentTimeMillis());
+        log.info("{}，获取订单信息", DateUtil.getFormatDateStr(new Date()));
     }
 
     private void syncOrderInfo(AmazonAuth amazonAuth) {
