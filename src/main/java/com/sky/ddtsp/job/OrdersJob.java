@@ -7,16 +7,19 @@ import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
 import com.amazon.spapi.api.OrdersV0Api;
 import com.amazon.spapi.client.ApiException;
 import com.amazon.spapi.model.orders.GetOrdersResponse;
-import com.amazon.spapi.model.orders.OrderList;
+import com.amazon.spapi.model.orders.Order;
 import com.amazon.spapi.model.orders.OrdersList;
 import com.sky.ddtsp.dao.custom.CustomAmazonAuthMapper;
+import com.sky.ddtsp.dao.custom.CustomAmazonOrderMapper;
 import com.sky.ddtsp.dto.amazonAuth.AmazonConfig;
 import com.sky.ddtsp.entity.AmazonAuth;
 import com.sky.ddtsp.entity.AmazonAuthExample;
+import com.sky.ddtsp.entity.AmazonOrder;
+import com.sky.ddtsp.entity.AmazonOrderExample;
 import com.sky.ddtsp.enums.YesOrNoEnum;
 import com.sky.ddtsp.util.DateUtil;
+import com.sky.ddtsp.util.MathUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -32,6 +35,8 @@ import java.util.List;
 public class OrdersJob {
     @Autowired
     CustomAmazonAuthMapper customAmazonAuthMapper;
+    @Autowired
+    CustomAmazonOrderMapper customAmazonOrderMapper;
 
     @Scheduled(cron = "0/5 * * * * *")
     public void scheduled() {
@@ -79,7 +84,6 @@ public class OrdersJob {
         List<String> amazonOrderIds = null;
         try {
             response = ordersV0Api.getOrders(marketplaceIds, createdAfter, createdBefore, lastUpdatedAfter, lastUpdatedBefore, orderStatuses, fulfillmentChannels, paymentMethods, buyerEmail, sellerOrderId, maxResultsPerPage, easyShipShipmentStatuses, nextToken, amazonOrderIds);
-
         } catch (ApiException e) {
             log.error("syncOrderInfo fail,amazonAuth:{},erro:{}", JSON.toJSONString(amazonAuth), e.getMessage());
             e.printStackTrace();
@@ -126,7 +130,18 @@ public class OrdersJob {
         }
         log.info("dealTime:{},dealOrderInfo orderSize:{},nextToken:{}", DateUtil.getFormatSSS(new Date()), ordersList.getOrders().size(), ordersList.getNextToken());
         ordersList.getOrders().forEach(order -> {
-
+            AmazonOrder amazonOrder = getAmazonOrderByAmazonOrderId(order.getAmazonOrderId());
+            if (amazonOrder == null) {
+                amazonOrder = new AmazonOrder();
+                amazonOrder.setMerchantId(amazonAuth.getMerchantId());
+                setAmazonOrderInfo(amazonOrder, order);
+                amazonOrder.setCreateTime(new Date());
+                customAmazonOrderMapper.insertSelective(amazonOrder);
+            } else {
+                setAmazonOrderInfo(amazonOrder, order);
+                amazonOrder.setUpdateTime(new Date());
+                customAmazonOrderMapper.updateByPrimaryKeySelective(amazonOrder);
+            }
         });
         if (StringUtils.isEmpty(ordersList.getNextToken())) {
             AmazonAuth amazonAuthUpdate = new AmazonAuth();
@@ -141,6 +156,73 @@ public class OrdersJob {
             }
             dealOrderInfo(ordersV0Api, amazonAuth, response.getPayload());
         }
+    }
+
+    private void setAmazonOrderInfo(AmazonOrder amazonOrder, Order order) {
+        amazonOrder.setMarketplaceId(order.getMarketplaceId());
+        amazonOrder.setAmazonOrderId(order.getAmazonOrderId());
+        amazonOrder.setSellerOrderId(order.getSellerOrderId());
+        amazonOrder.setPurchaseDate(DateUtil.utcStrToDateTime(order.getPurchaseDate()));
+        amazonOrder.setLastUpdateDate(DateUtil.utcStrToDateTime(order.getLastUpdateDate()));
+        amazonOrder.setOrderDate(DateUtil.dateTimeToDate(amazonOrder.getPurchaseDate()));
+        if (order.getOrderStatus() != null) {
+            amazonOrder.setOrderStatus(order.getOrderStatus().getValue());
+        }
+        if (order.getOrderType() != null) {
+            amazonOrder.setOrderType(order.getOrderType().getValue());
+        }
+        if (order.getFulfillmentChannel() != null) {
+            amazonOrder.setFulfillmentChannel(order.getFulfillmentChannel().getValue());
+        }
+        amazonOrder.setSalesChannel(order.getSalesChannel());
+        amazonOrder.setOrderChannel(order.getOrderChannel());
+        amazonOrder.setShipServiceLevel(order.getShipServiceLevel());
+        amazonOrder.setShipmentServiceLevelCategory(order.getShipmentServiceLevelCategory());
+        if(order.getOrderTotal()!=null){
+            amazonOrder.setCurrency(order.getOrderTotal().getCurrencyCode());
+            amazonOrder.setTotalAmount(MathUtil.strToBigDecimal(order.getOrderTotal().getAmount()));
+        }
+        //amazonOrder.setRateAmount(order.get);
+        amazonOrder.setNumberOfItemsShipped(order.getNumberOfItemsShipped());
+        amazonOrder.setNumberOfItemsUnshipped(order.getNumberOfItemsUnshipped());
+        amazonOrder.setPaymentExecutionDetail(JSON.toJSONString(order.getPaymentExecutionDetail()));
+        if (order.getPaymentMethod() != null) {
+            amazonOrder.setPaymentMethod(order.getPaymentMethod().getValue());
+        }
+        amazonOrder.setEasyShipShipmentStatus(order.getEasyShipShipmentStatus());
+        amazonOrder.setEarliestShipDate(DateUtil.utcStrToDateTime(order.getEarliestShipDate()));
+        amazonOrder.setLatestShipDate(DateUtil.utcStrToDateTime(order.getLatestShipDate()));
+        amazonOrder.setEarlyestDeliveryDate(DateUtil.utcStrToDateTime(order.getEarliestDeliveryDate()));
+        amazonOrder.setLatestDeliveryDate(DateUtil.utcStrToDateTime(order.getLatestDeliveryDate()));
+        amazonOrder.setBusinessOrder(order.isIsBusinessOrder());
+        amazonOrder.setPrime(order.isIsPrime());
+        amazonOrder.setPremiumOrder(order.isIsPremiumOrder());
+        amazonOrder.setGlobalExpressEnabled(order.isIsGlobalExpressEnabled());
+        amazonOrder.setReplacementOrder(order.isIsReplacementOrder());
+        amazonOrder.setReplacedOrderId(order.getReplacedOrderId());
+        amazonOrder.setPromiseResponseDueDate(order.getPromiseResponseDueDate());
+        amazonOrder.setEstimatedShipDateSet(order.isIsEstimatedShipDateSet());
+        amazonOrder.setSoldByAb(order.isIsSoldByAB());
+        if(order.getAssignedShipFromLocationAddress()!=null){
+            amazonOrder.setAssignedShipFromLocationAddress(JSON.toJSONString(order.getAssignedShipFromLocationAddress()));
+            amazonOrder.setBuyerEmail(order.getAssignedShipFromLocationAddress().getName());
+            amazonOrder.setStateOrRegion(order.getAssignedShipFromLocationAddress().getStateOrRegion());
+            amazonOrder.setCountryCode(order.getAssignedShipFromLocationAddress().getCountryCode());
+            amazonOrder.setPostalCode(order.getAssignedShipFromLocationAddress().getPostalCode());
+            amazonOrder.setCity(order.getAssignedShipFromLocationAddress().getCity());
+            amazonOrder.setCounty(order.getAssignedShipFromLocationAddress().getCounty());
+            amazonOrder.setAddressLine1(order.getAssignedShipFromLocationAddress().getAddressLine1());
+        }
+    }
+
+    private AmazonOrder getAmazonOrderByAmazonOrderId(String amazonOrderId) {
+        AmazonOrderExample amazonOrderExample = new AmazonOrderExample();
+        amazonOrderExample.createCriteria().andAmazonOrderIdEqualTo(amazonOrderId);
+        List<AmazonOrder> list = customAmazonOrderMapper.selectByExample(amazonOrderExample);
+        if (CollectionUtils.isEmpty(list)) {
+            return null;
+        }
+        return list.get(0);
     }
 
     private GetOrdersResponse getOrdersByNextToken(AmazonAuth amazonAuth, OrdersV0Api ordersV0Api, OrdersList ordersList) {

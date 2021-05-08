@@ -194,7 +194,7 @@ public class DateUtil {
      * @param str
      * @return
      */
-    public static Date UtcStrToDateTime(String str) {
+    public static Date utcStrToDateTime(String str) {
         if (StringUtils.isEmpty(str)) {
             return null;
         }
@@ -318,4 +318,13 @@ public class DateUtil {
     }
 
 
+    public static Date dateTimeToDate(Date dateTime) {
+        if(dateTime==null){
+            return null;
+        }
+        SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
+        String dateStr = formatter.format(dateTime);
+        Date date = strToDate(dateStr);
+        return date;
+    }
 }
