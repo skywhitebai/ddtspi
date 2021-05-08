@@ -136,6 +136,7 @@ public class OrdersJob {
                 amazonOrder.setMerchantId(amazonAuth.getMerchantId());
                 setAmazonOrderInfo(amazonOrder, order);
                 amazonOrder.setCreateTime(new Date());
+                amazonOrder.setUpdateTime(new Date());
                 customAmazonOrderMapper.insertSelective(amazonOrder);
             } else {
                 setAmazonOrderInfo(amazonOrder, order);
