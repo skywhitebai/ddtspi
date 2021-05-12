@@ -4,6 +4,7 @@ import com.sky.ddtsp.dao.custom.CustomSysConfigMapper;
 import com.sky.ddtsp.entity.SysConfig;
 import com.sky.ddtsp.util.SpringUtil;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +12,7 @@ import java.util.Optional;
 /**
  * 亚马逊配置信息
  */
-@Data
+@Getter
 public class AmazonConfig {
     public static AmazonConfig INSTANCE  = new AmazonConfig();
     String amazonIamUserAccessKeyId;
@@ -41,10 +42,6 @@ public class AmazonConfig {
            return null;
        }
        return firstFind.get().getKeyValue();
-    }
-
-    public static AmazonConfig getInstance(){
-        return INSTANCE;
     }
 
 }

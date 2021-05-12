@@ -12,11 +12,10 @@ import com.amazon.spapi.model.orders.OrdersList;
 import com.sky.ddtsp.dao.custom.CustomAmazonAuthMapper;
 import com.sky.ddtsp.dao.custom.CustomAmazonOrderMapper;
 import com.sky.ddtsp.dto.amazonAuth.AmazonConfig;
-import com.sky.ddtsp.entity.AmazonAuth;
-import com.sky.ddtsp.entity.AmazonAuthExample;
-import com.sky.ddtsp.entity.AmazonOrder;
-import com.sky.ddtsp.entity.AmazonOrderExample;
+import com.sky.ddtsp.entity.*;
+import com.sky.ddtsp.enums.AmazonSyncInfoTypeEnum;
 import com.sky.ddtsp.enums.YesOrNoEnum;
+import com.sky.ddtsp.service.IAmazonSyncInfoService;
 import com.sky.ddtsp.util.DateUtil;
 import com.sky.ddtsp.util.MathUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -37,8 +36,10 @@ public class OrdersJob {
     CustomAmazonAuthMapper customAmazonAuthMapper;
     @Autowired
     CustomAmazonOrderMapper customAmazonOrderMapper;
+    @Autowired
+    IAmazonSyncInfoService amazonSyncInfoService;
 
-    @Scheduled(cron = "0/5 * * * * *")
+    @Scheduled(cron = "0 0/20 * * * ? ")
     public void scheduled() {
         List<AmazonAuth> amazonAuthList = listAmazonAuth();
         //获取店铺信息 遍历店铺信息
@@ -54,6 +55,7 @@ public class OrdersJob {
 
     private void syncOrderInfo(AmazonAuth amazonAuth) {
         OrdersV0Api ordersV0Api = getOrdersV0Api(amazonAuth);
+        AmazonSyncInfo amazonSyncInfo=amazonSyncInfoService.getAmazonSyncInfo(AmazonSyncInfoTypeEnum.ORDER,amazonAuth.getMarketplaceId());
         GetOrdersResponse response = getOrdersByLastUpdatedAfter(amazonAuth, ordersV0Api);
         if (response == null) {
             return;
@@ -95,23 +97,23 @@ public class OrdersJob {
     private OrdersV0Api getOrdersV0Api(AmazonAuth amazonAuth) {
         AWSAuthenticationCredentials awsAuthenticationCredentials = AWSAuthenticationCredentials.builder()
                 //IAM user的accessKeyId
-                .accessKeyId(AmazonConfig.getInstance().getAmazonIamUserAccessKeyId())
+                .accessKeyId(AmazonConfig.INSTANCE.getAmazonIamUserAccessKeyId())
                 //IAM user的secretKey
-                .secretKey(AmazonConfig.getInstance().getAmazonIamUserSecretKey())
+                .secretKey(AmazonConfig.INSTANCE.getAmazonIamUserSecretKey())
                 //这里按照amazon对不同region的分区填写，例子是北美地区的
                 .region("us-east-1")
                 .build();
         AWSAuthenticationCredentialsProvider awsAuthenticationCredentialsProvider = AWSAuthenticationCredentialsProvider.builder()
                 //IAM role，特别注意：最好用IAM role当做IAM ARN去申请app
                 // 而且IAM user需要添加内联策略STS关联上IAM role，具体操作看：https://www.spapi.org.cn/cn/model2/_2_console.html
-                .roleArn(AmazonConfig.getInstance().getAmazonIamRoleArn())
-                .roleSessionName(AmazonConfig.getInstance().getAmazonIamRoleSessionName())
+                .roleArn(AmazonConfig.INSTANCE.getAmazonIamRoleArn())
+                .roleSessionName(AmazonConfig.INSTANCE.getAmazonIamRoleSessionName())
                 .build();
         LWAAuthorizationCredentials lwaAuthorizationCredentials = LWAAuthorizationCredentials.builder()
                 //申请app后LWA中的clientId
-                .clientId(AmazonConfig.getInstance().getAmazonAppClientId())
+                .clientId(AmazonConfig.INSTANCE.getAmazonAppClientId())
                 //申请app后LWA中的clientSecret
-                .clientSecret(AmazonConfig.getInstance().getAmazonAppClientSecret())
+                .clientSecret(AmazonConfig.INSTANCE.getAmazonAppClientSecret())
                 //店铺授权时产生的refreshToken或者app自授权生成的
                 .refreshToken(amazonAuth.getRefreshToken())
                 .endpoint("https://api.amazon.com/auth/o2/token")
@@ -179,11 +181,10 @@ public class OrdersJob {
         amazonOrder.setOrderChannel(order.getOrderChannel());
         amazonOrder.setShipServiceLevel(order.getShipServiceLevel());
         amazonOrder.setShipmentServiceLevelCategory(order.getShipmentServiceLevelCategory());
-        if(order.getOrderTotal()!=null){
+        if (order.getOrderTotal() != null) {
             amazonOrder.setCurrency(order.getOrderTotal().getCurrencyCode());
             amazonOrder.setTotalAmount(MathUtil.strToBigDecimal(order.getOrderTotal().getAmount()));
         }
-        //amazonOrder.setRateAmount(order.get);
         amazonOrder.setNumberOfItemsShipped(order.getNumberOfItemsShipped());
         amazonOrder.setNumberOfItemsUnshipped(order.getNumberOfItemsUnshipped());
         amazonOrder.setPaymentExecutionDetail(JSON.toJSONString(order.getPaymentExecutionDetail()));
@@ -204,7 +205,7 @@ public class OrdersJob {
         amazonOrder.setPromiseResponseDueDate(order.getPromiseResponseDueDate());
         amazonOrder.setEstimatedShipDateSet(order.isIsEstimatedShipDateSet());
         amazonOrder.setSoldByAb(order.isIsSoldByAB());
-        if(order.getAssignedShipFromLocationAddress()!=null){
+        if (order.getAssignedShipFromLocationAddress() != null) {
             amazonOrder.setAssignedShipFromLocationAddress(JSON.toJSONString(order.getAssignedShipFromLocationAddress()));
             amazonOrder.setBuyerEmail(order.getAssignedShipFromLocationAddress().getName());
             amazonOrder.setStateOrRegion(order.getAssignedShipFromLocationAddress().getStateOrRegion());
@@ -246,7 +247,6 @@ public class OrdersJob {
         List<String> amazonOrderIds = null;
         try {
             response = ordersV0Api.getOrders(marketplaceIds, createdAfter, createdBefore, lastUpdatedAfter, lastUpdatedBefore, orderStatuses, fulfillmentChannels, paymentMethods, buyerEmail, sellerOrderId, maxResultsPerPage, easyShipShipmentStatuses, nextToken, amazonOrderIds);
-
         } catch (ApiException e) {
             log.error("syncOrderInfo fail,amazonAuth:{},erro:{}", JSON.toJSONString(amazonAuth), e.getMessage());
             e.printStackTrace();

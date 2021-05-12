@@ -39,6 +39,6 @@ public class AmazonAuthController extends BaseController {
     @RequestMapping("/getAmazonAuthConfig")
     @Login(action = Action.Skip)
     public BaseResponse getAmazonAuthConfig(){
-        return BaseResponse.successData(AmazonConfig.getInstance());
+        return BaseResponse.successData(AmazonConfig.INSTANCE);
     }
 }

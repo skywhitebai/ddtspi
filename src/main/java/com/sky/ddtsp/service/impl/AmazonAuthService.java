@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sky.ddtsp.dao.custom.CustomAmazonAuthMapper;
+import com.sky.ddtsp.dto.amazonAuth.AmazonConfig;
 import com.sky.ddtsp.dto.amazonAuth.request.SaveAmazonAuthRequest;
 import com.sky.ddtsp.dto.amazonAuth.response.ListAmazonAuthResponse;
 import com.sky.ddtsp.dto.amazonAuth.request.ListAmazonAuthRequest;
@@ -70,8 +71,8 @@ public class AmazonAuthService implements IAmazonAuthService {
         Map<String, String> param = new HashMap<>();
         param.put("grant_type", "authorization_code");
         param.put("code", params.getSpapiOauthCode());
-        param.put("client_id", "amzn1.application-oa2-client.ed4f17bc6c1c42e2ba213b1883a48c04");
-        param.put("client_secret", "c379670e272dd412dda32fc8f074c289936283e2667e42aede1374cf45e9d3b9");
+        param.put("client_id", AmazonConfig.INSTANCE.getAmazonAppClientId());
+        param.put("client_secret", AmazonConfig.INSTANCE.getAmazonAppClientSecret());
         String res = HttpTool.doPost(url, param);
         if (StringUtils.isEmpty(res)) {
             return BaseResponse.failMessage("授权失败");
@@ -83,6 +84,7 @@ public class AmazonAuthService implements IAmazonAuthService {
             AmazonAuth amazonAuthUpdate=new AmazonAuth();
             amazonAuthUpdate.setId(amazonAuthExist.getId());
             amazonAuthUpdate.setRefreshToken(refreshToken);
+            amazonAuthUpdate.setMarketplaceId("ATVPDKIKX0DER");
             customAmazonAuthMapper.updateByPrimaryKeySelective(amazonAuthUpdate);
         }else {
             AmazonAuth amazonAuth=new AmazonAuth();
