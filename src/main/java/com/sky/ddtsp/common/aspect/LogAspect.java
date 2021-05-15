@@ -30,7 +30,7 @@ import java.util.Date;
 public class LogAspect {
 
 	//统一切点,对com.kzj.kzj_rabbitmq.controller及其子包中所有的类的所有方法切面
-	@Pointcut("execution(* com.sky.ddtsp.controller..*.*(..)) || execution(* com.sky.ddtsp.service..*.*(..))")
+	@Pointcut("execution(* com.sky.ddtsp.controller..*.*(..)) ")
 	public void Pointcut() {
 	}
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());

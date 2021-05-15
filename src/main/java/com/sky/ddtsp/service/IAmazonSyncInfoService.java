@@ -7,5 +7,5 @@ import com.sky.ddtsp.enums.AmazonSyncInfoTypeEnum; /**
  * @date 2021/5/11 16:01
  */
 public interface IAmazonSyncInfoService {
-    AmazonSyncInfo getAmazonSyncInfo(AmazonSyncInfoTypeEnum order, String marketplaceId);
+    AmazonSyncInfo getAmazonSyncInfo(AmazonSyncInfoTypeEnum order, String merchantId);
 }

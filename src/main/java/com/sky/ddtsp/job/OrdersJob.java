@@ -11,6 +11,7 @@ import com.amazon.spapi.model.orders.Order;
 import com.amazon.spapi.model.orders.OrdersList;
 import com.sky.ddtsp.dao.custom.CustomAmazonAuthMapper;
 import com.sky.ddtsp.dao.custom.CustomAmazonOrderMapper;
+import com.sky.ddtsp.dao.custom.CustomAmazonSyncInfoMapper;
 import com.sky.ddtsp.dto.amazonAuth.AmazonConfig;
 import com.sky.ddtsp.entity.*;
 import com.sky.ddtsp.enums.AmazonSyncInfoTypeEnum;
@@ -38,6 +39,8 @@ public class OrdersJob {
     CustomAmazonOrderMapper customAmazonOrderMapper;
     @Autowired
     IAmazonSyncInfoService amazonSyncInfoService;
+    @Autowired
+    CustomAmazonSyncInfoMapper customAmazonSyncInfoMapper;
 
     @Scheduled(cron = "0 0/20 * * * ? ")
     public void scheduled() {
@@ -55,12 +58,45 @@ public class OrdersJob {
 
     private void syncOrderInfo(AmazonAuth amazonAuth) {
         OrdersV0Api ordersV0Api = getOrdersV0Api(amazonAuth);
-        AmazonSyncInfo amazonSyncInfo=amazonSyncInfoService.getAmazonSyncInfo(AmazonSyncInfoTypeEnum.ORDER,amazonAuth.getMarketplaceId());
-        GetOrdersResponse response = getOrdersByLastUpdatedAfter(amazonAuth, ordersV0Api);
+        AmazonSyncInfo amazonSyncInfo=amazonSyncInfoService.getAmazonSyncInfo(AmazonSyncInfoTypeEnum.ORDER,amazonAuth.getMerchantId());
+        GetOrdersResponse response = getOrders(amazonAuth, ordersV0Api,amazonSyncInfo);
         if (response == null) {
             return;
         }
-        dealOrderInfo(ordersV0Api, amazonAuth, response.getPayload());
+        dealOrderInfo(ordersV0Api, amazonAuth, response.getPayload(),amazonSyncInfo);
+    }
+
+    private GetOrdersResponse getOrders(AmazonAuth amazonAuth, OrdersV0Api ordersV0Api, AmazonSyncInfo amazonSyncInfo) {
+        GetOrdersResponse response = null;
+
+        List<String> marketplaceIds = new ArrayList<>();
+        marketplaceIds.add(amazonAuth.getMarketplaceId());
+        String createdAfter = null;
+        String createdBefore = null;
+        String lastUpdatedAfter =null;
+        String nextToken = null;
+        if (StringUtils.isEmpty(amazonSyncInfo.getNextToken())) {
+            lastUpdatedAfter = DateUtil.dateTimeToUtczStr(amazonAuth.getLastUpdatedAfter());
+        }else{
+            nextToken=amazonSyncInfo.getNextToken();
+        }
+        String lastUpdatedBefore = null;
+        List<String> orderStatuses = null;
+        List<String> fulfillmentChannels = null;
+        List<String> paymentMethods = null;
+        String buyerEmail = null;
+        String sellerOrderId = null;
+        Integer maxResultsPerPage = null;
+        List<String> easyShipShipmentStatuses = null;
+        List<String> amazonOrderIds = null;
+        try {
+            response = ordersV0Api.getOrders(marketplaceIds, createdAfter, createdBefore, lastUpdatedAfter, lastUpdatedBefore, orderStatuses, fulfillmentChannels, paymentMethods, buyerEmail, sellerOrderId, maxResultsPerPage, easyShipShipmentStatuses, nextToken, amazonOrderIds);
+        } catch (ApiException e) {
+            log.error("syncOrderInfo fail,amazonAuth:{},erro:{}", JSON.toJSONString(amazonAuth), e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+        return response;
     }
 
     GetOrdersResponse getOrdersByLastUpdatedAfter(AmazonAuth amazonAuth, OrdersV0Api ordersV0Api) {
@@ -126,7 +162,7 @@ public class OrdersJob {
                 .build();
     }
 
-    private void dealOrderInfo(OrdersV0Api ordersV0Api, AmazonAuth amazonAuth, OrdersList ordersList) {
+    private void dealOrderInfo(OrdersV0Api ordersV0Api, AmazonAuth amazonAuth, OrdersList ordersList, AmazonSyncInfo amazonSyncInfo) {
         if (CollectionUtils.isEmpty(ordersList.getOrders())) {
             return;
         }
@@ -147,17 +183,20 @@ public class OrdersJob {
             }
         });
         if (StringUtils.isEmpty(ordersList.getNextToken())) {
-            AmazonAuth amazonAuthUpdate = new AmazonAuth();
-            amazonAuthUpdate.setId(amazonAuth.getId());
-            amazonAuthUpdate.setLastUpdatedAfter(DateUtil.utczStrToDateTime(ordersList.getLastUpdatedBefore()));
-            customAmazonAuthMapper.updateByPrimaryKeySelective(amazonAuthUpdate);
+            //没有nextToken表示同步完成
+            amazonSyncInfo.setLastUpdateAfter(DateUtil.utczStrToDateTime(ordersList.getLastUpdatedBefore()));
+            amazonSyncInfo.setUpdateTime(new Date());
+            customAmazonSyncInfoMapper.updateByPrimaryKey(amazonSyncInfo);
         } else {
+            amazonSyncInfo.setNextToken(ordersList.getNextToken());
+            amazonSyncInfo.setUpdateTime(new Date());
+            customAmazonSyncInfoMapper.updateByPrimaryKey(amazonSyncInfo);
             //获取下页
-            GetOrdersResponse response = getOrdersByNextToken(amazonAuth, ordersV0Api, ordersList);
+            GetOrdersResponse response = getOrders(amazonAuth, ordersV0Api,amazonSyncInfo);
             if (response == null) {
                 return;
             }
-            dealOrderInfo(ordersV0Api, amazonAuth, response.getPayload());
+            dealOrderInfo(ordersV0Api, amazonAuth, response.getPayload(), amazonSyncInfo);
         }
     }
 
