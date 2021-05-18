@@ -6,10 +6,9 @@ import com.amazon.spapi.SellingPartnerAPIAA.AWSAuthenticationCredentialsProvider
 import com.amazon.spapi.SellingPartnerAPIAA.LWAAuthorizationCredentials;
 import com.amazon.spapi.api.OrdersV0Api;
 import com.amazon.spapi.client.ApiException;
-import com.amazon.spapi.model.orders.GetOrdersResponse;
-import com.amazon.spapi.model.orders.Order;
-import com.amazon.spapi.model.orders.OrdersList;
+import com.amazon.spapi.model.orders.*;
 import com.sky.ddtsp.dao.custom.CustomAmazonAuthMapper;
+import com.sky.ddtsp.dao.custom.CustomAmazonOrderItemMapper;
 import com.sky.ddtsp.dao.custom.CustomAmazonOrderMapper;
 import com.sky.ddtsp.dao.custom.CustomAmazonSyncInfoMapper;
 import com.sky.ddtsp.dto.amazonAuth.AmazonConfig;
@@ -20,6 +19,8 @@ import com.sky.ddtsp.service.IAmazonSyncInfoService;
 import com.sky.ddtsp.util.DateUtil;
 import com.sky.ddtsp.util.MathUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.checkerframework.checker.units.qual.A;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -41,8 +42,10 @@ public class OrdersJob {
     IAmazonSyncInfoService amazonSyncInfoService;
     @Autowired
     CustomAmazonSyncInfoMapper customAmazonSyncInfoMapper;
+    @Autowired
+    CustomAmazonOrderItemMapper customAmazonOrderItemMapper;
 
-    @Scheduled(cron = "0 0/20 * * * ? ")
+    @Scheduled(cron = "0/5 * * * * ? ")
     public void scheduled() {
         List<AmazonAuth> amazonAuthList = listAmazonAuth();
         //获取店铺信息 遍历店铺信息
@@ -50,6 +53,7 @@ public class OrdersJob {
             if (StringUtils.isEmpty(amazonAuth.getMarketplaceId())) {
                 return;
             }
+
             syncOrderInfo(amazonAuth);
         });
         //获取获取订单信息
@@ -58,12 +62,12 @@ public class OrdersJob {
 
     private void syncOrderInfo(AmazonAuth amazonAuth) {
         OrdersV0Api ordersV0Api = getOrdersV0Api(amazonAuth);
-        AmazonSyncInfo amazonSyncInfo=amazonSyncInfoService.getAmazonSyncInfo(AmazonSyncInfoTypeEnum.ORDER,amazonAuth.getMerchantId());
-        GetOrdersResponse response = getOrders(amazonAuth, ordersV0Api,amazonSyncInfo);
+        AmazonSyncInfo amazonSyncInfo = amazonSyncInfoService.getAmazonSyncInfo(AmazonSyncInfoTypeEnum.ORDER, amazonAuth.getMerchantId());
+        GetOrdersResponse response = getOrders(amazonAuth, ordersV0Api, amazonSyncInfo);
         if (response == null) {
             return;
         }
-        dealOrderInfo(ordersV0Api, amazonAuth, response.getPayload(),amazonSyncInfo);
+        dealOrderInfo(ordersV0Api, amazonAuth, response.getPayload(), amazonSyncInfo);
     }
 
     private GetOrdersResponse getOrders(AmazonAuth amazonAuth, OrdersV0Api ordersV0Api, AmazonSyncInfo amazonSyncInfo) {
@@ -73,12 +77,12 @@ public class OrdersJob {
         marketplaceIds.add(amazonAuth.getMarketplaceId());
         String createdAfter = null;
         String createdBefore = null;
-        String lastUpdatedAfter =null;
+        String lastUpdatedAfter = null;
         String nextToken = null;
         if (StringUtils.isEmpty(amazonSyncInfo.getNextToken())) {
             lastUpdatedAfter = DateUtil.dateTimeToUtczStr(amazonAuth.getLastUpdatedAfter());
-        }else{
-            nextToken=amazonSyncInfo.getNextToken();
+        } else {
+            nextToken = amazonSyncInfo.getNextToken();
         }
         String lastUpdatedBefore = null;
         List<String> orderStatuses = null;
@@ -93,6 +97,7 @@ public class OrdersJob {
             response = ordersV0Api.getOrders(marketplaceIds, createdAfter, createdBefore, lastUpdatedAfter, lastUpdatedBefore, orderStatuses, fulfillmentChannels, paymentMethods, buyerEmail, sellerOrderId, maxResultsPerPage, easyShipShipmentStatuses, nextToken, amazonOrderIds);
         } catch (ApiException e) {
             log.error("syncOrderInfo fail,amazonAuth:{},erro:{}", JSON.toJSONString(amazonAuth), e.getMessage());
+            log.error("syncOrderInfo fail,amazonAuth:{},erro:{}", JSON.toJSONString(amazonAuth), e.getCode());
             e.printStackTrace();
             return null;
         }
@@ -181,6 +186,13 @@ public class OrdersJob {
                 amazonOrder.setUpdateTime(new Date());
                 customAmazonOrderMapper.updateByPrimaryKeySelective(amazonOrder);
             }
+            try {
+                dealOrderItemsInfo(ordersV0Api, order.getAmazonOrderId(), null);
+            } catch (ApiException e) {
+                e.printStackTrace();
+                log.info("dealOrderItemsInfo fail,orderId:{},message:{}，code:{}", order.getAmazonOrderId(), e.getMessage(), e.getCode());
+                return;
+            }
         });
         if (StringUtils.isEmpty(ordersList.getNextToken())) {
             //没有nextToken表示同步完成
@@ -192,12 +204,53 @@ public class OrdersJob {
             amazonSyncInfo.setUpdateTime(new Date());
             customAmazonSyncInfoMapper.updateByPrimaryKey(amazonSyncInfo);
             //获取下页
-            GetOrdersResponse response = getOrders(amazonAuth, ordersV0Api,amazonSyncInfo);
+            GetOrdersResponse response = getOrders(amazonAuth, ordersV0Api, amazonSyncInfo);
             if (response == null) {
                 return;
             }
             dealOrderInfo(ordersV0Api, amazonAuth, response.getPayload(), amazonSyncInfo);
         }
+    }
+
+    private void dealOrderItemsInfo(OrdersV0Api ordersV0Api, String amazonOrderId, String nextToken) throws ApiException {
+        GetOrderItemsResponse response = ordersV0Api.getOrderItems(amazonOrderId, nextToken);
+        OrderItemList orderItems = response.getPayload().getOrderItems();
+        if (CollectionUtils.isEmpty(orderItems)) {
+            return;
+        }
+        orderItems.forEach(orderItem -> {
+            AmazonOrderItem amazonOrderItem=getAmazonOrderItem(amazonOrderId,orderItem.getSellerSKU());
+            if(amazonOrderItem==null){
+                amazonOrderItem=new AmazonOrderItem();
+                setAmazonOrderItem(orderItem,amazonOrderItem);
+                amazonOrderItem.setAmazonOrderId(amazonOrderId);
+                amazonOrderItem.setCreateTime(new Date());
+                customAmazonOrderItemMapper.insertSelective(amazonOrderItem);
+            }else{
+                setAmazonOrderItem(orderItem,amazonOrderItem);
+                amazonOrderItem.setUpdateTime(new Date());
+                customAmazonOrderItemMapper.updateByPrimaryKeySelective(amazonOrderItem);
+            }
+        });
+        if (response.getPayload().getNextToken() == null) {
+            return;
+        }
+        dealOrderItemsInfo(ordersV0Api, amazonOrderId, nextToken);
+    }
+
+    private void setAmazonOrderItem(OrderItem orderItem, AmazonOrderItem amazonOrderItem) {
+        BeanUtils.copyProperties(orderItem,amazonOrderItem);
+        amazonOrderItem.setSellerSku(orderItem.getSellerSKU());
+    }
+
+    private AmazonOrderItem getAmazonOrderItem(String amazonOrderId, String sellerSKU) {
+        AmazonOrderItemExample example=new AmazonOrderItemExample();
+        example.createCriteria().andAmazonOrderIdEqualTo(amazonOrderId).andSellerSkuEqualTo(sellerSKU);
+        List<AmazonOrderItem> orderItemList=customAmazonOrderItemMapper.selectByExample(example);
+        if(CollectionUtils.isEmpty(orderItemList)){
+            return null;
+        }
+        return orderItemList.get(0);
     }
 
     private void setAmazonOrderInfo(AmazonOrder amazonOrder, Order order) {
