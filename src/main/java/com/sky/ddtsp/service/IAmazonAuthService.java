@@ -5,6 +5,9 @@ import com.sky.ddtsp.dto.amazonAuth.request.SaveAmazonAuthRequest;
 import com.sky.ddtsp.dto.amazonAuth.response.ListAmazonAuthResponse;
 import com.sky.ddtsp.dto.amazonAuth.request.ListAmazonAuthRequest;
 import com.sky.ddtsp.dto.response.BaseResponse;
+import com.sky.ddtsp.entity.AmazonAuth;
+
+import java.util.List;
 
 /**
  * @author baixueping
@@ -27,4 +30,9 @@ public interface IAmazonAuthService {
      * @return
      */
     BaseResponse saveAmazonAuth(SaveAmazonAuthRequest params);
+    /**
+     * 查询所有亚马逊店铺授权信息
+     * @return
+     */
+    List<AmazonAuth> listAmazonAuth();
 }

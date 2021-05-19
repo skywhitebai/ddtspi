@@ -94,6 +94,10 @@ public class AmazonOrder {
 
     private String addressLine1;
 
+    private Integer syncOrderItemStatus;
+
+    private Date syncTime;
+
     private Date createTime;
 
     private Date updateTime;
@@ -456,6 +460,22 @@ public class AmazonOrder {
 
     public void setAddressLine1(String addressLine1) {
         this.addressLine1 = addressLine1 == null ? null : addressLine1.trim();
+    }
+
+    public Integer getSyncOrderItemStatus() {
+        return syncOrderItemStatus;
+    }
+
+    public void setSyncOrderItemStatus(Integer syncOrderItemStatus) {
+        this.syncOrderItemStatus = syncOrderItemStatus;
+    }
+
+    public Date getSyncTime() {
+        return syncTime;
+    }
+
+    public void setSyncTime(Date syncTime) {
+        this.syncTime = syncTime;
     }
 
     public Date getCreateTime() {

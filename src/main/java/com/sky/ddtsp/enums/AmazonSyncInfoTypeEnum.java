@@ -9,7 +9,8 @@ import lombok.Getter;
  */
 @Getter
 public enum AmazonSyncInfoTypeEnum {
-    ORDER("order");
+    ORDER("order"),
+    ORDER_ITEM("orderItem");
 
     String type;
 

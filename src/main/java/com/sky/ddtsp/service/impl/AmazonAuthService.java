@@ -11,6 +11,7 @@ import com.sky.ddtsp.dto.amazonAuth.request.ListAmazonAuthRequest;
 import com.sky.ddtsp.dto.response.BaseResponse;
 import com.sky.ddtsp.entity.AmazonAuth;
 import com.sky.ddtsp.entity.AmazonAuthExample;
+import com.sky.ddtsp.enums.YesOrNoEnum;
 import com.sky.ddtsp.service.IAmazonAuthService;
 import com.sky.ddtsp.util.HttpTool;
 import org.springframework.beans.BeanUtils;
@@ -94,6 +95,13 @@ public class AmazonAuthService implements IAmazonAuthService {
             customAmazonAuthMapper.insertSelective(amazonAuth);
         }
         return BaseResponse.success();
+    }
+
+    @Override
+    public List<AmazonAuth> listAmazonAuth() {
+        AmazonAuthExample amazonAuthExample = new AmazonAuthExample();
+        amazonAuthExample.createCriteria().andStatusEqualTo(YesOrNoEnum.YES.getValue());
+        return customAmazonAuthMapper.selectByExample(amazonAuthExample);
     }
 
     private AmazonAuth getAmazonAuthByMerchantId(String sellingPartnerId) {

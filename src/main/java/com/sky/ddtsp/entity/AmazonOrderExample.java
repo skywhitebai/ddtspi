@@ -3093,6 +3093,126 @@ public class AmazonOrderExample {
             return (Criteria) this;
         }
 
+        public Criteria andSyncOrderItemStatusIsNull() {
+            addCriterion("sync_order_item_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncOrderItemStatusIsNotNull() {
+            addCriterion("sync_order_item_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncOrderItemStatusEqualTo(Integer value) {
+            addCriterion("sync_order_item_status =", value, "syncOrderItemStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncOrderItemStatusNotEqualTo(Integer value) {
+            addCriterion("sync_order_item_status <>", value, "syncOrderItemStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncOrderItemStatusGreaterThan(Integer value) {
+            addCriterion("sync_order_item_status >", value, "syncOrderItemStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncOrderItemStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sync_order_item_status >=", value, "syncOrderItemStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncOrderItemStatusLessThan(Integer value) {
+            addCriterion("sync_order_item_status <", value, "syncOrderItemStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncOrderItemStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("sync_order_item_status <=", value, "syncOrderItemStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncOrderItemStatusIn(List<Integer> values) {
+            addCriterion("sync_order_item_status in", values, "syncOrderItemStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncOrderItemStatusNotIn(List<Integer> values) {
+            addCriterion("sync_order_item_status not in", values, "syncOrderItemStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncOrderItemStatusBetween(Integer value1, Integer value2) {
+            addCriterion("sync_order_item_status between", value1, value2, "syncOrderItemStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncOrderItemStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("sync_order_item_status not between", value1, value2, "syncOrderItemStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncTimeIsNull() {
+            addCriterion("sync_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncTimeIsNotNull() {
+            addCriterion("sync_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncTimeEqualTo(Date value) {
+            addCriterion("sync_time =", value, "syncTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncTimeNotEqualTo(Date value) {
+            addCriterion("sync_time <>", value, "syncTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncTimeGreaterThan(Date value) {
+            addCriterion("sync_time >", value, "syncTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("sync_time >=", value, "syncTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncTimeLessThan(Date value) {
+            addCriterion("sync_time <", value, "syncTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncTimeLessThanOrEqualTo(Date value) {
+            addCriterion("sync_time <=", value, "syncTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncTimeIn(List<Date> values) {
+            addCriterion("sync_time in", values, "syncTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncTimeNotIn(List<Date> values) {
+            addCriterion("sync_time not in", values, "syncTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncTimeBetween(Date value1, Date value2) {
+            addCriterion("sync_time between", value1, value2, "syncTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andSyncTimeNotBetween(Date value1, Date value2) {
+            addCriterion("sync_time not between", value1, value2, "syncTime");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTimeIsNull() {
             addCriterion("create_time is null");
             return (Criteria) this;
