@@ -60,15 +60,15 @@ public class AmazonOrderItem {
 
     private String promotionDiscountTaxCurrencyCode;
 
-    private String promotionidList;
+    private String promotionIdList;
 
-    private BigDecimal codFeeAmount;
+    private BigDecimal coDFeeAmount;
 
-    private String codFeeCurrencyCode;
+    private String coDFeeCurrencyCode;
 
-    private BigDecimal codFeeDiscountAmount;
+    private BigDecimal coDFeeDiscountAmount;
 
-    private String codFeeDiscountCurrencyCode;
+    private String coDFeeDiscountCurrencyCode;
 
     private Boolean isGift;
 
@@ -84,13 +84,15 @@ public class AmazonOrderItem {
 
     private String priceDesignation;
 
-    private String taxCollection;
+    private String taxCollectionModel;
+
+    private String taxCollectionResponsibleParty;
 
     private Boolean serialNumberRequired;
 
     private Boolean isTransparency;
 
-    private Boolean iossNumber;
+    private String iossNumber;
 
     private Date createTime;
 
@@ -324,44 +326,44 @@ public class AmazonOrderItem {
         this.promotionDiscountTaxCurrencyCode = promotionDiscountTaxCurrencyCode == null ? null : promotionDiscountTaxCurrencyCode.trim();
     }
 
-    public String getPromotionidList() {
-        return promotionidList;
+    public String getPromotionIdList() {
+        return promotionIdList;
     }
 
-    public void setPromotionidList(String promotionidList) {
-        this.promotionidList = promotionidList == null ? null : promotionidList.trim();
+    public void setPromotionIdList(String promotionIdList) {
+        this.promotionIdList = promotionIdList == null ? null : promotionIdList.trim();
     }
 
-    public BigDecimal getCodFeeAmount() {
-        return codFeeAmount;
+    public BigDecimal getCoDFeeAmount() {
+        return coDFeeAmount;
     }
 
-    public void setCodFeeAmount(BigDecimal codFeeAmount) {
-        this.codFeeAmount = codFeeAmount;
+    public void setCoDFeeAmount(BigDecimal coDFeeAmount) {
+        this.coDFeeAmount = coDFeeAmount;
     }
 
-    public String getCodFeeCurrencyCode() {
-        return codFeeCurrencyCode;
+    public String getCoDFeeCurrencyCode() {
+        return coDFeeCurrencyCode;
     }
 
-    public void setCodFeeCurrencyCode(String codFeeCurrencyCode) {
-        this.codFeeCurrencyCode = codFeeCurrencyCode == null ? null : codFeeCurrencyCode.trim();
+    public void setCoDFeeCurrencyCode(String coDFeeCurrencyCode) {
+        this.coDFeeCurrencyCode = coDFeeCurrencyCode == null ? null : coDFeeCurrencyCode.trim();
     }
 
-    public BigDecimal getCodFeeDiscountAmount() {
-        return codFeeDiscountAmount;
+    public BigDecimal getCoDFeeDiscountAmount() {
+        return coDFeeDiscountAmount;
     }
 
-    public void setCodFeeDiscountAmount(BigDecimal codFeeDiscountAmount) {
-        this.codFeeDiscountAmount = codFeeDiscountAmount;
+    public void setCoDFeeDiscountAmount(BigDecimal coDFeeDiscountAmount) {
+        this.coDFeeDiscountAmount = coDFeeDiscountAmount;
     }
 
-    public String getCodFeeDiscountCurrencyCode() {
-        return codFeeDiscountCurrencyCode;
+    public String getCoDFeeDiscountCurrencyCode() {
+        return coDFeeDiscountCurrencyCode;
     }
 
-    public void setCodFeeDiscountCurrencyCode(String codFeeDiscountCurrencyCode) {
-        this.codFeeDiscountCurrencyCode = codFeeDiscountCurrencyCode == null ? null : codFeeDiscountCurrencyCode.trim();
+    public void setCoDFeeDiscountCurrencyCode(String coDFeeDiscountCurrencyCode) {
+        this.coDFeeDiscountCurrencyCode = coDFeeDiscountCurrencyCode == null ? null : coDFeeDiscountCurrencyCode.trim();
     }
 
     public Boolean getIsGift() {
@@ -420,12 +422,20 @@ public class AmazonOrderItem {
         this.priceDesignation = priceDesignation == null ? null : priceDesignation.trim();
     }
 
-    public String getTaxCollection() {
-        return taxCollection;
+    public String getTaxCollectionModel() {
+        return taxCollectionModel;
     }
 
-    public void setTaxCollection(String taxCollection) {
-        this.taxCollection = taxCollection == null ? null : taxCollection.trim();
+    public void setTaxCollectionModel(String taxCollectionModel) {
+        this.taxCollectionModel = taxCollectionModel == null ? null : taxCollectionModel.trim();
+    }
+
+    public String getTaxCollectionResponsibleParty() {
+        return taxCollectionResponsibleParty;
+    }
+
+    public void setTaxCollectionResponsibleParty(String taxCollectionResponsibleParty) {
+        this.taxCollectionResponsibleParty = taxCollectionResponsibleParty == null ? null : taxCollectionResponsibleParty.trim();
     }
 
     public Boolean getSerialNumberRequired() {
@@ -444,12 +454,12 @@ public class AmazonOrderItem {
         this.isTransparency = isTransparency;
     }
 
-    public Boolean getIossNumber() {
+    public String getIossNumber() {
         return iossNumber;
     }
 
-    public void setIossNumber(Boolean iossNumber) {
-        this.iossNumber = iossNumber;
+    public void setIossNumber(String iossNumber) {
+        this.iossNumber = iossNumber == null ? null : iossNumber.trim();
     }
 
     public Date getCreateTime() {

@@ -20,6 +20,7 @@ import com.sky.ddtsp.enums.YesOrNoEnum;
 import com.sky.ddtsp.service.IAmazonAuthService;
 import com.sky.ddtsp.service.IAmazonSyncInfoService;
 import com.sky.ddtsp.util.DateUtil;
+import com.sky.ddtsp.util.MathUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.BeanUtils;
@@ -95,7 +96,7 @@ public class OrderItemJob {
             return;
         }
         orderItems.forEach(orderItem -> {
-            AmazonOrderItem amazonOrderItem=getAmazonOrderItem(amazonOrderId,orderItem.getSellerSKU());
+            AmazonOrderItem amazonOrderItem=getAmazonOrderItem(amazonOrderId,orderItem.getOrderItemId());
             if(amazonOrderItem==null){
                 amazonOrderItem=new AmazonOrderItem();
                 setAmazonOrderItem(orderItem,amazonOrderItem);
@@ -113,18 +114,14 @@ public class OrderItemJob {
         }
         saveOrderItemsInfo(ordersV0Api, amazonOrderId, nextToken);
     }
-    private AmazonOrderItem getAmazonOrderItem(String amazonOrderId, String sellerSKU) {
+    private AmazonOrderItem getAmazonOrderItem(String amazonOrderId, String orderItemId) {
         AmazonOrderItemExample example=new AmazonOrderItemExample();
-        example.createCriteria().andAmazonOrderIdEqualTo(amazonOrderId).andSellerSkuEqualTo(sellerSKU);
+        example.createCriteria().andAmazonOrderIdEqualTo(amazonOrderId).andOrderItemIdEqualTo(orderItemId);
         List<AmazonOrderItem> orderItemList=customAmazonOrderItemMapper.selectByExample(example);
         if(CollectionUtils.isEmpty(orderItemList)){
             return null;
         }
         return orderItemList.get(0);
-    }
-    private void setAmazonOrderItem(OrderItem orderItem, AmazonOrderItem amazonOrderItem) {
-        BeanUtils.copyProperties(orderItem,amazonOrderItem);
-        amazonOrderItem.setSellerSku(orderItem.getSellerSKU());
     }
     private PageInfo<AmazonOrder> getAmazonOrderPage(AmazonAuth amazonSyncInfo) {
         PageHelper.startPage(1, 25);
@@ -136,4 +133,71 @@ public class OrderItemJob {
         PageInfo<AmazonOrder> pageInfo = new PageInfo<>(amazonOrderList);
         return pageInfo;
     }
+    private void setAmazonOrderItem(OrderItem orderItem, AmazonOrderItem amazonOrderItem) {
+        BeanUtils.copyProperties(orderItem,amazonOrderItem);
+        amazonOrderItem.setSellerSku(orderItem.getSellerSKU());
+        amazonOrderItem.setAsin(orderItem.getASIN());
+        if(orderItem.getProductInfo()!=null){
+            amazonOrderItem.setNumberOfItems(orderItem.getProductInfo().getNumberOfItems());
+        }
+        if(orderItem.getPointsGranted()!=null){
+            amazonOrderItem.setPointsNumber(orderItem.getPointsGranted().getPointsNumber());
+        }
+        if(orderItem.getItemPrice()!=null){
+            amazonOrderItem.setItemPriceAmount(MathUtil.strToBigDecimal(orderItem.getItemPrice().getAmount()));
+            amazonOrderItem.setItemPriceCurrencyCode(orderItem.getItemPrice().getCurrencyCode());
+        }
+        if(orderItem.getShippingPrice()!=null){
+            amazonOrderItem.setShippingPriceAmount(MathUtil.strToBigDecimal(orderItem.getShippingPrice().getAmount()));
+            amazonOrderItem.setShippingPriceCurrencyCode(orderItem.getShippingPrice().getCurrencyCode());
+        }
+        if(orderItem.getItemTax()!=null){
+            amazonOrderItem.setItemTaxAmount(MathUtil.strToBigDecimal(orderItem.getItemTax().getAmount()));
+            amazonOrderItem.setItemTaxCurrencyCode(orderItem.getItemTax().getCurrencyCode());
+        }
+        if(orderItem.getShippingTax()!=null){
+            amazonOrderItem.setShippingTaxAmount(MathUtil.strToBigDecimal(orderItem.getShippingTax().getAmount()));
+            amazonOrderItem.setShippingTaxCurrencyCode(orderItem.getShippingTax().getCurrencyCode());
+        }
+        if(orderItem.getShippingDiscount()!=null){
+            amazonOrderItem.setShippingDiscountAmount(MathUtil.strToBigDecimal(orderItem.getShippingDiscount().getAmount()));
+            amazonOrderItem.setShippingDiscountCurrencyCode(orderItem.getShippingDiscount().getCurrencyCode());
+        }
+        if(orderItem.getShippingDiscountTax()!=null){
+            amazonOrderItem.setShippingDiscountTaxAmount(MathUtil.strToBigDecimal(orderItem.getShippingDiscountTax().getAmount()));
+            amazonOrderItem.setShippingDiscountTaxCurrencyCode(orderItem.getShippingDiscountTax().getCurrencyCode());
+        }
+        if(orderItem.getPromotionDiscount()!=null){
+            amazonOrderItem.setPromotionDiscountAmount(MathUtil.strToBigDecimal(orderItem.getPromotionDiscount().getAmount()));
+            amazonOrderItem.setPromotionDiscountCurrencyCode(orderItem.getPromotionDiscount().getCurrencyCode());
+        }
+        if(orderItem.getPromotionDiscountTax()!=null){
+            amazonOrderItem.setPromotionDiscountTaxAmount(MathUtil.strToBigDecimal(orderItem.getPromotionDiscountTax().getAmount()));
+            amazonOrderItem.setPromotionDiscountTaxCurrencyCode(orderItem.getPromotionDiscountTax().getCurrencyCode());
+        }
+        if(!CollectionUtils.isEmpty(orderItem.getPromotionIds())){
+            amazonOrderItem.setPromotionIdList(String.join(",",orderItem.getPromotionIds()));
+        }
+        if(orderItem.getCoDFee()!=null){
+            amazonOrderItem.setCoDFeeAmount(MathUtil.strToBigDecimal(orderItem.getCoDFee().getAmount()));
+            amazonOrderItem.setCoDFeeCurrencyCode(orderItem.getCoDFee().getCurrencyCode());
+        }
+        if(orderItem.getCoDFeeDiscount()!=null){
+            amazonOrderItem.setCoDFeeDiscountAmount(MathUtil.strToBigDecimal(orderItem.getCoDFeeDiscount().getAmount()));
+            amazonOrderItem.setCoDFeeDiscountCurrencyCode(orderItem.getCoDFeeDiscount().getCurrencyCode());
+        }
+        amazonOrderItem.setIsGift(orderItem.isIsGift());
+        if(orderItem.getTaxCollection()!=null){
+            amazonOrderItem.setTaxCollectionModel(orderItem.getTaxCollection().getModel().getValue());
+            amazonOrderItem.setTaxCollectionResponsibleParty(orderItem.getTaxCollection().getResponsibleParty().getValue());
+        }
+        amazonOrderItem.setSerialNumberRequired(orderItem.isSerialNumberRequired());
+        amazonOrderItem.setIsTransparency(orderItem.isIsTransparency());
+        amazonOrderItem.setIossNumber(orderItem.getIossNumber());
+        if(orderItem.getItemPrice()!=null){
+            amazonOrderItem.setItemPriceAmount(MathUtil.strToBigDecimal(orderItem.getItemPrice().getAmount()));
+            amazonOrderItem.setItemPriceCurrencyCode(orderItem.getItemPrice().getCurrencyCode());
+        }
+
+     }
 }

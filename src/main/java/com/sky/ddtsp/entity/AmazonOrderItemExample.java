@@ -1926,333 +1926,333 @@ public class AmazonOrderItemExample {
             return (Criteria) this;
         }
 
-        public Criteria andPromotionidListIsNull() {
-            addCriterion("promotionId_list is null");
+        public Criteria andPromotionIdListIsNull() {
+            addCriterion("promotion_id_list is null");
             return (Criteria) this;
         }
 
-        public Criteria andPromotionidListIsNotNull() {
-            addCriterion("promotionId_list is not null");
+        public Criteria andPromotionIdListIsNotNull() {
+            addCriterion("promotion_id_list is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPromotionidListEqualTo(String value) {
-            addCriterion("promotionId_list =", value, "promotionidList");
+        public Criteria andPromotionIdListEqualTo(String value) {
+            addCriterion("promotion_id_list =", value, "promotionIdList");
             return (Criteria) this;
         }
 
-        public Criteria andPromotionidListNotEqualTo(String value) {
-            addCriterion("promotionId_list <>", value, "promotionidList");
+        public Criteria andPromotionIdListNotEqualTo(String value) {
+            addCriterion("promotion_id_list <>", value, "promotionIdList");
             return (Criteria) this;
         }
 
-        public Criteria andPromotionidListGreaterThan(String value) {
-            addCriterion("promotionId_list >", value, "promotionidList");
+        public Criteria andPromotionIdListGreaterThan(String value) {
+            addCriterion("promotion_id_list >", value, "promotionIdList");
             return (Criteria) this;
         }
 
-        public Criteria andPromotionidListGreaterThanOrEqualTo(String value) {
-            addCriterion("promotionId_list >=", value, "promotionidList");
+        public Criteria andPromotionIdListGreaterThanOrEqualTo(String value) {
+            addCriterion("promotion_id_list >=", value, "promotionIdList");
             return (Criteria) this;
         }
 
-        public Criteria andPromotionidListLessThan(String value) {
-            addCriterion("promotionId_list <", value, "promotionidList");
+        public Criteria andPromotionIdListLessThan(String value) {
+            addCriterion("promotion_id_list <", value, "promotionIdList");
             return (Criteria) this;
         }
 
-        public Criteria andPromotionidListLessThanOrEqualTo(String value) {
-            addCriterion("promotionId_list <=", value, "promotionidList");
+        public Criteria andPromotionIdListLessThanOrEqualTo(String value) {
+            addCriterion("promotion_id_list <=", value, "promotionIdList");
             return (Criteria) this;
         }
 
-        public Criteria andPromotionidListLike(String value) {
-            addCriterion("promotionId_list like", value, "promotionidList");
+        public Criteria andPromotionIdListLike(String value) {
+            addCriterion("promotion_id_list like", value, "promotionIdList");
             return (Criteria) this;
         }
 
-        public Criteria andPromotionidListNotLike(String value) {
-            addCriterion("promotionId_list not like", value, "promotionidList");
+        public Criteria andPromotionIdListNotLike(String value) {
+            addCriterion("promotion_id_list not like", value, "promotionIdList");
             return (Criteria) this;
         }
 
-        public Criteria andPromotionidListIn(List<String> values) {
-            addCriterion("promotionId_list in", values, "promotionidList");
+        public Criteria andPromotionIdListIn(List<String> values) {
+            addCriterion("promotion_id_list in", values, "promotionIdList");
             return (Criteria) this;
         }
 
-        public Criteria andPromotionidListNotIn(List<String> values) {
-            addCriterion("promotionId_list not in", values, "promotionidList");
+        public Criteria andPromotionIdListNotIn(List<String> values) {
+            addCriterion("promotion_id_list not in", values, "promotionIdList");
             return (Criteria) this;
         }
 
-        public Criteria andPromotionidListBetween(String value1, String value2) {
-            addCriterion("promotionId_list between", value1, value2, "promotionidList");
+        public Criteria andPromotionIdListBetween(String value1, String value2) {
+            addCriterion("promotion_id_list between", value1, value2, "promotionIdList");
             return (Criteria) this;
         }
 
-        public Criteria andPromotionidListNotBetween(String value1, String value2) {
-            addCriterion("promotionId_list not between", value1, value2, "promotionidList");
+        public Criteria andPromotionIdListNotBetween(String value1, String value2) {
+            addCriterion("promotion_id_list not between", value1, value2, "promotionIdList");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeAmountIsNull() {
-            addCriterion("cod_fee_amount is null");
+        public Criteria andCoDFeeAmountIsNull() {
+            addCriterion("co_d_fee_amount is null");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeAmountIsNotNull() {
-            addCriterion("cod_fee_amount is not null");
+        public Criteria andCoDFeeAmountIsNotNull() {
+            addCriterion("co_d_fee_amount is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeAmountEqualTo(BigDecimal value) {
-            addCriterion("cod_fee_amount =", value, "codFeeAmount");
+        public Criteria andCoDFeeAmountEqualTo(BigDecimal value) {
+            addCriterion("co_d_fee_amount =", value, "coDFeeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeAmountNotEqualTo(BigDecimal value) {
-            addCriterion("cod_fee_amount <>", value, "codFeeAmount");
+        public Criteria andCoDFeeAmountNotEqualTo(BigDecimal value) {
+            addCriterion("co_d_fee_amount <>", value, "coDFeeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeAmountGreaterThan(BigDecimal value) {
-            addCriterion("cod_fee_amount >", value, "codFeeAmount");
+        public Criteria andCoDFeeAmountGreaterThan(BigDecimal value) {
+            addCriterion("co_d_fee_amount >", value, "coDFeeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeAmountGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("cod_fee_amount >=", value, "codFeeAmount");
+        public Criteria andCoDFeeAmountGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("co_d_fee_amount >=", value, "coDFeeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeAmountLessThan(BigDecimal value) {
-            addCriterion("cod_fee_amount <", value, "codFeeAmount");
+        public Criteria andCoDFeeAmountLessThan(BigDecimal value) {
+            addCriterion("co_d_fee_amount <", value, "coDFeeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeAmountLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("cod_fee_amount <=", value, "codFeeAmount");
+        public Criteria andCoDFeeAmountLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("co_d_fee_amount <=", value, "coDFeeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeAmountIn(List<BigDecimal> values) {
-            addCriterion("cod_fee_amount in", values, "codFeeAmount");
+        public Criteria andCoDFeeAmountIn(List<BigDecimal> values) {
+            addCriterion("co_d_fee_amount in", values, "coDFeeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeAmountNotIn(List<BigDecimal> values) {
-            addCriterion("cod_fee_amount not in", values, "codFeeAmount");
+        public Criteria andCoDFeeAmountNotIn(List<BigDecimal> values) {
+            addCriterion("co_d_fee_amount not in", values, "coDFeeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeAmountBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("cod_fee_amount between", value1, value2, "codFeeAmount");
+        public Criteria andCoDFeeAmountBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("co_d_fee_amount between", value1, value2, "coDFeeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeAmountNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("cod_fee_amount not between", value1, value2, "codFeeAmount");
+        public Criteria andCoDFeeAmountNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("co_d_fee_amount not between", value1, value2, "coDFeeAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeCurrencyCodeIsNull() {
-            addCriterion("cod_fee_currency_code is null");
+        public Criteria andCoDFeeCurrencyCodeIsNull() {
+            addCriterion("co_d_fee_currency_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeCurrencyCodeIsNotNull() {
-            addCriterion("cod_fee_currency_code is not null");
+        public Criteria andCoDFeeCurrencyCodeIsNotNull() {
+            addCriterion("co_d_fee_currency_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeCurrencyCodeEqualTo(String value) {
-            addCriterion("cod_fee_currency_code =", value, "codFeeCurrencyCode");
+        public Criteria andCoDFeeCurrencyCodeEqualTo(String value) {
+            addCriterion("co_d_fee_currency_code =", value, "coDFeeCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeCurrencyCodeNotEqualTo(String value) {
-            addCriterion("cod_fee_currency_code <>", value, "codFeeCurrencyCode");
+        public Criteria andCoDFeeCurrencyCodeNotEqualTo(String value) {
+            addCriterion("co_d_fee_currency_code <>", value, "coDFeeCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeCurrencyCodeGreaterThan(String value) {
-            addCriterion("cod_fee_currency_code >", value, "codFeeCurrencyCode");
+        public Criteria andCoDFeeCurrencyCodeGreaterThan(String value) {
+            addCriterion("co_d_fee_currency_code >", value, "coDFeeCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeCurrencyCodeGreaterThanOrEqualTo(String value) {
-            addCriterion("cod_fee_currency_code >=", value, "codFeeCurrencyCode");
+        public Criteria andCoDFeeCurrencyCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("co_d_fee_currency_code >=", value, "coDFeeCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeCurrencyCodeLessThan(String value) {
-            addCriterion("cod_fee_currency_code <", value, "codFeeCurrencyCode");
+        public Criteria andCoDFeeCurrencyCodeLessThan(String value) {
+            addCriterion("co_d_fee_currency_code <", value, "coDFeeCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeCurrencyCodeLessThanOrEqualTo(String value) {
-            addCriterion("cod_fee_currency_code <=", value, "codFeeCurrencyCode");
+        public Criteria andCoDFeeCurrencyCodeLessThanOrEqualTo(String value) {
+            addCriterion("co_d_fee_currency_code <=", value, "coDFeeCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeCurrencyCodeLike(String value) {
-            addCriterion("cod_fee_currency_code like", value, "codFeeCurrencyCode");
+        public Criteria andCoDFeeCurrencyCodeLike(String value) {
+            addCriterion("co_d_fee_currency_code like", value, "coDFeeCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeCurrencyCodeNotLike(String value) {
-            addCriterion("cod_fee_currency_code not like", value, "codFeeCurrencyCode");
+        public Criteria andCoDFeeCurrencyCodeNotLike(String value) {
+            addCriterion("co_d_fee_currency_code not like", value, "coDFeeCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeCurrencyCodeIn(List<String> values) {
-            addCriterion("cod_fee_currency_code in", values, "codFeeCurrencyCode");
+        public Criteria andCoDFeeCurrencyCodeIn(List<String> values) {
+            addCriterion("co_d_fee_currency_code in", values, "coDFeeCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeCurrencyCodeNotIn(List<String> values) {
-            addCriterion("cod_fee_currency_code not in", values, "codFeeCurrencyCode");
+        public Criteria andCoDFeeCurrencyCodeNotIn(List<String> values) {
+            addCriterion("co_d_fee_currency_code not in", values, "coDFeeCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeCurrencyCodeBetween(String value1, String value2) {
-            addCriterion("cod_fee_currency_code between", value1, value2, "codFeeCurrencyCode");
+        public Criteria andCoDFeeCurrencyCodeBetween(String value1, String value2) {
+            addCriterion("co_d_fee_currency_code between", value1, value2, "coDFeeCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeCurrencyCodeNotBetween(String value1, String value2) {
-            addCriterion("cod_fee_currency_code not between", value1, value2, "codFeeCurrencyCode");
+        public Criteria andCoDFeeCurrencyCodeNotBetween(String value1, String value2) {
+            addCriterion("co_d_fee_currency_code not between", value1, value2, "coDFeeCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountAmountIsNull() {
-            addCriterion("cod_fee_discount_amount is null");
+        public Criteria andCoDFeeDiscountAmountIsNull() {
+            addCriterion("co_d_fee_discount_amount is null");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountAmountIsNotNull() {
-            addCriterion("cod_fee_discount_amount is not null");
+        public Criteria andCoDFeeDiscountAmountIsNotNull() {
+            addCriterion("co_d_fee_discount_amount is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountAmountEqualTo(BigDecimal value) {
-            addCriterion("cod_fee_discount_amount =", value, "codFeeDiscountAmount");
+        public Criteria andCoDFeeDiscountAmountEqualTo(BigDecimal value) {
+            addCriterion("co_d_fee_discount_amount =", value, "coDFeeDiscountAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountAmountNotEqualTo(BigDecimal value) {
-            addCriterion("cod_fee_discount_amount <>", value, "codFeeDiscountAmount");
+        public Criteria andCoDFeeDiscountAmountNotEqualTo(BigDecimal value) {
+            addCriterion("co_d_fee_discount_amount <>", value, "coDFeeDiscountAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountAmountGreaterThan(BigDecimal value) {
-            addCriterion("cod_fee_discount_amount >", value, "codFeeDiscountAmount");
+        public Criteria andCoDFeeDiscountAmountGreaterThan(BigDecimal value) {
+            addCriterion("co_d_fee_discount_amount >", value, "coDFeeDiscountAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountAmountGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("cod_fee_discount_amount >=", value, "codFeeDiscountAmount");
+        public Criteria andCoDFeeDiscountAmountGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("co_d_fee_discount_amount >=", value, "coDFeeDiscountAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountAmountLessThan(BigDecimal value) {
-            addCriterion("cod_fee_discount_amount <", value, "codFeeDiscountAmount");
+        public Criteria andCoDFeeDiscountAmountLessThan(BigDecimal value) {
+            addCriterion("co_d_fee_discount_amount <", value, "coDFeeDiscountAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountAmountLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("cod_fee_discount_amount <=", value, "codFeeDiscountAmount");
+        public Criteria andCoDFeeDiscountAmountLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("co_d_fee_discount_amount <=", value, "coDFeeDiscountAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountAmountIn(List<BigDecimal> values) {
-            addCriterion("cod_fee_discount_amount in", values, "codFeeDiscountAmount");
+        public Criteria andCoDFeeDiscountAmountIn(List<BigDecimal> values) {
+            addCriterion("co_d_fee_discount_amount in", values, "coDFeeDiscountAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountAmountNotIn(List<BigDecimal> values) {
-            addCriterion("cod_fee_discount_amount not in", values, "codFeeDiscountAmount");
+        public Criteria andCoDFeeDiscountAmountNotIn(List<BigDecimal> values) {
+            addCriterion("co_d_fee_discount_amount not in", values, "coDFeeDiscountAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountAmountBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("cod_fee_discount_amount between", value1, value2, "codFeeDiscountAmount");
+        public Criteria andCoDFeeDiscountAmountBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("co_d_fee_discount_amount between", value1, value2, "coDFeeDiscountAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountAmountNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("cod_fee_discount_amount not between", value1, value2, "codFeeDiscountAmount");
+        public Criteria andCoDFeeDiscountAmountNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("co_d_fee_discount_amount not between", value1, value2, "coDFeeDiscountAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountCurrencyCodeIsNull() {
-            addCriterion("cod_fee_discount_currency_code is null");
+        public Criteria andCoDFeeDiscountCurrencyCodeIsNull() {
+            addCriterion("co_d_fee_discount_currency_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountCurrencyCodeIsNotNull() {
-            addCriterion("cod_fee_discount_currency_code is not null");
+        public Criteria andCoDFeeDiscountCurrencyCodeIsNotNull() {
+            addCriterion("co_d_fee_discount_currency_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountCurrencyCodeEqualTo(String value) {
-            addCriterion("cod_fee_discount_currency_code =", value, "codFeeDiscountCurrencyCode");
+        public Criteria andCoDFeeDiscountCurrencyCodeEqualTo(String value) {
+            addCriterion("co_d_fee_discount_currency_code =", value, "coDFeeDiscountCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountCurrencyCodeNotEqualTo(String value) {
-            addCriterion("cod_fee_discount_currency_code <>", value, "codFeeDiscountCurrencyCode");
+        public Criteria andCoDFeeDiscountCurrencyCodeNotEqualTo(String value) {
+            addCriterion("co_d_fee_discount_currency_code <>", value, "coDFeeDiscountCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountCurrencyCodeGreaterThan(String value) {
-            addCriterion("cod_fee_discount_currency_code >", value, "codFeeDiscountCurrencyCode");
+        public Criteria andCoDFeeDiscountCurrencyCodeGreaterThan(String value) {
+            addCriterion("co_d_fee_discount_currency_code >", value, "coDFeeDiscountCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountCurrencyCodeGreaterThanOrEqualTo(String value) {
-            addCriterion("cod_fee_discount_currency_code >=", value, "codFeeDiscountCurrencyCode");
+        public Criteria andCoDFeeDiscountCurrencyCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("co_d_fee_discount_currency_code >=", value, "coDFeeDiscountCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountCurrencyCodeLessThan(String value) {
-            addCriterion("cod_fee_discount_currency_code <", value, "codFeeDiscountCurrencyCode");
+        public Criteria andCoDFeeDiscountCurrencyCodeLessThan(String value) {
+            addCriterion("co_d_fee_discount_currency_code <", value, "coDFeeDiscountCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountCurrencyCodeLessThanOrEqualTo(String value) {
-            addCriterion("cod_fee_discount_currency_code <=", value, "codFeeDiscountCurrencyCode");
+        public Criteria andCoDFeeDiscountCurrencyCodeLessThanOrEqualTo(String value) {
+            addCriterion("co_d_fee_discount_currency_code <=", value, "coDFeeDiscountCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountCurrencyCodeLike(String value) {
-            addCriterion("cod_fee_discount_currency_code like", value, "codFeeDiscountCurrencyCode");
+        public Criteria andCoDFeeDiscountCurrencyCodeLike(String value) {
+            addCriterion("co_d_fee_discount_currency_code like", value, "coDFeeDiscountCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountCurrencyCodeNotLike(String value) {
-            addCriterion("cod_fee_discount_currency_code not like", value, "codFeeDiscountCurrencyCode");
+        public Criteria andCoDFeeDiscountCurrencyCodeNotLike(String value) {
+            addCriterion("co_d_fee_discount_currency_code not like", value, "coDFeeDiscountCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountCurrencyCodeIn(List<String> values) {
-            addCriterion("cod_fee_discount_currency_code in", values, "codFeeDiscountCurrencyCode");
+        public Criteria andCoDFeeDiscountCurrencyCodeIn(List<String> values) {
+            addCriterion("co_d_fee_discount_currency_code in", values, "coDFeeDiscountCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountCurrencyCodeNotIn(List<String> values) {
-            addCriterion("cod_fee_discount_currency_code not in", values, "codFeeDiscountCurrencyCode");
+        public Criteria andCoDFeeDiscountCurrencyCodeNotIn(List<String> values) {
+            addCriterion("co_d_fee_discount_currency_code not in", values, "coDFeeDiscountCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountCurrencyCodeBetween(String value1, String value2) {
-            addCriterion("cod_fee_discount_currency_code between", value1, value2, "codFeeDiscountCurrencyCode");
+        public Criteria andCoDFeeDiscountCurrencyCodeBetween(String value1, String value2) {
+            addCriterion("co_d_fee_discount_currency_code between", value1, value2, "coDFeeDiscountCurrencyCode");
             return (Criteria) this;
         }
 
-        public Criteria andCodFeeDiscountCurrencyCodeNotBetween(String value1, String value2) {
-            addCriterion("cod_fee_discount_currency_code not between", value1, value2, "codFeeDiscountCurrencyCode");
+        public Criteria andCoDFeeDiscountCurrencyCodeNotBetween(String value1, String value2) {
+            addCriterion("co_d_fee_discount_currency_code not between", value1, value2, "coDFeeDiscountCurrencyCode");
             return (Criteria) this;
         }
 
@@ -2716,73 +2716,143 @@ public class AmazonOrderItemExample {
             return (Criteria) this;
         }
 
-        public Criteria andTaxCollectionIsNull() {
-            addCriterion("tax_collection is null");
+        public Criteria andTaxCollectionModelIsNull() {
+            addCriterion("tax_collection_model is null");
             return (Criteria) this;
         }
 
-        public Criteria andTaxCollectionIsNotNull() {
-            addCriterion("tax_collection is not null");
+        public Criteria andTaxCollectionModelIsNotNull() {
+            addCriterion("tax_collection_model is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTaxCollectionEqualTo(String value) {
-            addCriterion("tax_collection =", value, "taxCollection");
+        public Criteria andTaxCollectionModelEqualTo(String value) {
+            addCriterion("tax_collection_model =", value, "taxCollectionModel");
             return (Criteria) this;
         }
 
-        public Criteria andTaxCollectionNotEqualTo(String value) {
-            addCriterion("tax_collection <>", value, "taxCollection");
+        public Criteria andTaxCollectionModelNotEqualTo(String value) {
+            addCriterion("tax_collection_model <>", value, "taxCollectionModel");
             return (Criteria) this;
         }
 
-        public Criteria andTaxCollectionGreaterThan(String value) {
-            addCriterion("tax_collection >", value, "taxCollection");
+        public Criteria andTaxCollectionModelGreaterThan(String value) {
+            addCriterion("tax_collection_model >", value, "taxCollectionModel");
             return (Criteria) this;
         }
 
-        public Criteria andTaxCollectionGreaterThanOrEqualTo(String value) {
-            addCriterion("tax_collection >=", value, "taxCollection");
+        public Criteria andTaxCollectionModelGreaterThanOrEqualTo(String value) {
+            addCriterion("tax_collection_model >=", value, "taxCollectionModel");
             return (Criteria) this;
         }
 
-        public Criteria andTaxCollectionLessThan(String value) {
-            addCriterion("tax_collection <", value, "taxCollection");
+        public Criteria andTaxCollectionModelLessThan(String value) {
+            addCriterion("tax_collection_model <", value, "taxCollectionModel");
             return (Criteria) this;
         }
 
-        public Criteria andTaxCollectionLessThanOrEqualTo(String value) {
-            addCriterion("tax_collection <=", value, "taxCollection");
+        public Criteria andTaxCollectionModelLessThanOrEqualTo(String value) {
+            addCriterion("tax_collection_model <=", value, "taxCollectionModel");
             return (Criteria) this;
         }
 
-        public Criteria andTaxCollectionLike(String value) {
-            addCriterion("tax_collection like", value, "taxCollection");
+        public Criteria andTaxCollectionModelLike(String value) {
+            addCriterion("tax_collection_model like", value, "taxCollectionModel");
             return (Criteria) this;
         }
 
-        public Criteria andTaxCollectionNotLike(String value) {
-            addCriterion("tax_collection not like", value, "taxCollection");
+        public Criteria andTaxCollectionModelNotLike(String value) {
+            addCriterion("tax_collection_model not like", value, "taxCollectionModel");
             return (Criteria) this;
         }
 
-        public Criteria andTaxCollectionIn(List<String> values) {
-            addCriterion("tax_collection in", values, "taxCollection");
+        public Criteria andTaxCollectionModelIn(List<String> values) {
+            addCriterion("tax_collection_model in", values, "taxCollectionModel");
             return (Criteria) this;
         }
 
-        public Criteria andTaxCollectionNotIn(List<String> values) {
-            addCriterion("tax_collection not in", values, "taxCollection");
+        public Criteria andTaxCollectionModelNotIn(List<String> values) {
+            addCriterion("tax_collection_model not in", values, "taxCollectionModel");
             return (Criteria) this;
         }
 
-        public Criteria andTaxCollectionBetween(String value1, String value2) {
-            addCriterion("tax_collection between", value1, value2, "taxCollection");
+        public Criteria andTaxCollectionModelBetween(String value1, String value2) {
+            addCriterion("tax_collection_model between", value1, value2, "taxCollectionModel");
             return (Criteria) this;
         }
 
-        public Criteria andTaxCollectionNotBetween(String value1, String value2) {
-            addCriterion("tax_collection not between", value1, value2, "taxCollection");
+        public Criteria andTaxCollectionModelNotBetween(String value1, String value2) {
+            addCriterion("tax_collection_model not between", value1, value2, "taxCollectionModel");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxCollectionResponsiblePartyIsNull() {
+            addCriterion("tax_collection_responsible_party is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxCollectionResponsiblePartyIsNotNull() {
+            addCriterion("tax_collection_responsible_party is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxCollectionResponsiblePartyEqualTo(String value) {
+            addCriterion("tax_collection_responsible_party =", value, "taxCollectionResponsibleParty");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxCollectionResponsiblePartyNotEqualTo(String value) {
+            addCriterion("tax_collection_responsible_party <>", value, "taxCollectionResponsibleParty");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxCollectionResponsiblePartyGreaterThan(String value) {
+            addCriterion("tax_collection_responsible_party >", value, "taxCollectionResponsibleParty");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxCollectionResponsiblePartyGreaterThanOrEqualTo(String value) {
+            addCriterion("tax_collection_responsible_party >=", value, "taxCollectionResponsibleParty");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxCollectionResponsiblePartyLessThan(String value) {
+            addCriterion("tax_collection_responsible_party <", value, "taxCollectionResponsibleParty");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxCollectionResponsiblePartyLessThanOrEqualTo(String value) {
+            addCriterion("tax_collection_responsible_party <=", value, "taxCollectionResponsibleParty");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxCollectionResponsiblePartyLike(String value) {
+            addCriterion("tax_collection_responsible_party like", value, "taxCollectionResponsibleParty");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxCollectionResponsiblePartyNotLike(String value) {
+            addCriterion("tax_collection_responsible_party not like", value, "taxCollectionResponsibleParty");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxCollectionResponsiblePartyIn(List<String> values) {
+            addCriterion("tax_collection_responsible_party in", values, "taxCollectionResponsibleParty");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxCollectionResponsiblePartyNotIn(List<String> values) {
+            addCriterion("tax_collection_responsible_party not in", values, "taxCollectionResponsibleParty");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxCollectionResponsiblePartyBetween(String value1, String value2) {
+            addCriterion("tax_collection_responsible_party between", value1, value2, "taxCollectionResponsibleParty");
+            return (Criteria) this;
+        }
+
+        public Criteria andTaxCollectionResponsiblePartyNotBetween(String value1, String value2) {
+            addCriterion("tax_collection_responsible_party not between", value1, value2, "taxCollectionResponsibleParty");
             return (Criteria) this;
         }
 
@@ -2916,52 +2986,62 @@ public class AmazonOrderItemExample {
             return (Criteria) this;
         }
 
-        public Criteria andIossNumberEqualTo(Boolean value) {
+        public Criteria andIossNumberEqualTo(String value) {
             addCriterion("ioss_number =", value, "iossNumber");
             return (Criteria) this;
         }
 
-        public Criteria andIossNumberNotEqualTo(Boolean value) {
+        public Criteria andIossNumberNotEqualTo(String value) {
             addCriterion("ioss_number <>", value, "iossNumber");
             return (Criteria) this;
         }
 
-        public Criteria andIossNumberGreaterThan(Boolean value) {
+        public Criteria andIossNumberGreaterThan(String value) {
             addCriterion("ioss_number >", value, "iossNumber");
             return (Criteria) this;
         }
 
-        public Criteria andIossNumberGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andIossNumberGreaterThanOrEqualTo(String value) {
             addCriterion("ioss_number >=", value, "iossNumber");
             return (Criteria) this;
         }
 
-        public Criteria andIossNumberLessThan(Boolean value) {
+        public Criteria andIossNumberLessThan(String value) {
             addCriterion("ioss_number <", value, "iossNumber");
             return (Criteria) this;
         }
 
-        public Criteria andIossNumberLessThanOrEqualTo(Boolean value) {
+        public Criteria andIossNumberLessThanOrEqualTo(String value) {
             addCriterion("ioss_number <=", value, "iossNumber");
             return (Criteria) this;
         }
 
-        public Criteria andIossNumberIn(List<Boolean> values) {
+        public Criteria andIossNumberLike(String value) {
+            addCriterion("ioss_number like", value, "iossNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andIossNumberNotLike(String value) {
+            addCriterion("ioss_number not like", value, "iossNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andIossNumberIn(List<String> values) {
             addCriterion("ioss_number in", values, "iossNumber");
             return (Criteria) this;
         }
 
-        public Criteria andIossNumberNotIn(List<Boolean> values) {
+        public Criteria andIossNumberNotIn(List<String> values) {
             addCriterion("ioss_number not in", values, "iossNumber");
             return (Criteria) this;
         }
 
-        public Criteria andIossNumberBetween(Boolean value1, Boolean value2) {
+        public Criteria andIossNumberBetween(String value1, String value2) {
             addCriterion("ioss_number between", value1, value2, "iossNumber");
             return (Criteria) this;
         }
 
-        public Criteria andIossNumberNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andIossNumberNotBetween(String value1, String value2) {
             addCriterion("ioss_number not between", value1, value2, "iossNumber");
             return (Criteria) this;
         }

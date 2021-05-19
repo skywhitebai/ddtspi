@@ -30,11 +30,11 @@
     <result column="promotion_discount_currency_code" jdbcType="VARCHAR" property="promotionDiscountCurrencyCode" />
     <result column="promotion_discount_tax_amount" jdbcType="DECIMAL" property="promotionDiscountTaxAmount" />
     <result column="promotion_discount_tax_currency_code" jdbcType="VARCHAR" property="promotionDiscountTaxCurrencyCode" />
-    <result column="promotionId_list" jdbcType="VARCHAR" property="promotionidList" />
-    <result column="cod_fee_amount" jdbcType="DECIMAL" property="codFeeAmount" />
-    <result column="cod_fee_currency_code" jdbcType="VARCHAR" property="codFeeCurrencyCode" />
-    <result column="cod_fee_discount_amount" jdbcType="DECIMAL" property="codFeeDiscountAmount" />
-    <result column="cod_fee_discount_currency_code" jdbcType="VARCHAR" property="codFeeDiscountCurrencyCode" />
+    <result column="promotion_id_list" jdbcType="VARCHAR" property="promotionIdList" />
+    <result column="co_d_fee_amount" jdbcType="DECIMAL" property="coDFeeAmount" />
+    <result column="co_d_fee_currency_code" jdbcType="VARCHAR" property="coDFeeCurrencyCode" />
+    <result column="co_d_fee_discount_amount" jdbcType="DECIMAL" property="coDFeeDiscountAmount" />
+    <result column="co_d_fee_discount_currency_code" jdbcType="VARCHAR" property="coDFeeDiscountCurrencyCode" />
     <result column="is_gift" jdbcType="BIT" property="isGift" />
     <result column="condition_note" jdbcType="VARCHAR" property="conditionNote" />
     <result column="condition_id" jdbcType="VARCHAR" property="conditionId" />
@@ -42,10 +42,11 @@
     <result column="scheduled_delivery_start_date" jdbcType="TIMESTAMP" property="scheduledDeliveryStartDate" />
     <result column="scheduled_delivery_end_date" jdbcType="TIMESTAMP" property="scheduledDeliveryEndDate" />
     <result column="price_designation" jdbcType="VARCHAR" property="priceDesignation" />
-    <result column="tax_collection" jdbcType="VARCHAR" property="taxCollection" />
+    <result column="tax_collection_model" jdbcType="VARCHAR" property="taxCollectionModel" />
+    <result column="tax_collection_responsible_party" jdbcType="VARCHAR" property="taxCollectionResponsibleParty" />
     <result column="serial_number_required" jdbcType="BIT" property="serialNumberRequired" />
     <result column="is_transparency" jdbcType="BIT" property="isTransparency" />
-    <result column="ioss_number" jdbcType="BIT" property="iossNumber" />
+    <result column="ioss_number" jdbcType="VARCHAR" property="iossNumber" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="create_by" jdbcType="BIGINT" property="createBy" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -116,11 +117,12 @@
     item_tax_amount, item_tax_currency_code, shipping_tax_amount, shipping_tax_currency_code, 
     shipping_discount_amount, shipping_discount_currency_code, shipping_discount_tax_amount, 
     shipping_discount_tax_currency_code, promotion_discount_amount, promotion_discount_currency_code, 
-    promotion_discount_tax_amount, promotion_discount_tax_currency_code, promotionId_list, 
-    cod_fee_amount, cod_fee_currency_code, cod_fee_discount_amount, cod_fee_discount_currency_code, 
+    promotion_discount_tax_amount, promotion_discount_tax_currency_code, promotion_id_list, 
+    co_d_fee_amount, co_d_fee_currency_code, co_d_fee_discount_amount, co_d_fee_discount_currency_code, 
     is_gift, condition_note, condition_id, condition_subtype_id, scheduled_delivery_start_date, 
-    scheduled_delivery_end_date, price_designation, tax_collection, serial_number_required, 
-    is_transparency, ioss_number, create_time, create_by, update_time, update_by
+    scheduled_delivery_end_date, price_designation, tax_collection_model, tax_collection_responsible_party, 
+    serial_number_required, is_transparency, ioss_number, create_time, create_by, update_time, 
+    update_by
   </sql>
   <select id="selectByExample" parameterType="com.sky.ddtsp.entity.AmazonOrderItemExample" resultMap="BaseResultMap">
     select
@@ -167,14 +169,15 @@
       shipping_discount_currency_code, shipping_discount_tax_amount, 
       shipping_discount_tax_currency_code, promotion_discount_amount, 
       promotion_discount_currency_code, promotion_discount_tax_amount, 
-      promotion_discount_tax_currency_code, promotionId_list, 
-      cod_fee_amount, cod_fee_currency_code, cod_fee_discount_amount, 
-      cod_fee_discount_currency_code, is_gift, condition_note, 
+      promotion_discount_tax_currency_code, promotion_id_list, 
+      co_d_fee_amount, co_d_fee_currency_code, co_d_fee_discount_amount, 
+      co_d_fee_discount_currency_code, is_gift, condition_note, 
       condition_id, condition_subtype_id, scheduled_delivery_start_date, 
       scheduled_delivery_end_date, price_designation, 
-      tax_collection, serial_number_required, is_transparency, 
-      ioss_number, create_time, create_by, 
-      update_time, update_by)
+      tax_collection_model, tax_collection_responsible_party, 
+      serial_number_required, is_transparency, ioss_number, 
+      create_time, create_by, update_time, 
+      update_by)
     values (#{amazonOrderId,jdbcType=VARCHAR}, #{asin,jdbcType=VARCHAR}, #{sellerSku,jdbcType=VARCHAR}, 
       #{orderItemId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{quantityOrdered,jdbcType=INTEGER}, 
       #{quantityShipped,jdbcType=INTEGER}, #{numberOfItems,jdbcType=INTEGER}, #{pointsNumber,jdbcType=INTEGER}, 
@@ -186,14 +189,15 @@
       #{shippingDiscountCurrencyCode,jdbcType=VARCHAR}, #{shippingDiscountTaxAmount,jdbcType=DECIMAL}, 
       #{shippingDiscountTaxCurrencyCode,jdbcType=VARCHAR}, #{promotionDiscountAmount,jdbcType=DECIMAL}, 
       #{promotionDiscountCurrencyCode,jdbcType=VARCHAR}, #{promotionDiscountTaxAmount,jdbcType=DECIMAL}, 
-      #{promotionDiscountTaxCurrencyCode,jdbcType=VARCHAR}, #{promotionidList,jdbcType=VARCHAR}, 
-      #{codFeeAmount,jdbcType=DECIMAL}, #{codFeeCurrencyCode,jdbcType=VARCHAR}, #{codFeeDiscountAmount,jdbcType=DECIMAL}, 
-      #{codFeeDiscountCurrencyCode,jdbcType=VARCHAR}, #{isGift,jdbcType=BIT}, #{conditionNote,jdbcType=VARCHAR}, 
+      #{promotionDiscountTaxCurrencyCode,jdbcType=VARCHAR}, #{promotionIdList,jdbcType=VARCHAR}, 
+      #{coDFeeAmount,jdbcType=DECIMAL}, #{coDFeeCurrencyCode,jdbcType=VARCHAR}, #{coDFeeDiscountAmount,jdbcType=DECIMAL}, 
+      #{coDFeeDiscountCurrencyCode,jdbcType=VARCHAR}, #{isGift,jdbcType=BIT}, #{conditionNote,jdbcType=VARCHAR}, 
       #{conditionId,jdbcType=VARCHAR}, #{conditionSubtypeId,jdbcType=VARCHAR}, #{scheduledDeliveryStartDate,jdbcType=TIMESTAMP}, 
       #{scheduledDeliveryEndDate,jdbcType=TIMESTAMP}, #{priceDesignation,jdbcType=VARCHAR}, 
-      #{taxCollection,jdbcType=VARCHAR}, #{serialNumberRequired,jdbcType=BIT}, #{isTransparency,jdbcType=BIT}, 
-      #{iossNumber,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=BIGINT})
+      #{taxCollectionModel,jdbcType=VARCHAR}, #{taxCollectionResponsibleParty,jdbcType=VARCHAR}, 
+      #{serialNumberRequired,jdbcType=BIT}, #{isTransparency,jdbcType=BIT}, #{iossNumber,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.sky.ddtsp.entity.AmazonOrderItem">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -282,20 +286,20 @@
       <if test="promotionDiscountTaxCurrencyCode != null">
         promotion_discount_tax_currency_code,
       </if>
-      <if test="promotionidList != null">
-        promotionId_list,
+      <if test="promotionIdList != null">
+        promotion_id_list,
       </if>
-      <if test="codFeeAmount != null">
-        cod_fee_amount,
+      <if test="coDFeeAmount != null">
+        co_d_fee_amount,
       </if>
-      <if test="codFeeCurrencyCode != null">
-        cod_fee_currency_code,
+      <if test="coDFeeCurrencyCode != null">
+        co_d_fee_currency_code,
       </if>
-      <if test="codFeeDiscountAmount != null">
-        cod_fee_discount_amount,
+      <if test="coDFeeDiscountAmount != null">
+        co_d_fee_discount_amount,
       </if>
-      <if test="codFeeDiscountCurrencyCode != null">
-        cod_fee_discount_currency_code,
+      <if test="coDFeeDiscountCurrencyCode != null">
+        co_d_fee_discount_currency_code,
       </if>
       <if test="isGift != null">
         is_gift,
@@ -318,8 +322,11 @@
       <if test="priceDesignation != null">
         price_designation,
       </if>
-      <if test="taxCollection != null">
-        tax_collection,
+      <if test="taxCollectionModel != null">
+        tax_collection_model,
+      </if>
+      <if test="taxCollectionResponsibleParty != null">
+        tax_collection_responsible_party,
       </if>
       <if test="serialNumberRequired != null">
         serial_number_required,
@@ -425,20 +432,20 @@
       <if test="promotionDiscountTaxCurrencyCode != null">
         #{promotionDiscountTaxCurrencyCode,jdbcType=VARCHAR},
       </if>
-      <if test="promotionidList != null">
-        #{promotionidList,jdbcType=VARCHAR},
+      <if test="promotionIdList != null">
+        #{promotionIdList,jdbcType=VARCHAR},
       </if>
-      <if test="codFeeAmount != null">
-        #{codFeeAmount,jdbcType=DECIMAL},
+      <if test="coDFeeAmount != null">
+        #{coDFeeAmount,jdbcType=DECIMAL},
       </if>
-      <if test="codFeeCurrencyCode != null">
-        #{codFeeCurrencyCode,jdbcType=VARCHAR},
+      <if test="coDFeeCurrencyCode != null">
+        #{coDFeeCurrencyCode,jdbcType=VARCHAR},
       </if>
-      <if test="codFeeDiscountAmount != null">
-        #{codFeeDiscountAmount,jdbcType=DECIMAL},
+      <if test="coDFeeDiscountAmount != null">
+        #{coDFeeDiscountAmount,jdbcType=DECIMAL},
       </if>
-      <if test="codFeeDiscountCurrencyCode != null">
-        #{codFeeDiscountCurrencyCode,jdbcType=VARCHAR},
+      <if test="coDFeeDiscountCurrencyCode != null">
+        #{coDFeeDiscountCurrencyCode,jdbcType=VARCHAR},
       </if>
       <if test="isGift != null">
         #{isGift,jdbcType=BIT},
@@ -461,8 +468,11 @@
       <if test="priceDesignation != null">
         #{priceDesignation,jdbcType=VARCHAR},
       </if>
-      <if test="taxCollection != null">
-        #{taxCollection,jdbcType=VARCHAR},
+      <if test="taxCollectionModel != null">
+        #{taxCollectionModel,jdbcType=VARCHAR},
+      </if>
+      <if test="taxCollectionResponsibleParty != null">
+        #{taxCollectionResponsibleParty,jdbcType=VARCHAR},
       </if>
       <if test="serialNumberRequired != null">
         #{serialNumberRequired,jdbcType=BIT},
@@ -471,7 +481,7 @@
         #{isTransparency,jdbcType=BIT},
       </if>
       <if test="iossNumber != null">
-        #{iossNumber,jdbcType=BIT},
+        #{iossNumber,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -580,20 +590,20 @@
       <if test="record.promotionDiscountTaxCurrencyCode != null">
         promotion_discount_tax_currency_code = #{record.promotionDiscountTaxCurrencyCode,jdbcType=VARCHAR},
       </if>
-      <if test="record.promotionidList != null">
-        promotionId_list = #{record.promotionidList,jdbcType=VARCHAR},
+      <if test="record.promotionIdList != null">
+        promotion_id_list = #{record.promotionIdList,jdbcType=VARCHAR},
       </if>
-      <if test="record.codFeeAmount != null">
-        cod_fee_amount = #{record.codFeeAmount,jdbcType=DECIMAL},
+      <if test="record.coDFeeAmount != null">
+        co_d_fee_amount = #{record.coDFeeAmount,jdbcType=DECIMAL},
       </if>
-      <if test="record.codFeeCurrencyCode != null">
-        cod_fee_currency_code = #{record.codFeeCurrencyCode,jdbcType=VARCHAR},
+      <if test="record.coDFeeCurrencyCode != null">
+        co_d_fee_currency_code = #{record.coDFeeCurrencyCode,jdbcType=VARCHAR},
       </if>
-      <if test="record.codFeeDiscountAmount != null">
-        cod_fee_discount_amount = #{record.codFeeDiscountAmount,jdbcType=DECIMAL},
+      <if test="record.coDFeeDiscountAmount != null">
+        co_d_fee_discount_amount = #{record.coDFeeDiscountAmount,jdbcType=DECIMAL},
       </if>
-      <if test="record.codFeeDiscountCurrencyCode != null">
-        cod_fee_discount_currency_code = #{record.codFeeDiscountCurrencyCode,jdbcType=VARCHAR},
+      <if test="record.coDFeeDiscountCurrencyCode != null">
+        co_d_fee_discount_currency_code = #{record.coDFeeDiscountCurrencyCode,jdbcType=VARCHAR},
       </if>
       <if test="record.isGift != null">
         is_gift = #{record.isGift,jdbcType=BIT},
@@ -616,8 +626,11 @@
       <if test="record.priceDesignation != null">
         price_designation = #{record.priceDesignation,jdbcType=VARCHAR},
       </if>
-      <if test="record.taxCollection != null">
-        tax_collection = #{record.taxCollection,jdbcType=VARCHAR},
+      <if test="record.taxCollectionModel != null">
+        tax_collection_model = #{record.taxCollectionModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxCollectionResponsibleParty != null">
+        tax_collection_responsible_party = #{record.taxCollectionResponsibleParty,jdbcType=VARCHAR},
       </if>
       <if test="record.serialNumberRequired != null">
         serial_number_required = #{record.serialNumberRequired,jdbcType=BIT},
@@ -626,7 +639,7 @@
         is_transparency = #{record.isTransparency,jdbcType=BIT},
       </if>
       <if test="record.iossNumber != null">
-        ioss_number = #{record.iossNumber,jdbcType=BIT},
+        ioss_number = #{record.iossNumber,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -675,11 +688,11 @@
       promotion_discount_currency_code = #{record.promotionDiscountCurrencyCode,jdbcType=VARCHAR},
       promotion_discount_tax_amount = #{record.promotionDiscountTaxAmount,jdbcType=DECIMAL},
       promotion_discount_tax_currency_code = #{record.promotionDiscountTaxCurrencyCode,jdbcType=VARCHAR},
-      promotionId_list = #{record.promotionidList,jdbcType=VARCHAR},
-      cod_fee_amount = #{record.codFeeAmount,jdbcType=DECIMAL},
-      cod_fee_currency_code = #{record.codFeeCurrencyCode,jdbcType=VARCHAR},
-      cod_fee_discount_amount = #{record.codFeeDiscountAmount,jdbcType=DECIMAL},
-      cod_fee_discount_currency_code = #{record.codFeeDiscountCurrencyCode,jdbcType=VARCHAR},
+      promotion_id_list = #{record.promotionIdList,jdbcType=VARCHAR},
+      co_d_fee_amount = #{record.coDFeeAmount,jdbcType=DECIMAL},
+      co_d_fee_currency_code = #{record.coDFeeCurrencyCode,jdbcType=VARCHAR},
+      co_d_fee_discount_amount = #{record.coDFeeDiscountAmount,jdbcType=DECIMAL},
+      co_d_fee_discount_currency_code = #{record.coDFeeDiscountCurrencyCode,jdbcType=VARCHAR},
       is_gift = #{record.isGift,jdbcType=BIT},
       condition_note = #{record.conditionNote,jdbcType=VARCHAR},
       condition_id = #{record.conditionId,jdbcType=VARCHAR},
@@ -687,10 +700,11 @@
       scheduled_delivery_start_date = #{record.scheduledDeliveryStartDate,jdbcType=TIMESTAMP},
       scheduled_delivery_end_date = #{record.scheduledDeliveryEndDate,jdbcType=TIMESTAMP},
       price_designation = #{record.priceDesignation,jdbcType=VARCHAR},
-      tax_collection = #{record.taxCollection,jdbcType=VARCHAR},
+      tax_collection_model = #{record.taxCollectionModel,jdbcType=VARCHAR},
+      tax_collection_responsible_party = #{record.taxCollectionResponsibleParty,jdbcType=VARCHAR},
       serial_number_required = #{record.serialNumberRequired,jdbcType=BIT},
       is_transparency = #{record.isTransparency,jdbcType=BIT},
-      ioss_number = #{record.iossNumber,jdbcType=BIT},
+      ioss_number = #{record.iossNumber,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       create_by = #{record.createBy,jdbcType=BIGINT},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
@@ -783,20 +797,20 @@
       <if test="promotionDiscountTaxCurrencyCode != null">
         promotion_discount_tax_currency_code = #{promotionDiscountTaxCurrencyCode,jdbcType=VARCHAR},
       </if>
-      <if test="promotionidList != null">
-        promotionId_list = #{promotionidList,jdbcType=VARCHAR},
+      <if test="promotionIdList != null">
+        promotion_id_list = #{promotionIdList,jdbcType=VARCHAR},
       </if>
-      <if test="codFeeAmount != null">
-        cod_fee_amount = #{codFeeAmount,jdbcType=DECIMAL},
+      <if test="coDFeeAmount != null">
+        co_d_fee_amount = #{coDFeeAmount,jdbcType=DECIMAL},
       </if>
-      <if test="codFeeCurrencyCode != null">
-        cod_fee_currency_code = #{codFeeCurrencyCode,jdbcType=VARCHAR},
+      <if test="coDFeeCurrencyCode != null">
+        co_d_fee_currency_code = #{coDFeeCurrencyCode,jdbcType=VARCHAR},
       </if>
-      <if test="codFeeDiscountAmount != null">
-        cod_fee_discount_amount = #{codFeeDiscountAmount,jdbcType=DECIMAL},
+      <if test="coDFeeDiscountAmount != null">
+        co_d_fee_discount_amount = #{coDFeeDiscountAmount,jdbcType=DECIMAL},
       </if>
-      <if test="codFeeDiscountCurrencyCode != null">
-        cod_fee_discount_currency_code = #{codFeeDiscountCurrencyCode,jdbcType=VARCHAR},
+      <if test="coDFeeDiscountCurrencyCode != null">
+        co_d_fee_discount_currency_code = #{coDFeeDiscountCurrencyCode,jdbcType=VARCHAR},
       </if>
       <if test="isGift != null">
         is_gift = #{isGift,jdbcType=BIT},
@@ -819,8 +833,11 @@
       <if test="priceDesignation != null">
         price_designation = #{priceDesignation,jdbcType=VARCHAR},
       </if>
-      <if test="taxCollection != null">
-        tax_collection = #{taxCollection,jdbcType=VARCHAR},
+      <if test="taxCollectionModel != null">
+        tax_collection_model = #{taxCollectionModel,jdbcType=VARCHAR},
+      </if>
+      <if test="taxCollectionResponsibleParty != null">
+        tax_collection_responsible_party = #{taxCollectionResponsibleParty,jdbcType=VARCHAR},
       </if>
       <if test="serialNumberRequired != null">
         serial_number_required = #{serialNumberRequired,jdbcType=BIT},
@@ -829,7 +846,7 @@
         is_transparency = #{isTransparency,jdbcType=BIT},
       </if>
       <if test="iossNumber != null">
-        ioss_number = #{iossNumber,jdbcType=BIT},
+        ioss_number = #{iossNumber,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -875,11 +892,11 @@
       promotion_discount_currency_code = #{promotionDiscountCurrencyCode,jdbcType=VARCHAR},
       promotion_discount_tax_amount = #{promotionDiscountTaxAmount,jdbcType=DECIMAL},
       promotion_discount_tax_currency_code = #{promotionDiscountTaxCurrencyCode,jdbcType=VARCHAR},
-      promotionId_list = #{promotionidList,jdbcType=VARCHAR},
-      cod_fee_amount = #{codFeeAmount,jdbcType=DECIMAL},
-      cod_fee_currency_code = #{codFeeCurrencyCode,jdbcType=VARCHAR},
-      cod_fee_discount_amount = #{codFeeDiscountAmount,jdbcType=DECIMAL},
-      cod_fee_discount_currency_code = #{codFeeDiscountCurrencyCode,jdbcType=VARCHAR},
+      promotion_id_list = #{promotionIdList,jdbcType=VARCHAR},
+      co_d_fee_amount = #{coDFeeAmount,jdbcType=DECIMAL},
+      co_d_fee_currency_code = #{coDFeeCurrencyCode,jdbcType=VARCHAR},
+      co_d_fee_discount_amount = #{coDFeeDiscountAmount,jdbcType=DECIMAL},
+      co_d_fee_discount_currency_code = #{coDFeeDiscountCurrencyCode,jdbcType=VARCHAR},
       is_gift = #{isGift,jdbcType=BIT},
       condition_note = #{conditionNote,jdbcType=VARCHAR},
       condition_id = #{conditionId,jdbcType=VARCHAR},
@@ -887,10 +904,11 @@
       scheduled_delivery_start_date = #{scheduledDeliveryStartDate,jdbcType=TIMESTAMP},
       scheduled_delivery_end_date = #{scheduledDeliveryEndDate,jdbcType=TIMESTAMP},
       price_designation = #{priceDesignation,jdbcType=VARCHAR},
-      tax_collection = #{taxCollection,jdbcType=VARCHAR},
+      tax_collection_model = #{taxCollectionModel,jdbcType=VARCHAR},
+      tax_collection_responsible_party = #{taxCollectionResponsibleParty,jdbcType=VARCHAR},
       serial_number_required = #{serialNumberRequired,jdbcType=BIT},
       is_transparency = #{isTransparency,jdbcType=BIT},
-      ioss_number = #{iossNumber,jdbcType=BIT},
+      ioss_number = #{iossNumber,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_by = #{createBy,jdbcType=BIGINT},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
