@@ -89,7 +89,7 @@ public class OrdersJob {
         String lastUpdatedAfter = null;
         String nextToken = null;
         if (StringUtils.isEmpty(amazonSyncInfo.getNextToken())) {
-            lastUpdatedAfter = DateUtil.dateTimeToUtczStr(amazonAuth.getLastUpdatedAfter());
+            lastUpdatedAfter = DateUtil.dateTimeToUtczStr(amazonSyncInfo.getLastUpdateAfter());
         } else {
             nextToken = amazonSyncInfo.getNextToken();
         }
