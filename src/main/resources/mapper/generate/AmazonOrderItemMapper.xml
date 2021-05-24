@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sky.ddtsp.dao.generate.AmazonOrderItemMapper">
-  <resultMap id="BaseResultMap" type="com.sky.ddtsp.entity.AmazonOrderItem">
+<mapper namespace="com.sky.ddtspi.dao.generate.AmazonOrderItemMapper">
+  <resultMap id="BaseResultMap" type="com.sky.ddtspi.entity.AmazonOrderItem">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="amazon_order_id" jdbcType="VARCHAR" property="amazonOrderId" />
     <result column="asin" jdbcType="VARCHAR" property="asin" />
@@ -124,7 +124,7 @@
     serial_number_required, is_transparency, ioss_number, create_time, create_by, update_time, 
     update_by
   </sql>
-  <select id="selectByExample" parameterType="com.sky.ddtsp.entity.AmazonOrderItemExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.sky.ddtspi.entity.AmazonOrderItemExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -148,13 +148,13 @@
     delete from amazon_order_item
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.sky.ddtsp.entity.AmazonOrderItemExample">
+  <delete id="deleteByExample" parameterType="com.sky.ddtspi.entity.AmazonOrderItemExample">
     delete from amazon_order_item
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.sky.ddtsp.entity.AmazonOrderItem">
+  <insert id="insert" parameterType="com.sky.ddtspi.entity.AmazonOrderItem">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -199,7 +199,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{updateBy,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.sky.ddtsp.entity.AmazonOrderItem">
+  <insert id="insertSelective" parameterType="com.sky.ddtspi.entity.AmazonOrderItem">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -497,7 +497,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.sky.ddtsp.entity.AmazonOrderItemExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.sky.ddtspi.entity.AmazonOrderItemExample" resultType="java.lang.Long">
     select count(*) from amazon_order_item
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -713,7 +713,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sky.ddtsp.entity.AmazonOrderItem">
+  <update id="updateByPrimaryKeySelective" parameterType="com.sky.ddtspi.entity.AmazonOrderItem">
     update amazon_order_item
     <set>
       <if test="amazonOrderId != null">
@@ -863,7 +863,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.sky.ddtsp.entity.AmazonOrderItem">
+  <update id="updateByPrimaryKey" parameterType="com.sky.ddtspi.entity.AmazonOrderItem">
     update amazon_order_item
     set amazon_order_id = #{amazonOrderId,jdbcType=VARCHAR},
       asin = #{asin,jdbcType=VARCHAR},

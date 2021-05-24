@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sky.ddtsp.dao.generate.SysRightMapper">
-  <resultMap id="BaseResultMap" type="com.sky.ddtsp.entity.SysRight">
+<mapper namespace="com.sky.ddtspi.dao.generate.SysRightMapper">
+  <resultMap id="BaseResultMap" type="com.sky.ddtspi.entity.SysRight">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="right_name" jdbcType="VARCHAR" property="rightName" />
     <result column="right_str" jdbcType="VARCHAR" property="rightStr" />
@@ -73,7 +73,7 @@
   <sql id="Base_Column_List">
     id, right_name, right_str, menu_id, remark, create_by, create_time, update_by, update_time
   </sql>
-  <select id="selectByExample" parameterType="com.sky.ddtsp.entity.SysRightExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.sky.ddtspi.entity.SysRightExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -97,13 +97,13 @@
     delete from sys_right
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.sky.ddtsp.entity.SysRightExample">
+  <delete id="deleteByExample" parameterType="com.sky.ddtspi.entity.SysRightExample">
     delete from sys_right
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.sky.ddtsp.entity.SysRight">
+  <insert id="insert" parameterType="com.sky.ddtspi.entity.SysRight">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -114,7 +114,7 @@
       #{remark,jdbcType=VARCHAR}, #{createBy,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateBy,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.sky.ddtsp.entity.SysRight">
+  <insert id="insertSelective" parameterType="com.sky.ddtspi.entity.SysRight">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -172,7 +172,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.sky.ddtsp.entity.SysRightExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.sky.ddtspi.entity.SysRightExample" resultType="java.lang.Long">
     select count(*) from sys_right
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -228,7 +228,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.sky.ddtsp.entity.SysRight">
+  <update id="updateByPrimaryKeySelective" parameterType="com.sky.ddtspi.entity.SysRight">
     update sys_right
     <set>
       <if test="rightName != null">
@@ -258,7 +258,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.sky.ddtsp.entity.SysRight">
+  <update id="updateByPrimaryKey" parameterType="com.sky.ddtspi.entity.SysRight">
     update sys_right
     set right_name = #{rightName,jdbcType=VARCHAR},
       right_str = #{rightStr,jdbcType=VARCHAR},

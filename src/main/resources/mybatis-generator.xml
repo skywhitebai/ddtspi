@@ -20,7 +20,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!-- 生成模型的包名和位置 -->
-        <javaModelGenerator targetPackage="com.sky.ddtsp.entity"
+        <javaModelGenerator targetPackage="com.sky.ddtspi.entity"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
@@ -32,14 +32,14 @@
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.sky.ddtsp.dao.generate" targetProject="src/main/java">
+                             targetPackage="com.sky.ddtspi.dao.generate" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名 -->
         <!--<table tableName="sys_menu" domainObjectName="Menu">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>-->
-        <table tableName="amazon_order_item">
+        <table tableName="amazon_fba_inventory">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>
