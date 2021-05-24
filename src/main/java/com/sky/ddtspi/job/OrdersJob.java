@@ -122,6 +122,7 @@ public class OrdersJob {
         if (StringUtils.isEmpty(ordersList.getNextToken())) {
             //没有nextToken表示同步完成
             amazonSyncInfo.setLastUpdateAfter(DateUtil.utczStrToDateTime(ordersList.getLastUpdatedBefore()));
+            amazonSyncInfo.setNextToken(null);
             amazonSyncInfo.setUpdateTime(new Date());
             customAmazonSyncInfoMapper.updateByPrimaryKey(amazonSyncInfo);
         } else {
