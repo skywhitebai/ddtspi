@@ -114,7 +114,7 @@ public class FbaInventoryJob {
     private GetInventorySummariesResponse getInventory(AmazonAuth amazonAuth, FbaInventoryApi fbaInventoryApi, AmazonSyncInfo amazonSyncInfo) throws ApiException {
         GetInventorySummariesResponse response = null;
         String granularityType = Granularity.GranularityTypeEnum.MARKETPLACE.getValue();
-        String granularityId = "marketplaceId";
+        String granularityId ="marketplaceId";
         List<String> marketplaceIds = new ArrayList<>();
         marketplaceIds.add(amazonAuth.getMarketplaceId());
         Boolean details = null;
