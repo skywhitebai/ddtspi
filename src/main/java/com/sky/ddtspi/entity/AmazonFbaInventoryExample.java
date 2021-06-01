@@ -445,73 +445,73 @@ public class AmazonFbaInventoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andConditionIsNull() {
-            addCriterion("condition is null");
+        public Criteria andConditionStrIsNull() {
+            addCriterion("condition_str is null");
             return (Criteria) this;
         }
 
-        public Criteria andConditionIsNotNull() {
-            addCriterion("condition is not null");
+        public Criteria andConditionStrIsNotNull() {
+            addCriterion("condition_str is not null");
             return (Criteria) this;
         }
 
-        public Criteria andConditionEqualTo(String value) {
-            addCriterion("condition =", value, "condition");
+        public Criteria andConditionStrEqualTo(String value) {
+            addCriterion("condition_str =", value, "conditionStr");
             return (Criteria) this;
         }
 
-        public Criteria andConditionNotEqualTo(String value) {
-            addCriterion("condition <>", value, "condition");
+        public Criteria andConditionStrNotEqualTo(String value) {
+            addCriterion("condition_str <>", value, "conditionStr");
             return (Criteria) this;
         }
 
-        public Criteria andConditionGreaterThan(String value) {
-            addCriterion("condition >", value, "condition");
+        public Criteria andConditionStrGreaterThan(String value) {
+            addCriterion("condition_str >", value, "conditionStr");
             return (Criteria) this;
         }
 
-        public Criteria andConditionGreaterThanOrEqualTo(String value) {
-            addCriterion("condition >=", value, "condition");
+        public Criteria andConditionStrGreaterThanOrEqualTo(String value) {
+            addCriterion("condition_str >=", value, "conditionStr");
             return (Criteria) this;
         }
 
-        public Criteria andConditionLessThan(String value) {
-            addCriterion("condition <", value, "condition");
+        public Criteria andConditionStrLessThan(String value) {
+            addCriterion("condition_str <", value, "conditionStr");
             return (Criteria) this;
         }
 
-        public Criteria andConditionLessThanOrEqualTo(String value) {
-            addCriterion("condition <=", value, "condition");
+        public Criteria andConditionStrLessThanOrEqualTo(String value) {
+            addCriterion("condition_str <=", value, "conditionStr");
             return (Criteria) this;
         }
 
-        public Criteria andConditionLike(String value) {
-            addCriterion("condition like", value, "condition");
+        public Criteria andConditionStrLike(String value) {
+            addCriterion("condition_str like", value, "conditionStr");
             return (Criteria) this;
         }
 
-        public Criteria andConditionNotLike(String value) {
-            addCriterion("condition not like", value, "condition");
+        public Criteria andConditionStrNotLike(String value) {
+            addCriterion("condition_str not like", value, "conditionStr");
             return (Criteria) this;
         }
 
-        public Criteria andConditionIn(List<String> values) {
-            addCriterion("condition in", values, "condition");
+        public Criteria andConditionStrIn(List<String> values) {
+            addCriterion("condition_str in", values, "conditionStr");
             return (Criteria) this;
         }
 
-        public Criteria andConditionNotIn(List<String> values) {
-            addCriterion("condition not in", values, "condition");
+        public Criteria andConditionStrNotIn(List<String> values) {
+            addCriterion("condition_str not in", values, "conditionStr");
             return (Criteria) this;
         }
 
-        public Criteria andConditionBetween(String value1, String value2) {
-            addCriterion("condition between", value1, value2, "condition");
+        public Criteria andConditionStrBetween(String value1, String value2) {
+            addCriterion("condition_str between", value1, value2, "conditionStr");
             return (Criteria) this;
         }
 
-        public Criteria andConditionNotBetween(String value1, String value2) {
-            addCriterion("condition not between", value1, value2, "condition");
+        public Criteria andConditionStrNotBetween(String value1, String value2) {
+            addCriterion("condition_str not between", value1, value2, "conditionStr");
             return (Criteria) this;
         }
 

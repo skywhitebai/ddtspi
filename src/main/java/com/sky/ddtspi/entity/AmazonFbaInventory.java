@@ -13,7 +13,7 @@ public class AmazonFbaInventory {
 
     private String sellerSku;
 
-    private String condition;
+    private String conditionStr;
 
     private Integer fulfillableQuantity;
 
@@ -77,12 +77,12 @@ public class AmazonFbaInventory {
         this.sellerSku = sellerSku == null ? null : sellerSku.trim();
     }
 
-    public String getCondition() {
-        return condition;
+    public String getConditionStr() {
+        return conditionStr;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition == null ? null : condition.trim();
+    public void setConditionStr(String conditionStr) {
+        this.conditionStr = conditionStr == null ? null : conditionStr.trim();
     }
 
     public Integer getFulfillableQuantity() {

@@ -5,10 +5,14 @@ import org.springframework.util.StringUtils;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtil {
+
 
     public static String getFormatSSS(Date date) {
         if (date == null) {
@@ -107,6 +111,13 @@ public class DateUtil {
         return ca.getTime();
     }
 
+
+    public static Date plusYear(int num,Date date) {
+        Calendar ca = Calendar.getInstance();
+        ca.setTime(date);
+        ca.add(Calendar.YEAR, num);// num为增加的小时，可以改变的
+        return ca.getTime();
+    }
     /**
      * 指定日期加上天数后的日期
      *
@@ -255,8 +266,8 @@ public class DateUtil {
     }
 
     public static void main(String[] args) {
-        //String dateTime="Oct 1, 2019 12:11:01 AM PDT";
-        System.out.println(utczStrToDateTime("2021-05-03T16:50:04Z"));
+        LocalDateTime localDateTime=LocalDateTime.now(ZoneOffset.UTC);
+        System.out.println(asDate(localDateTime));
     }
 
     public static String getFormatStrMonthDayTime(Date date) {
@@ -326,5 +337,13 @@ public class DateUtil {
         String dateStr = formatter.format(dateTime);
         Date date = strToDate(dateStr);
         return date;
+    }
+    public static Date asDate(LocalDateTime localDateTime) {
+        return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    public static Date getDateNowUtc() {
+        LocalDateTime localDateTime=LocalDateTime.now(ZoneOffset.UTC);
+        return asDate(localDateTime);
     }
 }

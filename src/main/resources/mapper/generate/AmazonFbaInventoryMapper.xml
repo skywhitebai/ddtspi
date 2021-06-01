@@ -7,7 +7,7 @@
     <result column="asin" jdbcType="VARCHAR" property="asin" />
     <result column="fn_sku" jdbcType="VARCHAR" property="fnSku" />
     <result column="seller_sku" jdbcType="VARCHAR" property="sellerSku" />
-    <result column="condition" jdbcType="VARCHAR" property="condition" />
+    <result column="condition_str" jdbcType="VARCHAR" property="conditionStr" />
     <result column="fulfillable_quantity" jdbcType="INTEGER" property="fulfillableQuantity" />
     <result column="inbound_working_quantity" jdbcType="INTEGER" property="inboundWorkingQuantity" />
     <result column="inbound_receiving_quantity" jdbcType="INTEGER" property="inboundReceivingQuantity" />
@@ -79,7 +79,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, merchant_id, asin, fn_sku, seller_sku, condition, fulfillable_quantity, inbound_working_quantity, 
+    id, merchant_id, asin, fn_sku, seller_sku, condition_str, fulfillable_quantity, inbound_working_quantity, 
     inbound_receiving_quantity, reserved_quantity, researching_quantity, unfulfillable_quantity, 
     last_updated_time, product_name, total_quantity, create_time, update_time
   </sql>
@@ -118,14 +118,14 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into amazon_fba_inventory (merchant_id, asin, fn_sku, 
-      seller_sku, condition, fulfillable_quantity, 
+      seller_sku, condition_str, fulfillable_quantity, 
       inbound_working_quantity, inbound_receiving_quantity, 
       reserved_quantity, researching_quantity, 
       unfulfillable_quantity, last_updated_time, 
       product_name, total_quantity, create_time, 
       update_time)
     values (#{merchantId,jdbcType=VARCHAR}, #{asin,jdbcType=VARCHAR}, #{fnSku,jdbcType=VARCHAR}, 
-      #{sellerSku,jdbcType=VARCHAR}, #{condition,jdbcType=VARCHAR}, #{fulfillableQuantity,jdbcType=INTEGER}, 
+      #{sellerSku,jdbcType=VARCHAR}, #{conditionStr,jdbcType=VARCHAR}, #{fulfillableQuantity,jdbcType=INTEGER}, 
       #{inboundWorkingQuantity,jdbcType=INTEGER}, #{inboundReceivingQuantity,jdbcType=INTEGER}, 
       #{reservedQuantity,jdbcType=INTEGER}, #{researchingQuantity,jdbcType=INTEGER}, 
       #{unfulfillableQuantity,jdbcType=INTEGER}, #{lastUpdatedTime,jdbcType=TIMESTAMP}, 
@@ -150,8 +150,8 @@
       <if test="sellerSku != null">
         seller_sku,
       </if>
-      <if test="condition != null">
-        condition,
+      <if test="conditionStr != null">
+        condition_str,
       </if>
       <if test="fulfillableQuantity != null">
         fulfillable_quantity,
@@ -200,8 +200,8 @@
       <if test="sellerSku != null">
         #{sellerSku,jdbcType=VARCHAR},
       </if>
-      <if test="condition != null">
-        #{condition,jdbcType=VARCHAR},
+      <if test="conditionStr != null">
+        #{conditionStr,jdbcType=VARCHAR},
       </if>
       <if test="fulfillableQuantity != null">
         #{fulfillableQuantity,jdbcType=INTEGER},
@@ -262,8 +262,8 @@
       <if test="record.sellerSku != null">
         seller_sku = #{record.sellerSku,jdbcType=VARCHAR},
       </if>
-      <if test="record.condition != null">
-        condition = #{record.condition,jdbcType=VARCHAR},
+      <if test="record.conditionStr != null">
+        condition_str = #{record.conditionStr,jdbcType=VARCHAR},
       </if>
       <if test="record.fulfillableQuantity != null">
         fulfillable_quantity = #{record.fulfillableQuantity,jdbcType=INTEGER},
@@ -310,7 +310,7 @@
       asin = #{record.asin,jdbcType=VARCHAR},
       fn_sku = #{record.fnSku,jdbcType=VARCHAR},
       seller_sku = #{record.sellerSku,jdbcType=VARCHAR},
-      condition = #{record.condition,jdbcType=VARCHAR},
+      condition_str = #{record.conditionStr,jdbcType=VARCHAR},
       fulfillable_quantity = #{record.fulfillableQuantity,jdbcType=INTEGER},
       inbound_working_quantity = #{record.inboundWorkingQuantity,jdbcType=INTEGER},
       inbound_receiving_quantity = #{record.inboundReceivingQuantity,jdbcType=INTEGER},
@@ -341,8 +341,8 @@
       <if test="sellerSku != null">
         seller_sku = #{sellerSku,jdbcType=VARCHAR},
       </if>
-      <if test="condition != null">
-        condition = #{condition,jdbcType=VARCHAR},
+      <if test="conditionStr != null">
+        condition_str = #{conditionStr,jdbcType=VARCHAR},
       </if>
       <if test="fulfillableQuantity != null">
         fulfillable_quantity = #{fulfillableQuantity,jdbcType=INTEGER},
@@ -386,7 +386,7 @@
       asin = #{asin,jdbcType=VARCHAR},
       fn_sku = #{fnSku,jdbcType=VARCHAR},
       seller_sku = #{sellerSku,jdbcType=VARCHAR},
-      condition = #{condition,jdbcType=VARCHAR},
+      condition_str = #{conditionStr,jdbcType=VARCHAR},
       fulfillable_quantity = #{fulfillableQuantity,jdbcType=INTEGER},
       inbound_working_quantity = #{inboundWorkingQuantity,jdbcType=INTEGER},
       inbound_receiving_quantity = #{inboundReceivingQuantity,jdbcType=INTEGER},

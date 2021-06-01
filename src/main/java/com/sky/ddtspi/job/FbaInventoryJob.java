@@ -31,6 +31,8 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.threeten.bp.OffsetDateTime;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -73,8 +75,12 @@ public class FbaInventoryJob {
     private void syncFbaInventoryInfo(AmazonAuth amazonAuth) throws ApiException {
         FbaInventoryApi fbaInventoryApi = getFbaInventoryApi(amazonAuth);
         AmazonSyncInfo amazonSyncInfo = amazonSyncInfoService.getAmazonSyncInfo(AmazonSyncInfoTypeEnum.FBA_INVENTORY, amazonAuth.getMerchantId());
+        Date lastYearNow=DateUtil.plusYear(-1,new Date());
+        if(amazonSyncInfo.getLastUpdateAfter()==null||amazonSyncInfo.getLastUpdateAfter().before(lastYearNow)){
+            amazonSyncInfo.setLastUpdateAfter(lastYearNow);
+        }
         GetInventorySummariesResponse response = getInventory(amazonAuth, fbaInventoryApi, amazonSyncInfo);
-        if (response == null||response.getPayload()==null) {
+        if (response == null || response.getPayload() == null) {
             return;
         }
         dealFbaInventoryInfo(fbaInventoryApi, amazonAuth, response, amazonSyncInfo);
@@ -114,10 +120,10 @@ public class FbaInventoryJob {
     private GetInventorySummariesResponse getInventory(AmazonAuth amazonAuth, FbaInventoryApi fbaInventoryApi, AmazonSyncInfo amazonSyncInfo) throws ApiException {
         GetInventorySummariesResponse response = null;
         String granularityType = Granularity.GranularityTypeEnum.MARKETPLACE.getValue();
-        String granularityId ="marketplaceId";
+        String granularityId = amazonAuth.getMarketplaceId();
         List<String> marketplaceIds = new ArrayList<>();
         marketplaceIds.add(amazonAuth.getMarketplaceId());
-        Boolean details = null;
+        Boolean details = false;
         OffsetDateTime startDateTime = null;
         List<String> sellerSkus = null;
         String nextToken = null;
@@ -131,10 +137,10 @@ public class FbaInventoryJob {
     }
 
     private void dealFbaInventoryInfo(FbaInventoryApi fbaInventoryApi, AmazonAuth amazonAuth, GetInventorySummariesResponse getInventorySummariesResponse, AmazonSyncInfo amazonSyncInfo) throws ApiException {
-        if (getInventorySummariesResponse==null||CollectionUtils.isEmpty(getInventorySummariesResponse.getPayload().getInventorySummaries())) {
+        if (getInventorySummariesResponse == null) {
             return;
         }
-        log.info("dealTime:{},dealFbaInventoryInfo fbaInventoryISize:{},nextToken:{}", DateUtil.getFormatSSS(new Date()), getInventorySummariesResponse.getPayload().getInventorySummaries().size(), getInventorySummariesResponse.getPagination().getNextToken());
+        log.info("dealTime:{},dealFbaInventoryInfo fbaInventoryISize:{}", DateUtil.getFormatSSS(new Date()), getInventorySummariesResponse.getPayload().getInventorySummaries().size());
         getInventorySummariesResponse.getPayload().getInventorySummaries().forEach(item -> {
             AmazonFbaInventory amazonFbaInventory = getAmazonFbaInventoryBySellerSku(item.getSellerSku());
             if (amazonFbaInventory == null) {
@@ -150,11 +156,11 @@ public class FbaInventoryJob {
                 customAmazonFbaInventoryMapper.updateByPrimaryKeySelective(amazonFbaInventory);
             }
         });
-        if (StringUtils.isEmpty(getInventorySummariesResponse.getPagination().getNextToken())) {
+        if (getInventorySummariesResponse.getPagination() == null || StringUtils.isEmpty(getInventorySummariesResponse.getPagination().getNextToken())||CollectionUtils.isEmpty(getInventorySummariesResponse.getPayload().getInventorySummaries())) {
             //没有nextToken表示同步完成
-            //需要修改
-            amazonSyncInfo.setLastUpdateAfter(new Date());
             amazonSyncInfo.setUpdateTime(new Date());
+            amazonSyncInfo.setNextToken(null);
+            amazonSyncInfo.setLastUpdateAfter(DateUtil.getDateNowUtc());
             customAmazonSyncInfoMapper.updateByPrimaryKey(amazonSyncInfo);
         } else {
             amazonSyncInfo.setNextToken(getInventorySummariesResponse.getPagination().getNextToken());
@@ -172,6 +178,7 @@ public class FbaInventoryJob {
 
     private void setFbaInventoryInfo(AmazonFbaInventory amazonFbaInventory, InventorySummary inventorySummary) {
         BeanUtils.copyProperties(inventorySummary, amazonFbaInventory);
+        amazonFbaInventory.setConditionStr(inventorySummary.getCondition());
     }
 
     private AmazonFbaInventory getAmazonFbaInventoryBySellerSku(String sellerSku) {
