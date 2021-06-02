@@ -39,7 +39,7 @@
         <!--<table tableName="sys_menu" domainObjectName="Menu">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>-->
-        <table tableName="amazon_fba_inventory">
+        <table tableName="amazon_auth">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>

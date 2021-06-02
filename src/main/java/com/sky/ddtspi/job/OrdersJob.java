@@ -17,6 +17,7 @@ import com.sky.ddtspi.util.DateUtil;
 import com.sky.ddtspi.util.MathUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -41,7 +42,7 @@ public class OrdersJob {
     @Autowired
     IAmazonAuthService amazonAuthService;
 
-    //@Scheduled(cron = "0 0/2 * * * ? ")
+    @Scheduled(cron = "0 0/5 * * * ?")
     public void scheduled() {
         //获取获取订单信息
         log.info("{}，获取订单信息", DateUtil.getFormatDateStr(new Date()));

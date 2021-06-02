@@ -85,13 +85,14 @@ public class AmazonAuthService implements IAmazonAuthService {
             AmazonAuth amazonAuthUpdate=new AmazonAuth();
             amazonAuthUpdate.setId(amazonAuthExist.getId());
             amazonAuthUpdate.setRefreshToken(refreshToken);
-            amazonAuthUpdate.setMarketplaceId("ATVPDKIKX0DER");
             customAmazonAuthMapper.updateByPrimaryKeySelective(amazonAuthUpdate);
         }else {
             AmazonAuth amazonAuth=new AmazonAuth();
             amazonAuth.setMerchantId(params.getSellingPartnerId());
+            amazonAuth.setMarketplaceId("ATVPDKIKX0DER");
             amazonAuth.setRefreshToken(refreshToken);
             amazonAuth.setCreateTime(new Date());
+            amazonAuth.setStatus(YesOrNoEnum.YES.getValue());
             customAmazonAuthMapper.insertSelective(amazonAuth);
         }
         return BaseResponse.success();

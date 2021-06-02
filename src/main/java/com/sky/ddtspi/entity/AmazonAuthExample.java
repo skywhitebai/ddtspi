@@ -645,66 +645,6 @@ public class AmazonAuthExample {
             return (Criteria) this;
         }
 
-        public Criteria andLastUpdatedAfterIsNull() {
-            addCriterion("last_updated_after is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedAfterIsNotNull() {
-            addCriterion("last_updated_after is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedAfterEqualTo(Date value) {
-            addCriterion("last_updated_after =", value, "lastUpdatedAfter");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedAfterNotEqualTo(Date value) {
-            addCriterion("last_updated_after <>", value, "lastUpdatedAfter");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedAfterGreaterThan(Date value) {
-            addCriterion("last_updated_after >", value, "lastUpdatedAfter");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedAfterGreaterThanOrEqualTo(Date value) {
-            addCriterion("last_updated_after >=", value, "lastUpdatedAfter");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedAfterLessThan(Date value) {
-            addCriterion("last_updated_after <", value, "lastUpdatedAfter");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedAfterLessThanOrEqualTo(Date value) {
-            addCriterion("last_updated_after <=", value, "lastUpdatedAfter");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedAfterIn(List<Date> values) {
-            addCriterion("last_updated_after in", values, "lastUpdatedAfter");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedAfterNotIn(List<Date> values) {
-            addCriterion("last_updated_after not in", values, "lastUpdatedAfter");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedAfterBetween(Date value1, Date value2) {
-            addCriterion("last_updated_after between", value1, value2, "lastUpdatedAfter");
-            return (Criteria) this;
-        }
-
-        public Criteria andLastUpdatedAfterNotBetween(Date value1, Date value2) {
-            addCriterion("last_updated_after not between", value1, value2, "lastUpdatedAfter");
-            return (Criteria) this;
-        }
-
         public Criteria andRemarkIsNull() {
             addCriterion("remark is null");
             return (Criteria) this;

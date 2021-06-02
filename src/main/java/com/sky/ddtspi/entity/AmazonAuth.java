@@ -19,8 +19,6 @@ public class AmazonAuth {
 
     private String countryName;
 
-    private Date lastUpdatedAfter;
-
     private String remark;
 
     private Integer status;
@@ -95,14 +93,6 @@ public class AmazonAuth {
 
     public void setCountryName(String countryName) {
         this.countryName = countryName == null ? null : countryName.trim();
-    }
-
-    public Date getLastUpdatedAfter() {
-        return lastUpdatedAfter;
-    }
-
-    public void setLastUpdatedAfter(Date lastUpdatedAfter) {
-        this.lastUpdatedAfter = lastUpdatedAfter;
     }
 
     public String getRemark() {

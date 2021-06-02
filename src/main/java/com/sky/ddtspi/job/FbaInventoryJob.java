@@ -53,7 +53,7 @@ public class FbaInventoryJob {
     @Autowired
     IAmazonAuthService amazonAuthService;
 
-    @Scheduled(cron = "0/2 * * * * ? ")
+    @Scheduled(cron = "0 0/5 * * * ?")
     public void scheduled() {
         //获取获取订单信息
         log.info("{}，获取库存信息", DateUtil.getFormatDateStr(new Date()));
@@ -125,7 +125,7 @@ public class FbaInventoryJob {
         String granularityId = amazonAuth.getMarketplaceId();
         List<String> marketplaceIds = new ArrayList<>();
         marketplaceIds.add(amazonAuth.getMarketplaceId());
-        Boolean details = false;
+        Boolean details = true;
         OffsetDateTime startDateTime = null;
         List<String> sellerSkus = null;
         String nextToken = null;
