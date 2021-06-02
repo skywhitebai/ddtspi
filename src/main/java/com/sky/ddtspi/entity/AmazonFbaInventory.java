@@ -21,9 +21,21 @@ public class AmazonFbaInventory {
 
     private Integer inboundReceivingQuantity;
 
-    private Integer reservedQuantity;
+    private Integer totalReservedQuantity;
 
-    private Integer researchingQuantity;
+    private Integer pendingCustomerOrderQuantity;
+
+    private Integer pendingTransshipmentQuantity;
+
+    private Integer fcProcessingQuantity;
+
+    private Integer totalResearchingQuantity;
+
+    private Integer researchingQuantityInShortTerm;
+
+    private Integer researchingQuantityInMidUerm;
+
+    private Integer researchingQuantityInLongTerm;
 
     private Integer unfulfillableQuantity;
 
@@ -109,20 +121,68 @@ public class AmazonFbaInventory {
         this.inboundReceivingQuantity = inboundReceivingQuantity;
     }
 
-    public Integer getReservedQuantity() {
-        return reservedQuantity;
+    public Integer getTotalReservedQuantity() {
+        return totalReservedQuantity;
     }
 
-    public void setReservedQuantity(Integer reservedQuantity) {
-        this.reservedQuantity = reservedQuantity;
+    public void setTotalReservedQuantity(Integer totalReservedQuantity) {
+        this.totalReservedQuantity = totalReservedQuantity;
     }
 
-    public Integer getResearchingQuantity() {
-        return researchingQuantity;
+    public Integer getPendingCustomerOrderQuantity() {
+        return pendingCustomerOrderQuantity;
     }
 
-    public void setResearchingQuantity(Integer researchingQuantity) {
-        this.researchingQuantity = researchingQuantity;
+    public void setPendingCustomerOrderQuantity(Integer pendingCustomerOrderQuantity) {
+        this.pendingCustomerOrderQuantity = pendingCustomerOrderQuantity;
+    }
+
+    public Integer getPendingTransshipmentQuantity() {
+        return pendingTransshipmentQuantity;
+    }
+
+    public void setPendingTransshipmentQuantity(Integer pendingTransshipmentQuantity) {
+        this.pendingTransshipmentQuantity = pendingTransshipmentQuantity;
+    }
+
+    public Integer getFcProcessingQuantity() {
+        return fcProcessingQuantity;
+    }
+
+    public void setFcProcessingQuantity(Integer fcProcessingQuantity) {
+        this.fcProcessingQuantity = fcProcessingQuantity;
+    }
+
+    public Integer getTotalResearchingQuantity() {
+        return totalResearchingQuantity;
+    }
+
+    public void setTotalResearchingQuantity(Integer totalResearchingQuantity) {
+        this.totalResearchingQuantity = totalResearchingQuantity;
+    }
+
+    public Integer getResearchingQuantityInShortTerm() {
+        return researchingQuantityInShortTerm;
+    }
+
+    public void setResearchingQuantityInShortTerm(Integer researchingQuantityInShortTerm) {
+        this.researchingQuantityInShortTerm = researchingQuantityInShortTerm;
+    }
+
+    public Integer getResearchingQuantityInMidUerm() {
+        return researchingQuantityInMidUerm;
+    }
+
+    public void setResearchingQuantityInMidUerm(Integer researchingQuantityInMidUerm) {
+        this.researchingQuantityInMidUerm = researchingQuantityInMidUerm;
+    }
+
+    public Integer getResearchingQuantityInLongTerm() {
+        return researchingQuantityInLongTerm;
+    }
+
+    public void setResearchingQuantityInLongTerm(Integer researchingQuantityInLongTerm) {
+        this.researchingQuantityInLongTerm = researchingQuantityInLongTerm;
     }
 
     public Integer getUnfulfillableQuantity() {

@@ -695,123 +695,483 @@ public class AmazonFbaInventoryExample {
             return (Criteria) this;
         }
 
-        public Criteria andReservedQuantityIsNull() {
-            addCriterion("reserved_quantity is null");
+        public Criteria andTotalReservedQuantityIsNull() {
+            addCriterion("total_reserved_quantity is null");
             return (Criteria) this;
         }
 
-        public Criteria andReservedQuantityIsNotNull() {
-            addCriterion("reserved_quantity is not null");
+        public Criteria andTotalReservedQuantityIsNotNull() {
+            addCriterion("total_reserved_quantity is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReservedQuantityEqualTo(Integer value) {
-            addCriterion("reserved_quantity =", value, "reservedQuantity");
+        public Criteria andTotalReservedQuantityEqualTo(Integer value) {
+            addCriterion("total_reserved_quantity =", value, "totalReservedQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andReservedQuantityNotEqualTo(Integer value) {
-            addCriterion("reserved_quantity <>", value, "reservedQuantity");
+        public Criteria andTotalReservedQuantityNotEqualTo(Integer value) {
+            addCriterion("total_reserved_quantity <>", value, "totalReservedQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andReservedQuantityGreaterThan(Integer value) {
-            addCriterion("reserved_quantity >", value, "reservedQuantity");
+        public Criteria andTotalReservedQuantityGreaterThan(Integer value) {
+            addCriterion("total_reserved_quantity >", value, "totalReservedQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andReservedQuantityGreaterThanOrEqualTo(Integer value) {
-            addCriterion("reserved_quantity >=", value, "reservedQuantity");
+        public Criteria andTotalReservedQuantityGreaterThanOrEqualTo(Integer value) {
+            addCriterion("total_reserved_quantity >=", value, "totalReservedQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andReservedQuantityLessThan(Integer value) {
-            addCriterion("reserved_quantity <", value, "reservedQuantity");
+        public Criteria andTotalReservedQuantityLessThan(Integer value) {
+            addCriterion("total_reserved_quantity <", value, "totalReservedQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andReservedQuantityLessThanOrEqualTo(Integer value) {
-            addCriterion("reserved_quantity <=", value, "reservedQuantity");
+        public Criteria andTotalReservedQuantityLessThanOrEqualTo(Integer value) {
+            addCriterion("total_reserved_quantity <=", value, "totalReservedQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andReservedQuantityIn(List<Integer> values) {
-            addCriterion("reserved_quantity in", values, "reservedQuantity");
+        public Criteria andTotalReservedQuantityIn(List<Integer> values) {
+            addCriterion("total_reserved_quantity in", values, "totalReservedQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andReservedQuantityNotIn(List<Integer> values) {
-            addCriterion("reserved_quantity not in", values, "reservedQuantity");
+        public Criteria andTotalReservedQuantityNotIn(List<Integer> values) {
+            addCriterion("total_reserved_quantity not in", values, "totalReservedQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andReservedQuantityBetween(Integer value1, Integer value2) {
-            addCriterion("reserved_quantity between", value1, value2, "reservedQuantity");
+        public Criteria andTotalReservedQuantityBetween(Integer value1, Integer value2) {
+            addCriterion("total_reserved_quantity between", value1, value2, "totalReservedQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andReservedQuantityNotBetween(Integer value1, Integer value2) {
-            addCriterion("reserved_quantity not between", value1, value2, "reservedQuantity");
+        public Criteria andTotalReservedQuantityNotBetween(Integer value1, Integer value2) {
+            addCriterion("total_reserved_quantity not between", value1, value2, "totalReservedQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andResearchingQuantityIsNull() {
-            addCriterion("researching_quantity is null");
+        public Criteria andPendingCustomerOrderQuantityIsNull() {
+            addCriterion("pending_customer_order_quantity is null");
             return (Criteria) this;
         }
 
-        public Criteria andResearchingQuantityIsNotNull() {
-            addCriterion("researching_quantity is not null");
+        public Criteria andPendingCustomerOrderQuantityIsNotNull() {
+            addCriterion("pending_customer_order_quantity is not null");
             return (Criteria) this;
         }
 
-        public Criteria andResearchingQuantityEqualTo(Integer value) {
-            addCriterion("researching_quantity =", value, "researchingQuantity");
+        public Criteria andPendingCustomerOrderQuantityEqualTo(Integer value) {
+            addCriterion("pending_customer_order_quantity =", value, "pendingCustomerOrderQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andResearchingQuantityNotEqualTo(Integer value) {
-            addCriterion("researching_quantity <>", value, "researchingQuantity");
+        public Criteria andPendingCustomerOrderQuantityNotEqualTo(Integer value) {
+            addCriterion("pending_customer_order_quantity <>", value, "pendingCustomerOrderQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andResearchingQuantityGreaterThan(Integer value) {
-            addCriterion("researching_quantity >", value, "researchingQuantity");
+        public Criteria andPendingCustomerOrderQuantityGreaterThan(Integer value) {
+            addCriterion("pending_customer_order_quantity >", value, "pendingCustomerOrderQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andResearchingQuantityGreaterThanOrEqualTo(Integer value) {
-            addCriterion("researching_quantity >=", value, "researchingQuantity");
+        public Criteria andPendingCustomerOrderQuantityGreaterThanOrEqualTo(Integer value) {
+            addCriterion("pending_customer_order_quantity >=", value, "pendingCustomerOrderQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andResearchingQuantityLessThan(Integer value) {
-            addCriterion("researching_quantity <", value, "researchingQuantity");
+        public Criteria andPendingCustomerOrderQuantityLessThan(Integer value) {
+            addCriterion("pending_customer_order_quantity <", value, "pendingCustomerOrderQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andResearchingQuantityLessThanOrEqualTo(Integer value) {
-            addCriterion("researching_quantity <=", value, "researchingQuantity");
+        public Criteria andPendingCustomerOrderQuantityLessThanOrEqualTo(Integer value) {
+            addCriterion("pending_customer_order_quantity <=", value, "pendingCustomerOrderQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andResearchingQuantityIn(List<Integer> values) {
-            addCriterion("researching_quantity in", values, "researchingQuantity");
+        public Criteria andPendingCustomerOrderQuantityIn(List<Integer> values) {
+            addCriterion("pending_customer_order_quantity in", values, "pendingCustomerOrderQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andResearchingQuantityNotIn(List<Integer> values) {
-            addCriterion("researching_quantity not in", values, "researchingQuantity");
+        public Criteria andPendingCustomerOrderQuantityNotIn(List<Integer> values) {
+            addCriterion("pending_customer_order_quantity not in", values, "pendingCustomerOrderQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andResearchingQuantityBetween(Integer value1, Integer value2) {
-            addCriterion("researching_quantity between", value1, value2, "researchingQuantity");
+        public Criteria andPendingCustomerOrderQuantityBetween(Integer value1, Integer value2) {
+            addCriterion("pending_customer_order_quantity between", value1, value2, "pendingCustomerOrderQuantity");
             return (Criteria) this;
         }
 
-        public Criteria andResearchingQuantityNotBetween(Integer value1, Integer value2) {
-            addCriterion("researching_quantity not between", value1, value2, "researchingQuantity");
+        public Criteria andPendingCustomerOrderQuantityNotBetween(Integer value1, Integer value2) {
+            addCriterion("pending_customer_order_quantity not between", value1, value2, "pendingCustomerOrderQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPendingTransshipmentQuantityIsNull() {
+            addCriterion("pending_transshipment_quantity is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPendingTransshipmentQuantityIsNotNull() {
+            addCriterion("pending_transshipment_quantity is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPendingTransshipmentQuantityEqualTo(Integer value) {
+            addCriterion("pending_transshipment_quantity =", value, "pendingTransshipmentQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPendingTransshipmentQuantityNotEqualTo(Integer value) {
+            addCriterion("pending_transshipment_quantity <>", value, "pendingTransshipmentQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPendingTransshipmentQuantityGreaterThan(Integer value) {
+            addCriterion("pending_transshipment_quantity >", value, "pendingTransshipmentQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPendingTransshipmentQuantityGreaterThanOrEqualTo(Integer value) {
+            addCriterion("pending_transshipment_quantity >=", value, "pendingTransshipmentQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPendingTransshipmentQuantityLessThan(Integer value) {
+            addCriterion("pending_transshipment_quantity <", value, "pendingTransshipmentQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPendingTransshipmentQuantityLessThanOrEqualTo(Integer value) {
+            addCriterion("pending_transshipment_quantity <=", value, "pendingTransshipmentQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPendingTransshipmentQuantityIn(List<Integer> values) {
+            addCriterion("pending_transshipment_quantity in", values, "pendingTransshipmentQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPendingTransshipmentQuantityNotIn(List<Integer> values) {
+            addCriterion("pending_transshipment_quantity not in", values, "pendingTransshipmentQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPendingTransshipmentQuantityBetween(Integer value1, Integer value2) {
+            addCriterion("pending_transshipment_quantity between", value1, value2, "pendingTransshipmentQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPendingTransshipmentQuantityNotBetween(Integer value1, Integer value2) {
+            addCriterion("pending_transshipment_quantity not between", value1, value2, "pendingTransshipmentQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andFcProcessingQuantityIsNull() {
+            addCriterion("fc_processing_quantity is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFcProcessingQuantityIsNotNull() {
+            addCriterion("fc_processing_quantity is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFcProcessingQuantityEqualTo(Integer value) {
+            addCriterion("fc_processing_quantity =", value, "fcProcessingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andFcProcessingQuantityNotEqualTo(Integer value) {
+            addCriterion("fc_processing_quantity <>", value, "fcProcessingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andFcProcessingQuantityGreaterThan(Integer value) {
+            addCriterion("fc_processing_quantity >", value, "fcProcessingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andFcProcessingQuantityGreaterThanOrEqualTo(Integer value) {
+            addCriterion("fc_processing_quantity >=", value, "fcProcessingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andFcProcessingQuantityLessThan(Integer value) {
+            addCriterion("fc_processing_quantity <", value, "fcProcessingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andFcProcessingQuantityLessThanOrEqualTo(Integer value) {
+            addCriterion("fc_processing_quantity <=", value, "fcProcessingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andFcProcessingQuantityIn(List<Integer> values) {
+            addCriterion("fc_processing_quantity in", values, "fcProcessingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andFcProcessingQuantityNotIn(List<Integer> values) {
+            addCriterion("fc_processing_quantity not in", values, "fcProcessingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andFcProcessingQuantityBetween(Integer value1, Integer value2) {
+            addCriterion("fc_processing_quantity between", value1, value2, "fcProcessingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andFcProcessingQuantityNotBetween(Integer value1, Integer value2) {
+            addCriterion("fc_processing_quantity not between", value1, value2, "fcProcessingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalResearchingQuantityIsNull() {
+            addCriterion("total_researching_quantity is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalResearchingQuantityIsNotNull() {
+            addCriterion("total_researching_quantity is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalResearchingQuantityEqualTo(Integer value) {
+            addCriterion("total_researching_quantity =", value, "totalResearchingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalResearchingQuantityNotEqualTo(Integer value) {
+            addCriterion("total_researching_quantity <>", value, "totalResearchingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalResearchingQuantityGreaterThan(Integer value) {
+            addCriterion("total_researching_quantity >", value, "totalResearchingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalResearchingQuantityGreaterThanOrEqualTo(Integer value) {
+            addCriterion("total_researching_quantity >=", value, "totalResearchingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalResearchingQuantityLessThan(Integer value) {
+            addCriterion("total_researching_quantity <", value, "totalResearchingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalResearchingQuantityLessThanOrEqualTo(Integer value) {
+            addCriterion("total_researching_quantity <=", value, "totalResearchingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalResearchingQuantityIn(List<Integer> values) {
+            addCriterion("total_researching_quantity in", values, "totalResearchingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalResearchingQuantityNotIn(List<Integer> values) {
+            addCriterion("total_researching_quantity not in", values, "totalResearchingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalResearchingQuantityBetween(Integer value1, Integer value2) {
+            addCriterion("total_researching_quantity between", value1, value2, "totalResearchingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalResearchingQuantityNotBetween(Integer value1, Integer value2) {
+            addCriterion("total_researching_quantity not between", value1, value2, "totalResearchingQuantity");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInShortTermIsNull() {
+            addCriterion("researching_quantity_in_short_term is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInShortTermIsNotNull() {
+            addCriterion("researching_quantity_in_short_term is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInShortTermEqualTo(Integer value) {
+            addCriterion("researching_quantity_in_short_term =", value, "researchingQuantityInShortTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInShortTermNotEqualTo(Integer value) {
+            addCriterion("researching_quantity_in_short_term <>", value, "researchingQuantityInShortTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInShortTermGreaterThan(Integer value) {
+            addCriterion("researching_quantity_in_short_term >", value, "researchingQuantityInShortTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInShortTermGreaterThanOrEqualTo(Integer value) {
+            addCriterion("researching_quantity_in_short_term >=", value, "researchingQuantityInShortTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInShortTermLessThan(Integer value) {
+            addCriterion("researching_quantity_in_short_term <", value, "researchingQuantityInShortTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInShortTermLessThanOrEqualTo(Integer value) {
+            addCriterion("researching_quantity_in_short_term <=", value, "researchingQuantityInShortTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInShortTermIn(List<Integer> values) {
+            addCriterion("researching_quantity_in_short_term in", values, "researchingQuantityInShortTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInShortTermNotIn(List<Integer> values) {
+            addCriterion("researching_quantity_in_short_term not in", values, "researchingQuantityInShortTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInShortTermBetween(Integer value1, Integer value2) {
+            addCriterion("researching_quantity_in_short_term between", value1, value2, "researchingQuantityInShortTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInShortTermNotBetween(Integer value1, Integer value2) {
+            addCriterion("researching_quantity_in_short_term not between", value1, value2, "researchingQuantityInShortTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInMidUermIsNull() {
+            addCriterion("researching_quantity_in_mid_uerm is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInMidUermIsNotNull() {
+            addCriterion("researching_quantity_in_mid_uerm is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInMidUermEqualTo(Integer value) {
+            addCriterion("researching_quantity_in_mid_uerm =", value, "researchingQuantityInMidUerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInMidUermNotEqualTo(Integer value) {
+            addCriterion("researching_quantity_in_mid_uerm <>", value, "researchingQuantityInMidUerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInMidUermGreaterThan(Integer value) {
+            addCriterion("researching_quantity_in_mid_uerm >", value, "researchingQuantityInMidUerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInMidUermGreaterThanOrEqualTo(Integer value) {
+            addCriterion("researching_quantity_in_mid_uerm >=", value, "researchingQuantityInMidUerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInMidUermLessThan(Integer value) {
+            addCriterion("researching_quantity_in_mid_uerm <", value, "researchingQuantityInMidUerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInMidUermLessThanOrEqualTo(Integer value) {
+            addCriterion("researching_quantity_in_mid_uerm <=", value, "researchingQuantityInMidUerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInMidUermIn(List<Integer> values) {
+            addCriterion("researching_quantity_in_mid_uerm in", values, "researchingQuantityInMidUerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInMidUermNotIn(List<Integer> values) {
+            addCriterion("researching_quantity_in_mid_uerm not in", values, "researchingQuantityInMidUerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInMidUermBetween(Integer value1, Integer value2) {
+            addCriterion("researching_quantity_in_mid_uerm between", value1, value2, "researchingQuantityInMidUerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInMidUermNotBetween(Integer value1, Integer value2) {
+            addCriterion("researching_quantity_in_mid_uerm not between", value1, value2, "researchingQuantityInMidUerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInLongTermIsNull() {
+            addCriterion("researching_quantity_in_long_term is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInLongTermIsNotNull() {
+            addCriterion("researching_quantity_in_long_term is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInLongTermEqualTo(Integer value) {
+            addCriterion("researching_quantity_in_long_term =", value, "researchingQuantityInLongTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInLongTermNotEqualTo(Integer value) {
+            addCriterion("researching_quantity_in_long_term <>", value, "researchingQuantityInLongTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInLongTermGreaterThan(Integer value) {
+            addCriterion("researching_quantity_in_long_term >", value, "researchingQuantityInLongTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInLongTermGreaterThanOrEqualTo(Integer value) {
+            addCriterion("researching_quantity_in_long_term >=", value, "researchingQuantityInLongTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInLongTermLessThan(Integer value) {
+            addCriterion("researching_quantity_in_long_term <", value, "researchingQuantityInLongTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInLongTermLessThanOrEqualTo(Integer value) {
+            addCriterion("researching_quantity_in_long_term <=", value, "researchingQuantityInLongTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInLongTermIn(List<Integer> values) {
+            addCriterion("researching_quantity_in_long_term in", values, "researchingQuantityInLongTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInLongTermNotIn(List<Integer> values) {
+            addCriterion("researching_quantity_in_long_term not in", values, "researchingQuantityInLongTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInLongTermBetween(Integer value1, Integer value2) {
+            addCriterion("researching_quantity_in_long_term between", value1, value2, "researchingQuantityInLongTerm");
+            return (Criteria) this;
+        }
+
+        public Criteria andResearchingQuantityInLongTermNotBetween(Integer value1, Integer value2) {
+            addCriterion("researching_quantity_in_long_term not between", value1, value2, "researchingQuantityInLongTerm");
             return (Criteria) this;
         }
 

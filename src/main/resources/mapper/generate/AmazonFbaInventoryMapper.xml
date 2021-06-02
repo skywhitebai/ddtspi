@@ -11,8 +11,14 @@
     <result column="fulfillable_quantity" jdbcType="INTEGER" property="fulfillableQuantity" />
     <result column="inbound_working_quantity" jdbcType="INTEGER" property="inboundWorkingQuantity" />
     <result column="inbound_receiving_quantity" jdbcType="INTEGER" property="inboundReceivingQuantity" />
-    <result column="reserved_quantity" jdbcType="INTEGER" property="reservedQuantity" />
-    <result column="researching_quantity" jdbcType="INTEGER" property="researchingQuantity" />
+    <result column="total_reserved_quantity" jdbcType="INTEGER" property="totalReservedQuantity" />
+    <result column="pending_customer_order_quantity" jdbcType="INTEGER" property="pendingCustomerOrderQuantity" />
+    <result column="pending_transshipment_quantity" jdbcType="INTEGER" property="pendingTransshipmentQuantity" />
+    <result column="fc_processing_quantity" jdbcType="INTEGER" property="fcProcessingQuantity" />
+    <result column="total_researching_quantity" jdbcType="INTEGER" property="totalResearchingQuantity" />
+    <result column="researching_quantity_in_short_term" jdbcType="INTEGER" property="researchingQuantityInShortTerm" />
+    <result column="researching_quantity_in_mid_uerm" jdbcType="INTEGER" property="researchingQuantityInMidUerm" />
+    <result column="researching_quantity_in_long_term" jdbcType="INTEGER" property="researchingQuantityInLongTerm" />
     <result column="unfulfillable_quantity" jdbcType="INTEGER" property="unfulfillableQuantity" />
     <result column="last_updated_time" jdbcType="TIMESTAMP" property="lastUpdatedTime" />
     <result column="product_name" jdbcType="VARCHAR" property="productName" />
@@ -80,8 +86,11 @@
   </sql>
   <sql id="Base_Column_List">
     id, merchant_id, asin, fn_sku, seller_sku, condition_str, fulfillable_quantity, inbound_working_quantity, 
-    inbound_receiving_quantity, reserved_quantity, researching_quantity, unfulfillable_quantity, 
-    last_updated_time, product_name, total_quantity, create_time, update_time
+    inbound_receiving_quantity, total_reserved_quantity, pending_customer_order_quantity, 
+    pending_transshipment_quantity, fc_processing_quantity, total_researching_quantity, 
+    researching_quantity_in_short_term, researching_quantity_in_mid_uerm, researching_quantity_in_long_term, 
+    unfulfillable_quantity, last_updated_time, product_name, total_quantity, create_time, 
+    update_time
   </sql>
   <select id="selectByExample" parameterType="com.sky.ddtspi.entity.AmazonFbaInventoryExample" resultMap="BaseResultMap">
     select
@@ -120,14 +129,20 @@
     insert into amazon_fba_inventory (merchant_id, asin, fn_sku, 
       seller_sku, condition_str, fulfillable_quantity, 
       inbound_working_quantity, inbound_receiving_quantity, 
-      reserved_quantity, researching_quantity, 
+      total_reserved_quantity, pending_customer_order_quantity, 
+      pending_transshipment_quantity, fc_processing_quantity, 
+      total_researching_quantity, researching_quantity_in_short_term, 
+      researching_quantity_in_mid_uerm, researching_quantity_in_long_term, 
       unfulfillable_quantity, last_updated_time, 
       product_name, total_quantity, create_time, 
       update_time)
     values (#{merchantId,jdbcType=VARCHAR}, #{asin,jdbcType=VARCHAR}, #{fnSku,jdbcType=VARCHAR}, 
       #{sellerSku,jdbcType=VARCHAR}, #{conditionStr,jdbcType=VARCHAR}, #{fulfillableQuantity,jdbcType=INTEGER}, 
       #{inboundWorkingQuantity,jdbcType=INTEGER}, #{inboundReceivingQuantity,jdbcType=INTEGER}, 
-      #{reservedQuantity,jdbcType=INTEGER}, #{researchingQuantity,jdbcType=INTEGER}, 
+      #{totalReservedQuantity,jdbcType=INTEGER}, #{pendingCustomerOrderQuantity,jdbcType=INTEGER}, 
+      #{pendingTransshipmentQuantity,jdbcType=INTEGER}, #{fcProcessingQuantity,jdbcType=INTEGER}, 
+      #{totalResearchingQuantity,jdbcType=INTEGER}, #{researchingQuantityInShortTerm,jdbcType=INTEGER}, 
+      #{researchingQuantityInMidUerm,jdbcType=INTEGER}, #{researchingQuantityInLongTerm,jdbcType=INTEGER}, 
       #{unfulfillableQuantity,jdbcType=INTEGER}, #{lastUpdatedTime,jdbcType=TIMESTAMP}, 
       #{productName,jdbcType=VARCHAR}, #{totalQuantity,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
@@ -162,11 +177,29 @@
       <if test="inboundReceivingQuantity != null">
         inbound_receiving_quantity,
       </if>
-      <if test="reservedQuantity != null">
-        reserved_quantity,
+      <if test="totalReservedQuantity != null">
+        total_reserved_quantity,
       </if>
-      <if test="researchingQuantity != null">
-        researching_quantity,
+      <if test="pendingCustomerOrderQuantity != null">
+        pending_customer_order_quantity,
+      </if>
+      <if test="pendingTransshipmentQuantity != null">
+        pending_transshipment_quantity,
+      </if>
+      <if test="fcProcessingQuantity != null">
+        fc_processing_quantity,
+      </if>
+      <if test="totalResearchingQuantity != null">
+        total_researching_quantity,
+      </if>
+      <if test="researchingQuantityInShortTerm != null">
+        researching_quantity_in_short_term,
+      </if>
+      <if test="researchingQuantityInMidUerm != null">
+        researching_quantity_in_mid_uerm,
+      </if>
+      <if test="researchingQuantityInLongTerm != null">
+        researching_quantity_in_long_term,
       </if>
       <if test="unfulfillableQuantity != null">
         unfulfillable_quantity,
@@ -212,11 +245,29 @@
       <if test="inboundReceivingQuantity != null">
         #{inboundReceivingQuantity,jdbcType=INTEGER},
       </if>
-      <if test="reservedQuantity != null">
-        #{reservedQuantity,jdbcType=INTEGER},
+      <if test="totalReservedQuantity != null">
+        #{totalReservedQuantity,jdbcType=INTEGER},
       </if>
-      <if test="researchingQuantity != null">
-        #{researchingQuantity,jdbcType=INTEGER},
+      <if test="pendingCustomerOrderQuantity != null">
+        #{pendingCustomerOrderQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="pendingTransshipmentQuantity != null">
+        #{pendingTransshipmentQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="fcProcessingQuantity != null">
+        #{fcProcessingQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="totalResearchingQuantity != null">
+        #{totalResearchingQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="researchingQuantityInShortTerm != null">
+        #{researchingQuantityInShortTerm,jdbcType=INTEGER},
+      </if>
+      <if test="researchingQuantityInMidUerm != null">
+        #{researchingQuantityInMidUerm,jdbcType=INTEGER},
+      </if>
+      <if test="researchingQuantityInLongTerm != null">
+        #{researchingQuantityInLongTerm,jdbcType=INTEGER},
       </if>
       <if test="unfulfillableQuantity != null">
         #{unfulfillableQuantity,jdbcType=INTEGER},
@@ -274,11 +325,29 @@
       <if test="record.inboundReceivingQuantity != null">
         inbound_receiving_quantity = #{record.inboundReceivingQuantity,jdbcType=INTEGER},
       </if>
-      <if test="record.reservedQuantity != null">
-        reserved_quantity = #{record.reservedQuantity,jdbcType=INTEGER},
+      <if test="record.totalReservedQuantity != null">
+        total_reserved_quantity = #{record.totalReservedQuantity,jdbcType=INTEGER},
       </if>
-      <if test="record.researchingQuantity != null">
-        researching_quantity = #{record.researchingQuantity,jdbcType=INTEGER},
+      <if test="record.pendingCustomerOrderQuantity != null">
+        pending_customer_order_quantity = #{record.pendingCustomerOrderQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.pendingTransshipmentQuantity != null">
+        pending_transshipment_quantity = #{record.pendingTransshipmentQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.fcProcessingQuantity != null">
+        fc_processing_quantity = #{record.fcProcessingQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalResearchingQuantity != null">
+        total_researching_quantity = #{record.totalResearchingQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.researchingQuantityInShortTerm != null">
+        researching_quantity_in_short_term = #{record.researchingQuantityInShortTerm,jdbcType=INTEGER},
+      </if>
+      <if test="record.researchingQuantityInMidUerm != null">
+        researching_quantity_in_mid_uerm = #{record.researchingQuantityInMidUerm,jdbcType=INTEGER},
+      </if>
+      <if test="record.researchingQuantityInLongTerm != null">
+        researching_quantity_in_long_term = #{record.researchingQuantityInLongTerm,jdbcType=INTEGER},
       </if>
       <if test="record.unfulfillableQuantity != null">
         unfulfillable_quantity = #{record.unfulfillableQuantity,jdbcType=INTEGER},
@@ -314,8 +383,14 @@
       fulfillable_quantity = #{record.fulfillableQuantity,jdbcType=INTEGER},
       inbound_working_quantity = #{record.inboundWorkingQuantity,jdbcType=INTEGER},
       inbound_receiving_quantity = #{record.inboundReceivingQuantity,jdbcType=INTEGER},
-      reserved_quantity = #{record.reservedQuantity,jdbcType=INTEGER},
-      researching_quantity = #{record.researchingQuantity,jdbcType=INTEGER},
+      total_reserved_quantity = #{record.totalReservedQuantity,jdbcType=INTEGER},
+      pending_customer_order_quantity = #{record.pendingCustomerOrderQuantity,jdbcType=INTEGER},
+      pending_transshipment_quantity = #{record.pendingTransshipmentQuantity,jdbcType=INTEGER},
+      fc_processing_quantity = #{record.fcProcessingQuantity,jdbcType=INTEGER},
+      total_researching_quantity = #{record.totalResearchingQuantity,jdbcType=INTEGER},
+      researching_quantity_in_short_term = #{record.researchingQuantityInShortTerm,jdbcType=INTEGER},
+      researching_quantity_in_mid_uerm = #{record.researchingQuantityInMidUerm,jdbcType=INTEGER},
+      researching_quantity_in_long_term = #{record.researchingQuantityInLongTerm,jdbcType=INTEGER},
       unfulfillable_quantity = #{record.unfulfillableQuantity,jdbcType=INTEGER},
       last_updated_time = #{record.lastUpdatedTime,jdbcType=TIMESTAMP},
       product_name = #{record.productName,jdbcType=VARCHAR},
@@ -353,11 +428,29 @@
       <if test="inboundReceivingQuantity != null">
         inbound_receiving_quantity = #{inboundReceivingQuantity,jdbcType=INTEGER},
       </if>
-      <if test="reservedQuantity != null">
-        reserved_quantity = #{reservedQuantity,jdbcType=INTEGER},
+      <if test="totalReservedQuantity != null">
+        total_reserved_quantity = #{totalReservedQuantity,jdbcType=INTEGER},
       </if>
-      <if test="researchingQuantity != null">
-        researching_quantity = #{researchingQuantity,jdbcType=INTEGER},
+      <if test="pendingCustomerOrderQuantity != null">
+        pending_customer_order_quantity = #{pendingCustomerOrderQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="pendingTransshipmentQuantity != null">
+        pending_transshipment_quantity = #{pendingTransshipmentQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="fcProcessingQuantity != null">
+        fc_processing_quantity = #{fcProcessingQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="totalResearchingQuantity != null">
+        total_researching_quantity = #{totalResearchingQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="researchingQuantityInShortTerm != null">
+        researching_quantity_in_short_term = #{researchingQuantityInShortTerm,jdbcType=INTEGER},
+      </if>
+      <if test="researchingQuantityInMidUerm != null">
+        researching_quantity_in_mid_uerm = #{researchingQuantityInMidUerm,jdbcType=INTEGER},
+      </if>
+      <if test="researchingQuantityInLongTerm != null">
+        researching_quantity_in_long_term = #{researchingQuantityInLongTerm,jdbcType=INTEGER},
       </if>
       <if test="unfulfillableQuantity != null">
         unfulfillable_quantity = #{unfulfillableQuantity,jdbcType=INTEGER},
@@ -390,8 +483,14 @@
       fulfillable_quantity = #{fulfillableQuantity,jdbcType=INTEGER},
       inbound_working_quantity = #{inboundWorkingQuantity,jdbcType=INTEGER},
       inbound_receiving_quantity = #{inboundReceivingQuantity,jdbcType=INTEGER},
-      reserved_quantity = #{reservedQuantity,jdbcType=INTEGER},
-      researching_quantity = #{researchingQuantity,jdbcType=INTEGER},
+      total_reserved_quantity = #{totalReservedQuantity,jdbcType=INTEGER},
+      pending_customer_order_quantity = #{pendingCustomerOrderQuantity,jdbcType=INTEGER},
+      pending_transshipment_quantity = #{pendingTransshipmentQuantity,jdbcType=INTEGER},
+      fc_processing_quantity = #{fcProcessingQuantity,jdbcType=INTEGER},
+      total_researching_quantity = #{totalResearchingQuantity,jdbcType=INTEGER},
+      researching_quantity_in_short_term = #{researchingQuantityInShortTerm,jdbcType=INTEGER},
+      researching_quantity_in_mid_uerm = #{researchingQuantityInMidUerm,jdbcType=INTEGER},
+      researching_quantity_in_long_term = #{researchingQuantityInLongTerm,jdbcType=INTEGER},
       unfulfillable_quantity = #{unfulfillableQuantity,jdbcType=INTEGER},
       last_updated_time = #{lastUpdatedTime,jdbcType=TIMESTAMP},
       product_name = #{productName,jdbcType=VARCHAR},

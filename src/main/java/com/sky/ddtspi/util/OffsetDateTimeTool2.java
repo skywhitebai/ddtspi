@@ -1,6 +1,7 @@
 package com.sky.ddtspi.util;
 import org.threeten.bp.OffsetDateTime;
 import org.threeten.bp.ZoneOffset;
+import org.threeten.bp.format.DateTimeFormatter;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -19,7 +20,16 @@ public class OffsetDateTimeTool2 {
         int second=cal.get(Calendar.SECOND);//秒
         return OffsetDateTime.of(year,month,day,hour,minute,second,0, ZoneOffset.UTC);
     }
+    public static Date getDateTime(OffsetDateTime offsetDateTime) {
+        if(offsetDateTime==null){
+            return null;
+        }
+        String DATE_TIME_SECOND_STRING = "yyyy-MM-dd HH:mm:ss";
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(DATE_TIME_SECOND_STRING);
+        String result = offsetDateTime.format(dateTimeFormatter);
+        return DateUtil.strToDateTime(result);
+    }
     public static void main(String args[]) {
-        System.out.println("getOffsetDateTime:"+getOffsetDateTime(new Date()));
+        System.out.println("getOffsetDateTime:"+getDateTime(OffsetDateTime.now()));
     }
 }

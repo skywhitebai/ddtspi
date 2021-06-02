@@ -9,6 +9,7 @@ import com.amazon.spapi.client.ApiException;
 import com.amazon.spapi.model.fbainventory.GetInventorySummariesResponse;
 import com.amazon.spapi.model.fbainventory.Granularity;
 import com.amazon.spapi.model.fbainventory.InventorySummary;
+import com.amazon.spapi.model.fbainventory.ResearchingQuantityEntry;
 import com.sky.ddtspi.dao.custom.CustomAmazonAuthMapper;
 import com.sky.ddtspi.dao.custom.CustomAmazonFbaInventoryMapper;
 import com.sky.ddtspi.dao.custom.CustomAmazonSyncInfoMapper;
@@ -36,6 +37,7 @@ import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Component
@@ -179,6 +181,34 @@ public class FbaInventoryJob {
     private void setFbaInventoryInfo(AmazonFbaInventory amazonFbaInventory, InventorySummary inventorySummary) {
         BeanUtils.copyProperties(inventorySummary, amazonFbaInventory);
         amazonFbaInventory.setConditionStr(inventorySummary.getCondition());
+        if(inventorySummary.getInventoryDetails()==null){
+            return;
+        }
+        amazonFbaInventory.setFulfillableQuantity(inventorySummary.getInventoryDetails().getFulfillableQuantity());
+        amazonFbaInventory.setInboundReceivingQuantity(inventorySummary.getInventoryDetails().getInboundReceivingQuantity());
+        amazonFbaInventory.setInboundWorkingQuantity(inventorySummary.getInventoryDetails().getInboundWorkingQuantity());
+        if(inventorySummary.getInventoryDetails().getReservedQuantity()!=null){
+            amazonFbaInventory.setTotalReservedQuantity(inventorySummary.getInventoryDetails().getReservedQuantity().getTotalReservedQuantity());
+            amazonFbaInventory.setPendingCustomerOrderQuantity(inventorySummary.getInventoryDetails().getReservedQuantity().getPendingCustomerOrderQuantity());
+            amazonFbaInventory.setPendingTransshipmentQuantity(inventorySummary.getInventoryDetails().getReservedQuantity().getPendingTransshipmentQuantity());
+            amazonFbaInventory.setFcProcessingQuantity(inventorySummary.getInventoryDetails().getReservedQuantity().getFcProcessingQuantity());
+        }
+        if(inventorySummary.getInventoryDetails().getResearchingQuantity()!=null){
+            amazonFbaInventory.setTotalResearchingQuantity(inventorySummary.getInventoryDetails().getResearchingQuantity().getTotalResearchingQuantity());
+            amazonFbaInventory.setResearchingQuantityInShortTerm(getResearchingQuantityTerm(inventorySummary.getInventoryDetails().getResearchingQuantity().getResearchingQuantityBreakdown(),ResearchingQuantityEntry.NameEnum.RESEARCHINGQUANTITYINSHORTTERM));
+            amazonFbaInventory.setResearchingQuantityInMidUerm(getResearchingQuantityTerm(inventorySummary.getInventoryDetails().getResearchingQuantity().getResearchingQuantityBreakdown(),ResearchingQuantityEntry.NameEnum.RESEARCHINGQUANTITYINMIDTERM));
+            amazonFbaInventory.setResearchingQuantityInLongTerm(getResearchingQuantityTerm(inventorySummary.getInventoryDetails().getResearchingQuantity().getResearchingQuantityBreakdown(),ResearchingQuantityEntry.NameEnum.RESEARCHINGQUANTITYINLONGTERM));
+        }
+        amazonFbaInventory.setUnfulfillableQuantity(inventorySummary.getInventoryDetails().getFulfillableQuantity());
+        amazonFbaInventory.setLastUpdatedTime(OffsetDateTimeTool2.getDateTime(inventorySummary.getLastUpdatedTime()));
+    }
+
+    private Integer getResearchingQuantityTerm(List<ResearchingQuantityEntry> researchingQuantityBreakdown, ResearchingQuantityEntry.NameEnum nameEnum) {
+        Optional<ResearchingQuantityEntry> optional= researchingQuantityBreakdown.stream().filter(item->item.getName().equals(nameEnum)).findFirst();
+        if(optional.isPresent()){
+            return optional.get().getQuantity();
+        }
+        return null;
     }
 
     private AmazonFbaInventory getAmazonFbaInventoryBySellerSku(String sellerSku) {
