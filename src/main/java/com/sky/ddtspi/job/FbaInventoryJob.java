@@ -62,14 +62,14 @@ public class FbaInventoryJob {
         for (AmazonAuth amazonAuth :
                 amazonAuthList) {
             if (StringUtils.isEmpty(amazonAuth.getMarketplaceId())) {
-                return;
+                continue;
             }
             try {
                 syncFbaInventoryInfo(amazonAuth);
             } catch (ApiException e) {
                 log.info("FbaInventoryJob fail,e:{}", JSON.toJSONString(e));
                 e.printStackTrace();
-                return;
+                continue;
             }
         }
     }

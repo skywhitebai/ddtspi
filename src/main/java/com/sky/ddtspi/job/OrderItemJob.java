@@ -47,14 +47,14 @@ public class OrderItemJob {
         for (AmazonAuth amazonAuth:
                 amazonAuthList) {
             if (StringUtils.isEmpty(amazonAuth.getMarketplaceId())) {
-                return;
+                continue;
             }
             try {
                 syncOrderItemInfo(amazonAuth);
             } catch (ApiException e) {
                 log.info("OrderItemJob fail,e:{}", JSON.toJSONString(e));
                 e.printStackTrace();
-                return;
+                continue;
             }
         }
     }
