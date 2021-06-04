@@ -20,6 +20,7 @@ public class AmazonConfig {
     String amazonIamRoleSessionName;
     String amazonAppClientId;
     String amazonAppClientSecret;
+    Integer limitErroCode=429;
     private AmazonConfig() {
 
 

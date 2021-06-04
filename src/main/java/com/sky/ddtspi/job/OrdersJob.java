@@ -8,6 +8,7 @@ import com.sky.ddtspi.dao.custom.CustomAmazonAuthMapper;
 import com.sky.ddtspi.dao.custom.CustomAmazonOrderItemMapper;
 import com.sky.ddtspi.dao.custom.CustomAmazonOrderMapper;
 import com.sky.ddtspi.dao.custom.CustomAmazonSyncInfoMapper;
+import com.sky.ddtspi.dto.amazonAuth.AmazonConfig;
 import com.sky.ddtspi.entity.*;
 import com.sky.ddtspi.enums.AmazonSyncInfoTypeEnum;
 import com.sky.ddtspi.enums.YesOrNoEnum;
@@ -42,7 +43,8 @@ public class OrdersJob {
     @Autowired
     IAmazonAuthService amazonAuthService;
 
-    @Scheduled(cron = "0 0/5 * * * ?")
+    @Scheduled(cron = "0 0/10 * * * ?")
+    //@Scheduled(cron = "0/2 * * * * ?")
     public void scheduled() {
         //获取获取订单信息
         log.info("{}，获取订单信息", DateUtil.getFormatDateStr(new Date()));
@@ -56,6 +58,10 @@ public class OrdersJob {
             try {
                 syncOrderInfo(amazonAuth);
             } catch (ApiException e) {
+                if(AmazonConfig.INSTANCE.getLimitErroCode().equals(e.getCode())){
+                    log.info("OrdersJob fail,limit max,e:{}",e.getResponseBody());
+                    continue;
+                }
                 log.info("OrdersJob fail,e:{}", JSON.toJSONString(e));
                 e.printStackTrace();
                 continue;

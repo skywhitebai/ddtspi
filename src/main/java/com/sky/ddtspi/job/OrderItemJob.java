@@ -10,6 +10,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sky.ddtspi.dao.custom.CustomAmazonOrderItemMapper;
 import com.sky.ddtspi.dao.custom.CustomAmazonOrderMapper;
+import com.sky.ddtspi.dto.amazonAuth.AmazonConfig;
 import com.sky.ddtspi.entity.*;
 import com.sky.ddtspi.enums.YesOrNoEnum;
 import com.sky.ddtspi.service.IAmazonAuthService;
@@ -38,7 +39,7 @@ public class OrderItemJob {
     CustomAmazonOrderMapper customAmazonOrderMapper;
     @Autowired
     CustomAmazonOrderItemMapper customAmazonOrderItemMapper;
-    @Scheduled(cron = "0 0/5 * * * ?")
+    @Scheduled(cron = "0 0/10 * * * ?")
     public void scheduled() {
         //获取获取订单信息
         log.info("{}，获取订单商品信息", DateUtil.getFormatDateStr(new Date()));
@@ -52,6 +53,10 @@ public class OrderItemJob {
             try {
                 syncOrderItemInfo(amazonAuth);
             } catch (ApiException e) {
+                if(AmazonConfig.INSTANCE.getLimitErroCode().equals(e.getCode())){
+                    log.info("OrderItemJob fail,limit max,e:{}",e.getResponseBody());
+                    continue;
+                }
                 log.info("OrderItemJob fail,e:{}", JSON.toJSONString(e));
                 e.printStackTrace();
                 continue;
