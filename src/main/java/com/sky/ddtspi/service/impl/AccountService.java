@@ -5,7 +5,9 @@ import com.sky.ddtspi.common.login.CurrentUserInfo;
 import com.sky.ddtspi.common.login.LoginHelper;
 import com.sky.ddtspi.common.response.AccountEnum;
 import com.sky.ddtspi.dao.custom.CustomUserMapper;
+import com.sky.ddtspi.dto.account.request.ChangePasswordRequest;
 import com.sky.ddtspi.dto.account.request.LoginRequest;
+import com.sky.ddtspi.dto.account.request.RegisterRequest;
 import com.sky.ddtspi.dto.response.BaseResponse;
 import com.sky.ddtspi.entity.SysUser;
 import com.sky.ddtspi.entity.SysUserExample;
@@ -66,5 +68,29 @@ public class AccountService implements IAccountService {
         currentUserInfo.setLoginToken(user.getId()+"-"+ UUID.randomUUID().toString());
         loginHelper.saveLoginToken(currentUserInfo);
         return BaseResponse.successData(currentUserInfo);
+    }
+
+    @Override
+    public BaseResponse changePassword(ChangePasswordRequest params, Long currentUserId) {
+        SysUser sysUser=customUserMapper.selectByPrimaryKey(currentUserId);
+        if(sysUser==null){
+            return BaseResponse.failMessage("用户id不存在");
+        }
+        if(!params.getNewPassword().equals(params.getConfirmNewPassword())){
+            return BaseResponse.failMessage("新密码喝确认新密码必须一致");
+        }
+        if(!DigestUtils.md5DigestAsHex(params.getOldPassword().getBytes()).equals(sysUser.getPassword())){
+            return BaseResponse.failMessage("原密码错误");
+        }
+        sysUser.setPassword(DigestUtils.md5DigestAsHex(params.getNewPassword().getBytes()));
+        sysUser.setUpdateTime(new Date());
+        sysUser.setUpdateBy(currentUserId);
+        customUserMapper.updateByPrimaryKey(sysUser);
+        return BaseResponse.success();
+    }
+
+    @Override
+    public BaseResponse register(RegisterRequest params) {
+        return null;
     }
 }
