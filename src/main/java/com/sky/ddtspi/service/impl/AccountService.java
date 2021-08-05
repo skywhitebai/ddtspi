@@ -15,6 +15,7 @@ import com.sky.ddtspi.service.IAccountService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.DigestUtils;
 
 import java.util.Date;
@@ -50,7 +51,7 @@ public class AccountService implements IAccountService {
         if(!DigestUtils.md5DigestAsHex(params.getPassword().getBytes()).equals(user.getPassword())){
             return BaseResponse.baseEnum(AccountEnum.LOGIN_PASSWORD_ERRO);
         }
-        if(!UserConstant.STATUS_ENABLE.equals(user.getStatus())){
+        if(!UserConstant.statusEnum.ENABLE.getStatus().equals(user.getStatus())){
             return BaseResponse.baseEnum(AccountEnum.USER_DISABLE);
         }
         SysUser userUpdate=new SysUser();
@@ -91,6 +92,44 @@ public class AccountService implements IAccountService {
 
     @Override
     public BaseResponse register(RegisterRequest params) {
-        return null;
+
+        if (!params.getPassword().equals(params.getConfirmPassword())){
+            return BaseResponse.failMessage("密码喝确认密码不一致");
+        }
+        SysUser sysUser=getUserByUserName(params.getUserName());
+        if(sysUser!=null){
+            return BaseResponse.failMessage("用户名已存在");
+        }
+        sysUser=getUserByMobile(params.getMobile());
+        if(sysUser!=null){
+            return BaseResponse.failMessage("手机号已存在");
+        }
+        String password=DigestUtils.md5DigestAsHex(params.getPassword().getBytes());
+        sysUser=new SysUser();
+        BeanUtils.copyProperties(params,sysUser);
+        sysUser.setPassword(password);
+        sysUser.setStatus(UserConstant.statusEnum.DISABLE.getStatus());
+        customUserMapper.insertSelective(sysUser);
+        return BaseResponse.successMessage("注册成功，等待审核");
+    }
+
+    private SysUser getUserByMobile(String mobile) {
+        SysUserExample example=new SysUserExample();
+        example.createCriteria().andMobileEqualTo(mobile);
+        List<SysUser> list=customUserMapper.selectByExample(example);
+        if(CollectionUtils.isEmpty(list)){
+            return null;
+        }
+        return list.get(0);
+    }
+
+    private SysUser getUserByUserName(String userName) {
+        SysUserExample example=new SysUserExample();
+        example.createCriteria().andUserNameEqualTo(userName);
+        List<SysUser> list=customUserMapper.selectByExample(example);
+        if(CollectionUtils.isEmpty(list)){
+            return null;
+        }
+        return list.get(0);
     }
 }

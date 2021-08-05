@@ -1,5 +1,7 @@
 package com.sky.ddtspi.common.constant;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +19,24 @@ public class UserConstant {
     public static final String GENDER_EMPTY = "性别不能为空";
     public static final String USERNAME_EXIST = "用户名已存在";
     public static final String USERID_NOT_EXIST = "用户id不存在";
-    public static final Integer STATUS_ENABLE = 1;
     public static final String USERNAME_NOT_EXIST = "用户名不存在";
 
     static {
         GENDER_LIST.add(1);//男
         GENDER_LIST.add(2);//女
         GENDER_LIST.add(3);//保密
+    }
+    @Getter
+    public enum statusEnum{
+        ENABLE(1,"启用"),
+        DISABLE(0,"停用");
+
+        statusEnum(Integer status, String statusName) {
+            this.status = status;
+            this.statusName = statusName;
+        }
+
+        Integer status;
+        String statusName;
     }
 }
