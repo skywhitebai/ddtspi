@@ -1,5 +1,7 @@
 package com.sky.ddtspi.controller;
 
+import com.sky.ddtspi.common.login.CurrentUserInfo;
+import com.sky.ddtspi.common.login.LoginHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +26,16 @@ public class BaseController {
 
     @Autowired
     protected HttpSession session;
+    @Autowired
+    LoginHelper loginHelper;
+    public CurrentUserInfo getCurrentUserInfo(){
+       return loginHelper.getCurrentUserInfo(request);
+    }
+    public Long getCurrentUserId(){
+        CurrentUserInfo currentUserInfo= loginHelper.getCurrentUserInfo(request);
+        if(currentUserInfo==null){
+            return null;
+        }
+        return currentUserInfo.getUserId();
+    }
 }
