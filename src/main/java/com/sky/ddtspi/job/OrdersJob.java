@@ -44,7 +44,7 @@ public class OrdersJob {
     IAmazonAuthService amazonAuthService;
 
     //@Scheduled(cron = "0 0/10 * * * ?")
-    //@Scheduled(cron = "0/2 * * * * ?")
+    @Scheduled(cron = "0 0/1 * * * ?")
     public void scheduled() {
         //获取获取订单信息
         log.info("{}，获取订单信息", DateUtil.getFormatDateStr(new Date()));
